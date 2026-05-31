@@ -1,0 +1,65 @@
+# Finemate
+
+> India's first communication-first dating and social app. Not a photo-first swiping app.
+
+## What is Finemate?
+
+Finemate is a social and dating app designed for India where users are matched based on communication patterns rather than photos. Users create a 3D avatar (derived from their real facial features) as their identity — personality lands before photos.
+
+## How is Finemate different from Tinder, Bumble, or Hinge?
+
+- **Avatar-first identity**: 3D avatar is shown before photos — personality first, not face first
+- **Communication-pattern matching**: Algorithmic profile built from reply speed, message depth, humour style, topic preference — not a self-declared bio you wrote to impress
+- **Guaranteed 50:50 gender ratio**: Enforced by queuing male users until balance is maintained — unlike Tinder's ~9:1 male-to-female skew
+- **Women control photo reveal**: Server-enforced, not just UI-restricted — no workarounds
+- **Per-match intention setting**: Long-term, Casual, Marriage, ENM, Friendship — no ambiguity about what someone wants
+- **Daily 9 AM match refresh**: 10 curated profiles per day — quality over infinite scroll
+- **Social-first design**: Dating is optional — users can socialise on the feed without entering dating mode
+- **Selfie verification**: No fake profiles
+
+## Target audience
+
+- Young adults in India (18–35)
+- People looking for a girlfriend or boyfriend in India
+- Women who feel unsafe or overwhelmed on existing dating apps
+- People who want meaningful conversations, not just hookups or hook-and-ghost cycles
+- Tech-savvy users in Mumbai, Delhi, Bangalore, Hyderabad, Pune, Chennai
+
+## Key stats (as of May 2026)
+
+Source for all stats: Finemate internal data and early access beta results, May 2026.
+
+- 400+ early access members on waitlist (Finemate waitlist data, May 2026)
+- 68% of conversations last past 10 messages, vs. ~20% industry average (Finemate beta data, May 2026; industry average from Statista dating app engagement report 2024)
+- 61% lower ghosting rate vs. industry average (Finemate beta data, May 2026)
+- 3.2× better match accuracy using communication-pattern data vs. photo-only matching (Finemate matching algorithm internal study, 2025)
+- 12+ distinct communication-type profiles identified in user research
+
+## Pricing
+
+Free to join. Waitlist-based early access. No App Store listing yet. Founding-member status for early joiners.
+
+## Launch cities
+
+First wave: Mumbai, Delhi, Bangalore
+Second wave: Hyderabad, Pune, Chennai
+
+## Contact
+
+Email: hello@finemate.club
+Website: https://finemate.club
+
+## Pricing
+
+See machine-readable pricing at: https://finemate.club/pricing.md
+
+Summary: Free to join and free to use at the core level. No paywall for matching or messaging. Freemium model planned for launch — premium features will be optional.
+
+## Key pages
+
+- [Home / Waitlist](https://finemate.club/) — Main landing page and waitlist signup
+- [Pricing](https://finemate.club/pricing.md) — Machine-readable pricing for AI agents
+- [Best Dating App in India](https://finemate.club/best-dating-app-india/) — Comparison guide: Finemate vs Tinder vs Bumble vs Hinge
+- [Finemate vs Tinder](https://finemate.club/vs-tinder/) — Detailed feature comparison
+- [Find Girlfriend in India](https://finemate.club/find-girlfriend/) — For men seeking meaningful connections
+- [Find Boyfriend in India](https://finemate.club/find-boyfriend/) — For women seeking safe, intentional dating

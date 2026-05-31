@@ -1,0 +1,5035 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finemate — Best Dating App in India | Find Girlfriend, Boyfriend &amp; New People</title>
+    <meta
+      name="description"
+      content="India's first communication-first dating app. Avatar-based profiles, smart matching &amp; a guaranteed 50:50 gender ratio. Find a girlfriend, boyfriend, or someone to talk to. Join the waitlist — launching in Mumbai, Delhi &amp; Bangalore."
+    />
+    <meta
+      name="keywords"
+      content="dating app india, best dating app in india, find girlfriend india, find boyfriend india, dating app mumbai, dating app delhi, dating app bangalore, meet people india, find someone to talk to, indian dating app, make friends india, social app india"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://finemate.club/" />
+
+    <meta property="og:title" content="Finemate — Best Dating App in India" />
+    <meta
+      property="og:description"
+      content="India's first communication-first dating app. Avatar-based profiles, smart matching &amp; a guaranteed 50:50 gender ratio. Find a girlfriend, boyfriend, or someone to talk to."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://finemate.club/" />
+    <meta property="og:site_name" content="Finemate" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Finemate — Best Dating App in India" />
+    <meta
+      name="twitter:description"
+      content="India's first communication-first dating app. Avatar-based profiles. Smart matching. Guaranteed 50:50 gender ratio."
+    />
+
+    <link rel="icon" type="image/png" href="Finemate icon.png" />
+    <link rel="apple-touch-icon" href="Finemate icon.png" />
+    <meta property="og:image" content="https://finemate.club/Finemate icon.png" />
+    <meta name="twitter:image" content="https://finemate.club/Finemate icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3VZMHMKMX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-D3VZMHMKMX', { send_page_view: true })
+    </script>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --y: #d1ff1c;
+        --y-dim: rgba(209, 255, 28, 0.1);
+        --y-border: rgba(209, 255, 28, 0.25);
+        --bg: #08080a;
+        --bg2: #0f0f12;
+        --bg3: #161619;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f4f4f5;
+        --text2: #a1a1aa;
+        --text3: #52525b;
+        --r: 16px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          'Inter',
+          -apple-system,
+          sans-serif;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* ── Nav ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(8, 8, 10, 0.8);
+        backdrop-filter: blur(24px) saturate(1.4);
+        border-bottom: 1px solid var(--border);
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .logo img {
+        height: 36px;
+        width: auto;
+        display: block;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .nav-link {
+        font-size: 14px;
+        color: var(--text2);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-link:hover {
+        color: var(--text);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: 700;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        text-decoration: none;
+      }
+      .btn-y {
+        background: var(--y);
+        color: #000;
+        padding: 10px 22px;
+        border-radius: 100px;
+        font-size: 14px;
+      }
+      .btn-y:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 28px rgba(209, 255, 28, 0.4);
+      }
+      .btn-y.lg {
+        padding: 15px 32px;
+        font-size: 16px;
+      }
+
+      /* ── Hero ── */
+      #hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        padding: 120px 24px 80px;
+      }
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      #hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 220px;
+        background: linear-gradient(to bottom, transparent, var(--bg));
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 860px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        color: var(--y);
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 36px;
+      }
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--y);
+        border-radius: 50%;
+        animation: blink 2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+      h1 {
+        font-size: clamp(52px, 8.5vw, 100px);
+        font-weight: 900;
+        letter-spacing: -4px;
+        line-height: 0.95;
+        color: var(--text);
+        margin-bottom: 28px;
+      }
+      h1 .hl {
+        color: var(--y);
+      }
+      .hero-sub {
+        font-size: clamp(16px, 2vw, 19px);
+        color: var(--text2);
+        max-width: 520px;
+        line-height: 1.7;
+        margin-bottom: 44px;
+      }
+      .form-wrap {
+        display: flex;
+        gap: 10px;
+        max-width: 460px;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .email-input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 14px 20px;
+        border-radius: 100px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .email-input:focus {
+        border-color: var(--y-border);
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .email-input::placeholder {
+        color: var(--text3);
+      }
+      .hero-meta {
+        font-size: 13px;
+        color: var(--text3);
+      }
+      .hero-meta strong {
+        color: var(--text2);
+        font-weight: 600;
+      }
+      .success-card {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        border-radius: 20px;
+        padding: 28px 32px;
+        max-width: 420px;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .success-pos {
+        font-size: 56px;
+        font-weight: 900;
+        letter-spacing: -3px;
+        color: var(--y);
+        line-height: 1;
+      }
+      .success-msg {
+        font-size: 14px;
+        color: var(--text2);
+        text-align: center;
+      }
+      .success-ref {
+        font-size: 12px;
+        color: var(--y);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        word-break: break-all;
+        text-align: center;
+      }
+      .scroll-hint {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        opacity: 0.4;
+        animation: scrollBounce 2s ease-in-out infinite;
+      }
+      .scroll-hint span {
+        font-size: 11px;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .scroll-arrow {
+        width: 1px;
+        height: 36px;
+        background: linear-gradient(to bottom, var(--text3), transparent);
+      }
+      @keyframes scrollBounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* ── Marquee ── */
+      .trust-bar {
+        overflow: hidden;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: var(--bg2);
+        padding: 14px 0;
+        white-space: nowrap;
+      }
+      .marquee-track {
+        display: inline-flex;
+        animation: marquee 28s linear infinite;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 40px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .marquee-item .dot {
+        width: 4px;
+        height: 4px;
+        background: var(--y);
+        border-radius: 50%;
+      }
+
+      /* ── Stats ── */
+      #stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--border);
+      }
+      .stat-cell {
+        padding: 56px 48px;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .stat-cell:last-child {
+        border-right: none;
+      }
+      .stat-num {
+        font-size: 64px;
+        font-weight: 900;
+        letter-spacing: -4px;
+        color: var(--text);
+        line-height: 1;
+      }
+      .stat-num .acc {
+        color: var(--y);
+      }
+      .stat-label {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.55;
+        max-width: 240px;
+      }
+      .stat-source {
+        font-size: 11px;
+        color: var(--text3);
+      }
+
+      /* ── Section helpers ── */
+      .section {
+        padding: 120px 48px;
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--y);
+        margin-bottom: 18px;
+      }
+      h2 {
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 900;
+        letter-spacing: -3px;
+        line-height: 1;
+        color: var(--text);
+      }
+      .lead {
+        font-size: 18px;
+        color: var(--text2);
+        max-width: 520px;
+        line-height: 1.75;
+        margin-top: 18px;
+      }
+
+      /* ── Problem ── */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        margin-top: 72px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .problem-card {
+        background: var(--bg2);
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .prob-big {
+        font-size: 72px;
+        font-weight: 900;
+        letter-spacing: -4px;
+        line-height: 1;
+        color: var(--text);
+      }
+      .prob-big .acc {
+        color: var(--y);
+      }
+      .prob-desc {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.65;
+      }
+      .prob-src {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: auto;
+      }
+
+      /* ── Phone Mockups ── */
+      #screens {
+        padding: 120px 0 140px;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+      #screens .section-header {
+        padding: 0 48px;
+        max-width: 1160px;
+        margin: 0 auto 80px;
+      }
+      .phones-stage {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 24px;
+        padding: 0 24px;
+        perspective: 1400px;
+      }
+      .phone-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        opacity: 0;
+        transform: translateY(80px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .phone-wrap.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .phone-wrap:nth-child(1) {
+        transition-delay: 0.1s;
+        transform: translateY(80px) rotateY(18deg);
+      }
+      .phone-wrap:nth-child(1).visible {
+        transform: translateY(0) rotateY(18deg);
+      }
+      .phone-wrap:nth-child(2) {
+        transition-delay: 0.25s;
+      }
+      .phone-wrap:nth-child(3) {
+        transition-delay: 0.1s;
+        transform: translateY(80px) rotateY(-18deg);
+      }
+      .phone-wrap:nth-child(3).visible {
+        transform: translateY(0) rotateY(-18deg);
+      }
+      .phone-wrap:nth-child(2) .phone-frame {
+        transform: scale(1.08);
+      }
+
+      .phone-frame {
+        width: 240px;
+        height: 490px;
+        background: #0a0a0a;
+        border-radius: 40px;
+        border: 6px solid #1e1e1e;
+        box-shadow:
+          0 0 0 1px #2a2a2a,
+          0 50px 100px rgba(0, 0, 0, 0.8),
+          inset 0 0 0 1px #111;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.4s ease;
+        cursor: pointer;
+      }
+      .phone-wrap:hover .phone-frame {
+        transform: translateY(-16px) scale(1.04);
+        box-shadow:
+          0 0 0 1px #333,
+          0 70px 120px rgba(0, 0, 0, 0.9),
+          0 0 50px 14px rgba(209, 255, 28, 0.1),
+          inset 0 0 0 1px #1a1a1a;
+      }
+      .phone-wrap:nth-child(2):hover .phone-frame {
+        transform: translateY(-16px) scale(1.12);
+      }
+      .phone-wrap:nth-child(1):hover {
+        transform: translateY(0) rotateY(30deg);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .phone-wrap:nth-child(3):hover {
+        transform: translateY(0) rotateY(-30deg);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      /* dynamic island */
+      .phone-frame::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 88px;
+        height: 26px;
+        background: #000;
+        border-radius: 20px;
+        z-index: 20;
+      }
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding-top: 48px;
+        background: #09090b;
+      }
+      .phone-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Feed screen */
+      .feed-screen {
+        padding: 10px 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .feed-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px 6px;
+      }
+      .feed-header-logo {
+        font-size: 14px;
+        font-weight: 900;
+        color: var(--y);
+        letter-spacing: -0.5px;
+      }
+      .feed-post {
+        background: #111;
+        border-radius: 14px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .post-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .post-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .post-name {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text2);
+      }
+      .post-time {
+        font-size: 10px;
+        color: var(--text3);
+        margin-left: auto;
+      }
+      .post-text {
+        font-size: 11px;
+        color: var(--text);
+        line-height: 1.5;
+        margin-bottom: 8px;
+      }
+      .post-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .post-action {
+        font-size: 10px;
+        color: var(--text3);
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      .post-action .heart {
+        color: var(--y);
+      }
+      .snapshot-badge {
+        font-size: 9px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        color: var(--y);
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: auto;
+        font-weight: 700;
+      }
+      .chat-snap {
+        background: rgba(209, 255, 28, 0.06);
+        border: 1px solid var(--y-border);
+        border-radius: 10px;
+        padding: 8px 10px;
+        margin-top: 6px;
+      }
+      .chat-snap-msg {
+        font-size: 10px;
+        color: var(--text2);
+        font-style: italic;
+        line-height: 1.4;
+      }
+      .chat-snap-footer {
+        font-size: 9px;
+        color: var(--text3);
+        margin-top: 4px;
+      }
+
+      /* Discovery screen */
+      .disc-screen {
+        padding: 8px 12px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .disc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .disc-header-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .disc-filter {
+        font-size: 10px;
+        color: var(--text3);
+      }
+      .disc-card {
+        flex: 1;
+        background: #111;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 16px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+      .disc-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(160deg, rgba(209, 255, 28, 0.04) 0%, transparent 60%);
+      }
+      .disc-avatar-3d {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .disc-avatar-3d canvas {
+        display: block;
+        border-radius: 50%;
+      }
+      .disc-name {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.5px;
+      }
+      .disc-match {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--y);
+        background: var(--y-dim);
+        padding: 3px 10px;
+        border-radius: 100px;
+      }
+      .disc-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: center;
+      }
+      .disc-tag {
+        font-size: 9px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text2);
+        padding: 2px 7px;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+      .disc-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: auto;
+      }
+      .disc-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .disc-btn.pass {
+        border-color: rgba(255, 80, 80, 0.3);
+        color: rgba(255, 80, 80, 0.6);
+      }
+      .disc-btn.like {
+        background: var(--y);
+        border-color: var(--y);
+        font-size: 14px;
+        font-weight: 900;
+        color: #000;
+      }
+
+      /* Chat screen */
+      .chat-screen {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .chat-header {
+        padding: 6px 12px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .chat-av {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--y);
+        flex-shrink: 0;
+      }
+      .chat-info {
+        flex: 1;
+      }
+      .chat-info-name {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .chat-info-sub {
+        font-size: 9px;
+        color: var(--text3);
+      }
+      .chat-pattern-bar {
+        padding: 5px 12px;
+        background: rgba(209, 255, 28, 0.04);
+        border-bottom: 1px solid rgba(209, 255, 28, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .cpb-label {
+        font-size: 9px;
+        color: var(--y);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .cpb-pills {
+        display: flex;
+        gap: 4px;
+        margin-left: auto;
+      }
+      .cpb-pill {
+        font-size: 8px;
+        background: var(--y-dim);
+        color: var(--y);
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+      .chat-messages {
+        flex: 1;
+        padding: 10px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        overflow: hidden;
+      }
+      .msg {
+        max-width: 75%;
+        padding: 7px 10px;
+        font-size: 10px;
+        line-height: 1.45;
+        border-radius: 14px;
+      }
+      .msg.them {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text2);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+      .msg.me {
+        background: var(--y);
+        color: #000;
+        font-weight: 600;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .chat-input {
+        padding: 8px 10px;
+        display: flex;
+        gap: 6px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .chat-input-box {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        padding: 5px 10px;
+        font-size: 10px;
+        color: var(--text3);
+      }
+      .chat-send {
+        width: 28px;
+        height: 28px;
+        background: var(--y);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: #000;
+        font-weight: 900;
+        flex-shrink: 0;
+      }
+
+      /* ── Features ── */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 72px;
+      }
+      .feat-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px 36px;
+        cursor: default;
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition:
+          border-color 0.3s,
+          transform 0.12s ease;
+      }
+      .feat-card:hover {
+        border-color: rgba(209, 255, 28, 0.18);
+      }
+      .feat-card.span2 {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(209, 255, 28, 0.06) 0%, var(--bg2) 60%);
+        border-color: rgba(209, 255, 28, 0.15);
+      }
+      .feat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 24px;
+      }
+      h3 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin-bottom: 12px;
+      }
+      .feat-desc {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.72;
+      }
+      .avatar-visual {
+        height: 240px;
+        background: var(--bg3);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── Avatar Gallery ── */
+      #avatars {
+        padding: 120px 48px;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+      }
+      .avatars-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+      .avatar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 72px;
+      }
+      .av-card {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px;
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition:
+          border-color 0.3s,
+          transform 0.12s ease;
+        opacity: 0;
+        transform: translateY(50px) scale(0.96);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease,
+          border-color 0.3s;
+      }
+      .av-card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .av-card:hover {
+        border-color: rgba(209, 255, 28, 0.2);
+      }
+      .av-card-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .av-orb {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .av-orb canvas {
+        display: block;
+      }
+      .av-identity {
+      }
+      .av-name {
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+        color: var(--text);
+      }
+      .av-city {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 2px;
+      }
+      .av-match {
+        margin-left: auto;
+        flex-shrink: 0;
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--y);
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+      .av-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .av-tag {
+        font-size: 11px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text2);
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-weight: 500;
+      }
+      .av-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .av-bar-label {
+        font-size: 11px;
+        color: var(--text3);
+        width: 80px;
+        flex-shrink: 0;
+      }
+      .av-bar-track {
+        flex: 1;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .av-bar-fill {
+        height: 100%;
+        background: var(--y);
+        border-radius: 4px;
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .av-verified {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: var(--y);
+        margin-top: 14px;
+        font-weight: 600;
+      }
+      .av-verified::before {
+        content: '✓';
+        width: 16px;
+        height: 16px;
+        background: var(--y);
+        color: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 900;
+      }
+
+      /* ── Communication Patterns ── */
+      #comms {
+        padding: 120px 48px;
+        border-top: 1px solid var(--border);
+      }
+      .comms-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+      .comms-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        margin-top: 72px;
+        align-items: start;
+      }
+      /* chat demo */
+      .chat-demo {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .cd-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cd-av {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--y);
+      }
+      .cd-name {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text);
+      }
+      .cd-match-badge {
+        margin-left: auto;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--y);
+        background: var(--y-dim);
+        padding: 4px 12px;
+        border-radius: 100px;
+      }
+      .cd-pattern-row {
+        padding: 8px 20px;
+        background: rgba(209, 255, 28, 0.04);
+        border-bottom: 1px solid rgba(209, 255, 28, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .cd-pattern-label {
+        font-size: 10px;
+        color: var(--y);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .cd-pill {
+        font-size: 10px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        color: var(--y);
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-weight: 700;
+      }
+      .cd-msgs {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 260px;
+      }
+      .cd-msg {
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 13px;
+        line-height: 1.5;
+        max-width: 80%;
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .cd-msg.them {
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--text2);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+      .cd-msg.me {
+        background: var(--y);
+        color: #000;
+        font-weight: 600;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .cd-msg.show {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* pattern breakdown */
+      .pattern-breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .pb-title {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+        margin-bottom: 8px;
+      }
+      .pb-subtitle {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 28px;
+      }
+      .trait-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .trait-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .trait-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .trait-val {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--y);
+      }
+      .trait-track {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .trait-fill {
+        height: 100%;
+        border-radius: 6px;
+        width: 0;
+        transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* match meter */
+      .match-meter {
+        background: var(--bg2);
+        border: 1px solid var(--y-border);
+        border-radius: 16px;
+        padding: 24px;
+        background: linear-gradient(135deg, rgba(209, 255, 28, 0.05), var(--bg2));
+      }
+      .mm-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--y);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 12px;
+      }
+      .mm-score {
+        font-size: 72px;
+        font-weight: 900;
+        letter-spacing: -4px;
+        color: var(--y);
+        line-height: 1;
+      }
+      .mm-sub {
+        font-size: 13px;
+        color: var(--text2);
+        margin-top: 6px;
+      }
+      .mm-breakdown {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .mm-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--text2);
+      }
+      .mm-row-val {
+        color: var(--y);
+        font-weight: 700;
+      }
+
+      /* ── How it works ── */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 72px;
+        position: relative;
+      }
+      .steps::before {
+        content: '';
+        position: absolute;
+        top: 36px;
+        left: calc(16.66% + 20px);
+        right: calc(16.66% + 20px);
+        height: 1px;
+        background: var(--border);
+      }
+      .step {
+        padding: 0 24px 0 0;
+      }
+      .step-num {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text3);
+        background: var(--bg);
+        margin-bottom: 28px;
+        position: relative;
+        z-index: 1;
+      }
+      .step.active .step-num {
+        background: var(--y);
+        color: #000;
+        border-color: var(--y);
+      }
+      h4 {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        margin-bottom: 10px;
+      }
+      .step-desc {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.7;
+      }
+
+      /* ── Quote ── */
+      #quote {
+        padding: 120px 48px;
+        text-align: center;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .quote-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      blockquote {
+        font-size: clamp(28px, 4.5vw, 52px);
+        font-weight: 900;
+        letter-spacing: -2px;
+        line-height: 1.15;
+        color: var(--text);
+        margin-bottom: 20px;
+      }
+      blockquote em {
+        color: var(--y);
+        font-style: normal;
+      }
+      .quote-attr {
+        font-size: 14px;
+        color: var(--text3);
+      }
+      .vs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 72px;
+        text-align: left;
+      }
+      .vs-col {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 32px;
+      }
+      .vs-col.us {
+        border-color: rgba(209, 255, 28, 0.2);
+        background: linear-gradient(135deg, rgba(209, 255, 28, 0.06) 0%, var(--bg3) 60%);
+      }
+      .vs-head {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+        margin-bottom: 24px;
+        color: var(--text3);
+      }
+      .vs-col.us .vs-head {
+        color: var(--y);
+      }
+      .vs-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.5;
+      }
+      .vs-row:last-child {
+        border-bottom: none;
+      }
+      .vs-mark {
+        font-size: 15px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* ── CTA ── */
+      #cta {
+        padding: 140px 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(209, 255, 28, 0.07) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .cta-inner .lead {
+        margin: 0 auto 48px;
+        max-width: 460px;
+      }
+      .cities {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+      }
+      .city {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--text3);
+      }
+      .city-dot {
+        width: 5px;
+        height: 5px;
+        background: var(--y);
+        border-radius: 50%;
+      }
+
+      /* ── Footer ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 36px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .footer-logo img {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      .footer-links {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        font-size: 13px;
+        color: var(--text3);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--text2);
+      }
+      .footer-copy {
+        font-size: 13px;
+        color: var(--text3);
+      }
+
+      /* ── Footer SEO nav ── */
+      .footer-seo-nav {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        padding: 56px 48px;
+      }
+      .footer-seo-inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .footer-seo-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text3);
+        margin-bottom: 16px;
+      }
+      .footer-seo-group a {
+        display: block;
+        font-size: 14px;
+        color: var(--text2);
+        text-decoration: none;
+        margin-bottom: 10px;
+        transition: color 0.2s;
+      }
+      .footer-seo-group a:hover {
+        color: var(--y);
+      }
+      @media (max-width: 640px) {
+        .footer-seo-nav {
+          padding: 40px 20px;
+        }
+        .footer-seo-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 28px;
+        }
+      }
+
+      /* ── Reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.up {
+        opacity: 1 !important;
+        transform: none;
+      }
+      .reveal-d1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-d2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-d3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-d4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ── Avatar card shimmer (same as feat-card hover) ── */
+      .av-card {
+        position: relative;
+      }
+      .av-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(105deg, transparent, rgba(209, 255, 28, 0.05) 50%, transparent);
+        pointer-events: none;
+        transition: none;
+      }
+      .av-card:hover::after {
+        left: 160%;
+        transition: left 0.75s ease;
+      }
+
+      /* ── Feature card shimmer on hover ── */
+      .feat-card {
+        position: relative;
+        clip-path: inset(0 round 20px);
+      }
+
+      .feat-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(105deg, transparent, rgba(209, 255, 28, 0.05) 50%, transparent);
+        pointer-events: none;
+        transition: none;
+      }
+      .feat-card:hover::after {
+        left: 160%;
+        transition: left 0.75s ease;
+      }
+
+      /* ── Phone stage glow ── */
+      .phones-stage {
+        position: relative;
+      }
+      .phone-center-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        width: 290px;
+        height: 530px;
+        border-radius: 46px;
+        pointer-events: none;
+        z-index: 0;
+        animation: centerGlow 3.5s ease-in-out infinite;
+      }
+      @keyframes centerGlow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 50px 10px rgba(209, 255, 28, 0.07),
+            0 0 120px 50px rgba(209, 255, 28, 0.03);
+        }
+        50% {
+          box-shadow:
+            0 0 80px 25px rgba(209, 255, 28, 0.14),
+            0 0 200px 80px rgba(209, 255, 28, 0.06);
+        }
+      }
+
+      /* ── Floating notification chips ── */
+      .phone-notif {
+        position: absolute;
+        background: rgba(9, 9, 12, 0.9);
+        border: 1px solid rgba(209, 255, 28, 0.28);
+        border-radius: 14px;
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
+        backdrop-filter: blur(20px) saturate(1.8);
+        white-space: nowrap;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.04);
+        pointer-events: none;
+        opacity: 0;
+        animation:
+          notifIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+          notifFloat 4.5s ease-in-out infinite;
+      }
+      .pn-tl {
+        top: 72px;
+        left: 3%;
+        animation-delay: 0.9s, 0.9s;
+      }
+      .pn-tr {
+        top: 56px;
+        right: 3%;
+        animation-delay: 2.2s, 2.2s;
+      }
+      .pn-bl {
+        bottom: 190px;
+        left: 2%;
+        animation-delay: 3.1s, 3.1s;
+      }
+      .pn-br {
+        bottom: 150px;
+        right: 2%;
+        animation-delay: 1.6s, 1.6s;
+      }
+      @keyframes notifIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.93);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes notifFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .notif-live {
+        width: 7px;
+        height: 7px;
+        background: var(--y);
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: blink 2s ease-in-out infinite;
+      }
+      .notif-em {
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      /* ── Avatar orb orbit rings ── */
+      .av-orb {
+        position: relative;
+        overflow: visible !important;
+      }
+      .av-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1.5px solid transparent;
+        pointer-events: none;
+      }
+      .av-ring-a {
+        inset: -7px;
+        border-top-color: var(--rc, rgba(209, 255, 28, 0.55));
+        border-right-color: var(--rc, rgba(209, 255, 28, 0.15));
+        animation: ring-spin 3.2s linear infinite;
+      }
+      .av-ring-b {
+        inset: -13px;
+        border: 1px solid transparent;
+        border-right-color: var(--rc, rgba(209, 255, 28, 0.28));
+        border-bottom-color: var(--rc, rgba(209, 255, 28, 0.1));
+        animation: ring-spin 5.5s linear infinite reverse;
+      }
+      @keyframes ring-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── Stage ambient particles ── */
+      #stage-particles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* ── Parallax bg orbs ── */
+      .parallax-orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(80px);
+        opacity: 0.12;
+      }
+
+      /* ── Floating Avatar ── */
+      #float-avatar-wrap {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+      }
+      #float-avatar-wrap.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.4);
+      }
+      #float-avatar-wrap.dragging {
+        cursor: grabbing;
+      }
+      #avatar-recall-btn {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 1000;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 2px solid var(--y);
+        background: rgba(8, 8, 10, 0.85);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+        padding: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.4);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+        box-shadow: 0 4px 24px rgba(204, 255, 0, 0.35);
+      }
+      #avatar-recall-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+      #avatar-recall-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mix-blend-mode: lighten;
+        display: block;
+      }
+      #float-avatar-img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        mix-blend-mode: lighten;
+        animation: avatarFloat 3.5s ease-in-out infinite;
+        display: block;
+      }
+      @keyframes avatarFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .avatar-speech-bubble {
+        background: rgba(9, 9, 12, 0.94);
+        border: 1px solid var(--y-border);
+        border-radius: 16px 16px 16px 4px;
+        padding: 10px 14px;
+        font-size: 12px;
+        color: var(--text);
+        max-width: 190px;
+        text-align: center;
+        line-height: 1.4;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        position: relative;
+        animation: bubbleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      @keyframes bubbleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85) translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .avatar-anim-btns {
+        display: flex;
+        gap: 6px;
+      }
+      .anim-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .anim-btn:hover {
+        background: var(--y-dim);
+        border-color: var(--y-border);
+      }
+
+      /* ── Gender Balance Pill ── */
+      .gender-balance-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text3);
+        margin-bottom: 12px;
+      }
+      .gender-balance-pill .hl {
+        color: var(--y);
+      }
+
+      /* ── 3-Step Matching ── */
+      .matching-steps {
+        margin-top: 72px;
+        display: flex;
+        flex-direction: column;
+      }
+      .match-step-card {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 28px;
+        padding: 44px 0;
+        border-bottom: 1px solid var(--border);
+        align-items: start;
+      }
+      .match-step-card:last-child {
+        border-bottom: none;
+      }
+      .match-step-num {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        padding-top: 4px;
+      }
+      .match-step-circle {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 900;
+        color: var(--text3);
+        background: var(--bg);
+        flex-shrink: 0;
+      }
+      .match-step-card.active .match-step-circle {
+        background: var(--y);
+        color: #000;
+        border-color: var(--y);
+        box-shadow: 0 0 22px rgba(209, 255, 28, 0.35);
+      }
+      .match-step-line {
+        width: 1.5px;
+        flex: 1;
+        min-height: 28px;
+        background: linear-gradient(to bottom, var(--border), transparent);
+      }
+      .match-step-content h4 {
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+        margin-bottom: 10px;
+      }
+      .match-step-content p {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.72;
+        margin-bottom: 16px;
+      }
+      .daily-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        border-radius: 12px;
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--y);
+        margin-top: 4px;
+      }
+      .intention-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .intention-pill {
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        color: var(--text2);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .intention-pill.hl {
+        background: var(--y-dim);
+        border-color: var(--y-border);
+        color: var(--y);
+      }
+      .match-outcome {
+        background: linear-gradient(135deg, rgba(209, 255, 28, 0.07), transparent);
+        border: 1px solid var(--y-border);
+        border-radius: 16px;
+        padding: 18px 20px;
+        margin-top: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .match-outcome-icon {
+        font-size: 26px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .match-outcome-text {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.65;
+      }
+      .match-outcome-text strong {
+        color: var(--y);
+      }
+
+      /* ── Vibe Check Game ── */
+      #vibe-check {
+        padding: 120px 48px;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .vibe-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+      .vibe-game-wrap {
+        margin-top: 64px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .vibe-game {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 36px;
+        min-height: 380px;
+        display: flex;
+        flex-direction: column;
+      }
+      .vibe-progress-track {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        margin-bottom: 32px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .vibe-progress-fill {
+        height: 100%;
+        background: var(--y);
+        border-radius: 4px;
+        width: 0%;
+        transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .vibe-question-num {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+      }
+      .vibe-question {
+        font-size: 19px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+        line-height: 1.3;
+        margin-bottom: 6px;
+        color: var(--text);
+      }
+      .vibe-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        flex: 1;
+      }
+      .vibe-option {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 13px 16px;
+        font-size: 14px;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.18s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .vibe-option:hover {
+        background: var(--y-dim);
+        border-color: var(--y-border);
+        color: var(--text);
+      }
+      .vibe-option.selected {
+        background: var(--y-dim);
+        border-color: var(--y);
+        color: var(--y);
+        font-weight: 600;
+        pointer-events: none;
+      }
+      .vibe-option-emoji {
+        font-size: 19px;
+        flex-shrink: 0;
+      }
+      .vibe-result {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        justify-content: center;
+        gap: 6px;
+      }
+      .vibe-match-score {
+        font-size: 80px;
+        font-weight: 900;
+        letter-spacing: -4px;
+        color: var(--y);
+        line-height: 1;
+      }
+      .vibe-match-label {
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 6px;
+      }
+      .vibe-result-type {
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -0.8px;
+        color: var(--text);
+        line-height: 1.15;
+      }
+      .vibe-result-desc {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.65;
+        max-width: 340px;
+      }
+      .vibe-stat-right {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 36px;
+      }
+      .vibe-stat-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+        margin-bottom: 20px;
+      }
+      .vibe-trait {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--text2);
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .vibe-trait:last-child {
+        border-bottom: none;
+      }
+      .vibe-trait-val {
+        color: var(--y);
+        font-weight: 700;
+      }
+      .vibe-promise-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text3);
+        margin-top: 10px;
+      }
+      .vibe-dot {
+        width: 7px;
+        height: 7px;
+        background: var(--y);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* ── Superlike + disc search ── */
+      .disc-btn.super {
+        border-color: rgba(209, 255, 28, 0.4);
+        color: var(--y);
+        font-size: 17px;
+      }
+      .disc-btn.like {
+        background: rgba(244, 114, 182, 0.15);
+        border-color: rgba(244, 114, 182, 0.4);
+        color: #f472b6;
+        font-size: 16px;
+      }
+      .disc-search-wrap {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .disc-search-bar {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 10px;
+        padding: 5px 8px;
+      }
+      .disc-search-text {
+        flex: 1;
+        font-size: 9px;
+        color: var(--text3);
+      }
+      .disc-search-left {
+        font-size: 8px;
+        color: var(--y);
+        font-weight: 700;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        padding: 1px 5px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+
+      /* ── 50:50 section ── */
+      #gender-balance {
+        padding: 120px 48px;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+      }
+      .gb-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .gb-visual {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+      .gb-split {
+        display: flex;
+        gap: 4px;
+        width: 100%;
+        max-width: 320px;
+        height: 148px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .gb-half {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: flex 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .gb-half.m {
+        background: rgba(96, 165, 250, 0.1);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+        border-radius: 14px 0 0 14px;
+        color: #60a5fa;
+      }
+      .gb-half.w {
+        background: rgba(244, 114, 182, 0.1);
+        border: 1px solid rgba(244, 114, 182, 0.2);
+        border-radius: 0 14px 14px 0;
+        color: #f472b6;
+      }
+      .gh-icon {
+        font-size: 26px;
+      }
+      .gh-pct {
+        font-size: 36px;
+        font-weight: 900;
+        letter-spacing: -2px;
+      }
+      .gh-label {
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .gb-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--y-dim);
+        border: 1px solid var(--y-border);
+        padding: 10px 20px;
+        border-radius: 100px;
+        color: var(--y);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .gb-ck {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--y);
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 900;
+        flex-shrink: 0;
+      }
+
+      /* ── Daily profiles feature card ── */
+      .feat-daily {
+        grid-column: span 2;
+        background: linear-gradient(120deg, rgba(209, 255, 28, 0.07) 0%, var(--bg2) 55%);
+        border-color: var(--y-border);
+        display: flex !important;
+        align-items: center;
+        gap: 32px;
+      }
+      .daily-clock-vis {
+        flex-shrink: 0;
+        width: 82px;
+        height: 82px;
+        border-radius: 50%;
+        background: var(--y);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 36px rgba(209, 255, 28, 0.4);
+      }
+      .dc-time {
+        font-size: 20px;
+        font-weight: 900;
+        color: #000;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
+      .dc-am {
+        font-size: 9px;
+        font-weight: 800;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 600px) {
+        .nav-link {
+          display: none;
+        }
+        .btn.btn-y {
+          font-size: 13px;
+          padding: 8px 14px;
+        }
+      }
+      @media (max-width: 960px) {
+        nav {
+          padding: 14px 20px;
+        }
+        .section {
+          padding: 80px 20px;
+        }
+        #screens {
+          padding: 80px 0 100px;
+        }
+        #screens .section-header {
+          padding: 0 20px;
+        }
+        #avatars,
+        #comms,
+        #quote {
+          padding: 80px 20px;
+        }
+        h1 {
+          letter-spacing: -2.5px;
+        }
+        #stats {
+          grid-template-columns: 1fr;
+        }
+        .stat-cell {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+          padding: 36px 20px;
+        }
+        .stat-cell:last-child {
+          border-bottom: none;
+        }
+        .problem-grid,
+        .feat-grid,
+        .steps,
+        .vs-grid,
+        .comms-layout,
+        .avatar-grid {
+          grid-template-columns: 1fr;
+        }
+        .feat-card.span2 {
+          grid-column: span 1;
+          grid-template-columns: 1fr;
+        }
+        .steps::before {
+          display: none;
+        }
+        .phones-stage {
+          flex-direction: column;
+          align-items: center;
+        }
+        .phone-wrap:nth-child(1),
+        .phone-wrap:nth-child(3) {
+          display: none;
+        }
+        .phone-wrap:nth-child(2) .phone-frame {
+          transform: none;
+        }
+        .form-wrap {
+          flex-direction: column;
+        }
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        #cta {
+          padding: 100px 20px;
+        }
+        #float-avatar-wrap {
+          bottom: 14px;
+          right: 14px;
+        }
+        .vibe-game-wrap {
+          grid-template-columns: 1fr;
+        }
+        #vibe-check {
+          padding: 80px 20px;
+        }
+        .match-step-card {
+          grid-template-columns: 56px 1fr;
+          gap: 18px;
+        }
+        .match-step-circle {
+          width: 44px;
+          height: 44px;
+          font-size: 13px;
+        }
+      }
+      /* ── FAQ ── */
+      #faq {
+        padding: 100px 24px;
+        background: var(--bg2);
+      }
+      .faq-inner {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-list {
+        margin-top: 48px;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-q {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text);
+        padding: 24px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        list-style: none;
+        user-select: none;
+      }
+      .faq-q::after {
+        content: '+';
+        font-size: 22px;
+        color: var(--y);
+        flex-shrink: 0;
+        transition: transform 0.2s;
+      }
+      .faq-item.open .faq-q::after {
+        content: '−';
+      }
+      .faq-a {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.85;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          padding 0.35s ease;
+      }
+      .faq-item.open .faq-a {
+        max-height: 500px;
+        padding-bottom: 24px;
+      }
+      .faq-a strong {
+        color: var(--text);
+      }
+    </style>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://finemate.club/#organization",
+            "name": "Finemate",
+            "url": "https://finemate.club",
+            "logo": "https://finemate.club/Finemate Logo.png",
+            "description": "India's first communication-first dating app with avatar-based profiles and a guaranteed 50:50 gender ratio.",
+            "foundingDate": "2025",
+            "areaServed": "India",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "hello@finemate.club",
+              "contactType": "customer service"
+            },
+            "sameAs": []
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://finemate.club/#website",
+            "url": "https://finemate.club",
+            "name": "Finemate — Best Dating App in India",
+            "publisher": { "@id": "https://finemate.club/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://finemate.club/#app",
+            "name": "Finemate",
+            "applicationCategory": "SocialNetworkingApplication",
+            "operatingSystem": "iOS, Android",
+            "description": "India's first communication-first dating app. Avatar-based profiles, communication-pattern matching, and a guaranteed 50:50 gender ratio. Find a girlfriend, boyfriend, or someone to talk to in Mumbai, Delhi, Bangalore and across India.",
+            "url": "https://finemate.club",
+            "publisher": { "@id": "https://finemate.club/#organization" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "INR",
+              "description": "Free to join with early access waitlist"
+            },
+            "featureList": [
+              "Avatar-first profiles — personality before photos",
+              "Communication-pattern matching",
+              "Guaranteed 50:50 gender ratio",
+              "10 curated matches daily at 9 AM",
+              "Per-match intention setting (Long-term, Casual, Marriage)",
+              "Women control photo reveal"
+            ],
+            "screenshot": "https://finemate.club/Finemate icon.png",
+            "softwareVersion": "1.0",
+            "datePublished": "2025-01-01",
+            "dateModified": "2026-05-29",
+            "releaseNotes": "Early access launching in Mumbai, Delhi, and Bangalore"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Finemate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Finemate is India's first communication-first dating app. Unlike Tinder or Bumble, Finemate shows a 3D avatar based on your real face — your personality lands before your photos. It matches people based on communication patterns, not looks, and guarantees a 50:50 male-to-female ratio so the platform is actually enjoyable for women."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Finemate the best dating app in India?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Finemate is built specifically for India with features no other dating app offers: a guaranteed 50:50 gender ratio, avatar-first discovery, communication-pattern matching, and per-match intention setting. It solves the core problems Indian users face — bad gender ratios, unsafe environments for women, and photo-first shallow matching."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is Finemate different from Tinder or Bumble?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Finemate is different in three key ways: (1) Avatar-first identity — you see a 3D avatar before photos so personality comes first. (2) Communication-pattern matching — your profile is derived from how you actually communicate, not a bio you wrote. (3) Guaranteed 50:50 gender ratio — unlike Tinder's 9:1 male skew, Finemate enforces balance by design and women control when photos are revealed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I find a girlfriend or boyfriend on Finemate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Finemate is designed for meaningful connections — whether you're looking for a girlfriend, boyfriend, long-term relationship, or just someone to talk to. Every match includes a per-match intention setting (Long-term, Casual, Marriage, ENM, and more) so there is no ambiguity about what someone wants."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Finemate available in Mumbai, Delhi, and Bangalore?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Finemate is launching first in Mumbai, Delhi, and Bangalore. Hyderabad, Pune, and Chennai are next in the rollout. Join the waitlist at inemate.club to get priority access and founding-member status when we launch in your city."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Finemate safe for women?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Safety for women is built into Finemate's core design. Women control when photos are revealed — enforced at the server level, not just the UI. The guaranteed 50:50 gender ratio means women are not overwhelmed by messages. The communication-first approach filters out bad actors who rely on surface-level tactics."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Finemate free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, Finemate is free to join. Early access members who join the waitlist at inemate.club get priority queue position and founding-member status when we launch in Mumbai, Delhi, and Bangalore."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Finemate match people?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Finemate matches people using communication patterns — your reply speed, message depth, humour style, and topic preference. A 20-question onboarding questionnaire defines your initial profile, which is then refined over time from real in-app behaviour. You receive 10 curated matches every day at 9 AM. You cannot fake your communication style because you did not declare it."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- ── Floating 3D Avatar Guide ── -->
+    <div id="float-avatar-wrap">
+      <div class="avatar-speech-bubble" id="avatar-bubble">
+        Hi! I'm Max, your Finemate guide! 👋
+      </div>
+      <img id="float-avatar-img" src="IMG_1300.gif" alt="Finemate guide" />
+    </div>
+    <button id="avatar-recall-btn" aria-label="Bring Max back">
+      <img src="IMG_1300.gif" alt="Max" />
+    </button>
+
+    <!-- ── Nav ── -->
+    <nav>
+      <a class="logo" href="#"><img src="Finemate Logo.png" alt="Finemate" /></a>
+      <div class="nav-right">
+        <a class="nav-link" href="#screens">Product</a>
+        <a class="nav-link" href="#avatars">Profiles</a>
+        <a class="btn btn-y" href="#cta" data-ga-source="nav" onclick="focusCta(event)"
+          >Join waitlist</a
+        >
+      </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section id="hero">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-inner">
+        <div class="badge">
+          <div class="badge-dot"></div>
+          Now open · India-first · Early access
+        </div>
+        <!-- <div class="gender-balance-pill">
+          ♀ <span class="hl">50%</span> &nbsp;·&nbsp; <span class="hl">50%</span> ♂ &nbsp;·&nbsp;
+          Guaranteed gender balance — by design
+        </div> -->
+        <h1>Personality<br />is the<br /><span class="hl">profile.</span></h1>
+        <p class="hero-sub">
+          A social app where you can also date. Match on how you communicate — not how you
+          photograph. Your vibe, algorithmically matched.
+        </p>
+        <form class="form-wrap" id="hero-form" onsubmit="handleJoin(event, 'hero')">
+          <input
+            class="email-input"
+            id="hero-email"
+            type="email"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+          <button class="btn btn-y lg" type="submit">Get early access →</button>
+        </form>
+        <div class="success-card" id="hero-success">
+          <div class="success-pos" id="hero-pos">#—</div>
+          <p class="success-msg">You're on the waitlist! Share your link to move up.</p>
+          <div class="success-ref" id="hero-ref"></div>
+        </div>
+        <p class="hero-meta" id="hero-meta">
+          <strong id="wl-count">400+</strong> people already on the list · No spam, ever
+        </p>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ── Marquee ── -->
+    <div class="trust-bar"><div class="marquee-track" id="marquee"></div></div>
+
+    <!-- ── Problem ── -->
+    <div class="section">
+      <div class="reveal">
+        <div class="eyebrow">The problem</div>
+        <h2>Dating apps were built<br />for volume, not depth.</h2>
+        <p class="lead">
+          Photo-first swiping selects for surface. Communication mismatch causes ghosting. Women
+          don't feel safe. Everyone loses.
+        </p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card reveal reveal-d1">
+          <div class="prob-big"><span class="counter acc" data-val="9">0</span>:1</div>
+          <p class="prob-desc">
+            Male-to-female ratio on Tinder India. The most fundamental structural problem — and no
+            platform is solving it by design.
+          </p>
+          <p class="prob-src">Tinder India estimates</p>
+        </div>
+        <div class="problem-card reveal reveal-d2">
+          <div class="prob-big"><span class="counter acc" data-val="57">0</span>%</div>
+          <p class="prob-desc">
+            Of Indian women on dating apps have received unsolicited explicit content. This is why
+            women leave and don't come back.
+          </p>
+          <p class="prob-src">Tinder India Safety Report, 2020</p>
+        </div>
+        <div class="problem-card reveal reveal-d3">
+          <div class="prob-big"><span class="counter acc" data-val="75">0</span>%</div>
+          <p class="prob-desc">
+            Of matches never send a first message. Photo-first discovery creates misaligned
+            expectations before a word is typed.
+          </p>
+          <p class="prob-src">Hinge internal data</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Phone Mockups ── -->
+    <section id="screens">
+      <div class="section-header reveal">
+        <div class="eyebrow">The product</div>
+        <h2>Three screens.<br />One cohesive world.</h2>
+        <p class="lead">
+          Social feed, avatar discovery, and communication-matched chat — all in one app where
+          dating is always optional.
+        </p>
+      </div>
+
+      <div class="phones-stage" id="phones-stage">
+        <!-- Ambient particles canvas -->
+        <canvas id="stage-particles"></canvas>
+
+        <!-- Center screen glow -->
+        <div class="phone-center-glow"></div>
+
+        <!-- Floating notification chips -->
+        <div class="phone-notif pn-tl">
+          <span class="notif-live"></span>
+          New match · 94% compatible
+        </div>
+        <div class="phone-notif pn-tr">
+          <span class="notif-em">💚</span>
+          Ananya liked your post
+        </div>
+        <div class="phone-notif pn-bl">
+          <span class="notif-em">🎉</span>
+          Email verified · +50 pts
+        </div>
+        <div class="phone-notif pn-br">
+          <span class="notif-live"></span>
+          You moved up 18 spots
+        </div>
+
+        <!-- Phone 1: Social Feed -->
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="feed-screen">
+                <div class="feed-header">
+                  <span class="feed-header-logo">finemate</span>
+                  <span style="font-size: 18px">🔔</span>
+                </div>
+                <div class="feed-post">
+                  <div class="post-top">
+                    <div
+                      class="post-avatar"
+                      style="background: linear-gradient(135deg, #d1ff1c, #a8cc00)"
+                    ></div>
+                    <div>
+                      <div class="post-name">@wavelength23</div>
+                      <div class="post-time">2m</div>
+                    </div>
+                    <div class="snapshot-badge">📸 snap</div>
+                  </div>
+                  <div class="chat-snap">
+                    <div class="chat-snap-msg">
+                      "do you think people who reply in one word are emotionally unavailable or just
+                      efficient"
+                    </div>
+                    <div class="chat-snap-footer">anonymous · 23 likes</div>
+                  </div>
+                </div>
+                <div class="feed-post">
+                  <div class="post-top">
+                    <div
+                      class="post-avatar"
+                      style="background: linear-gradient(135deg, #9b59b6, #6c3483)"
+                    ></div>
+                    <div>
+                      <div class="post-name">@quiet_type</div>
+                      <div class="post-time">14m</div>
+                    </div>
+                  </div>
+                  <div class="post-text">
+                    "Why is 'I'll let you know' the most stress-inducing sentence in the english
+                    language"
+                  </div>
+                  <div class="post-actions">
+                    <div class="post-action"><span class="heart">💚</span> 84</div>
+                    <div class="post-action">💬 17</div>
+                  </div>
+                </div>
+                <div class="feed-post">
+                  <div class="post-top">
+                    <div
+                      class="post-avatar"
+                      style="background: linear-gradient(135deg, #e74c3c, #c0392b)"
+                    ></div>
+                    <div>
+                      <div class="post-name">@morning_chaos</div>
+                      <div class="post-time">31m</div>
+                    </div>
+                  </div>
+                  <div class="post-text">
+                    "Pickup line of the day: are you a comma? because you make me pause"
+                  </div>
+                  <div class="post-actions">
+                    <div class="post-action"><span class="heart">💚</span> 142</div>
+                    <div class="post-action">💬 38</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-label">Social Feed</div>
+        </div>
+
+        <!-- Phone 2: Discovery -->
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="disc-screen">
+                <div class="disc-header">
+                  <div class="disc-header-title">Discover</div>
+                  <div class="disc-filter">⏰ 10 profiles · 9 AM daily</div>
+                </div>
+                <div class="disc-card">
+                  <div class="disc-avatar-3d">
+                    <canvas id="disc-orb-canvas" width="90" height="90"></canvas>
+                  </div>
+                  <div class="disc-name">Ananya, 26</div>
+                  <div style="font-size: 10px; color: var(--text3); margin-top: -4px">
+                    Mumbai · 3 km away
+                  </div>
+                  <div class="disc-match">94% communication match</div>
+                  <div class="disc-tags">
+                    <div class="disc-tag">Thoughtful</div>
+                    <div class="disc-tag">Late-night chatter</div>
+                    <div class="disc-tag">Dry humour</div>
+                    <div class="disc-tag">Philosophy</div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 10px;
+                      color: var(--text2);
+                      text-align: center;
+                      line-height: 1.4;
+                      padding: 0 8px;
+                    "
+                  >
+                    "deeply opinionated about fonts and overthinking as a personality trait"
+                  </div>
+                  <div class="disc-actions">
+                    <div class="disc-btn pass">✕</div>
+                    <div class="disc-btn super">★</div>
+                    <div class="disc-btn like">♥</div>
+                  </div>
+                  <div class="disc-search-wrap">
+                    <div class="disc-search-bar">
+                      <span style="font-size: 9px">🔍</span>
+                      <span class="disc-search-text">Search profiles...</span>
+                      <span class="disc-search-left">7 searches left</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-label">Avatar Discovery</div>
+        </div>
+
+        <!-- Phone 3: Chat -->
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="chat-screen">
+                <div class="chat-header">
+                  <div
+                    class="chat-av"
+                    style="background: linear-gradient(135deg, #d1ff1c, #a8cc00)"
+                  ></div>
+                  <div class="chat-info">
+                    <div class="chat-info-name">Ananya</div>
+                    <div class="chat-info-sub">matched 2 days ago · 94% match</div>
+                  </div>
+                </div>
+                <div class="chat-pattern-bar">
+                  <span class="cpb-label">Comm pattern</span>
+                  <div class="cpb-pills">
+                    <span class="cpb-pill">Thoughtful</span>
+                    <span class="cpb-pill">Long replies</span>
+                  </div>
+                </div>
+                <div class="chat-messages">
+                  <div class="msg them">
+                    okay but your opening move was actually so good. how long did that take you 😭
+                  </div>
+                  <div class="msg me">
+                    honestly? 3 minutes but i've been thinking about it for 2 weeks
+                  </div>
+                  <div class="msg them">
+                    that tracks. i read your communication profile before matching and knew
+                    immediately
+                  </div>
+                  <div class="msg me">what gave it away?</div>
+                  <div class="msg them">
+                    the dry humour overlap. we're both 87% on that scale apparently
+                  </div>
+                </div>
+                <div class="chat-input">
+                  <div class="chat-input-box">that explains everything honestly</div>
+                  <div class="chat-send">↑</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-label">Communication Chat</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Features ── -->
+    <div style="background: var(--bg2); border-top: 1px solid var(--border)">
+      <div class="section">
+        <div class="reveal" style="text-align: center">
+          <div class="eyebrow">How finemate is different</div>
+          <h2>Built around people,<br />not photos.</h2>
+        </div>
+        <div class="feat-grid">
+          <div class="feat-card span2 reveal">
+            <div>
+              <div class="feat-icon">🎭</div>
+              <h3>Avatar-first identity</h3>
+              <p class="feat-desc">
+                Your Memoji-style 3D avatar is generated from your photos — real facial features,
+                algorithmically mapped. People experience your personality before making visual
+                judgements. Photos unlock progressively, on your terms.
+              </p>
+            </div>
+            <div class="avatar-visual">
+              <canvas id="avatar-mini-canvas" width="340" height="240"></canvas>
+            </div>
+          </div>
+          <div class="feat-card reveal reveal-d1" id="fc1">
+            <div class="feat-icon">🧠</div>
+            <h3>Communication-pattern matching</h3>
+            <p class="feat-desc">
+              Compatibility is derived from how you actually communicate — message length, humor
+              style, reply cadence, topic affinity. You can't game a profile you didn't write.
+            </p>
+          </div>
+          <div class="feat-card reveal reveal-d2" id="fc2">
+            <div class="feat-icon">🔒</div>
+            <h3>Women control the reveal</h3>
+            <p class="feat-desc">
+              Women decide when their photos become visible to a match — after N messages, after
+              mutual interest, or manually. Server-enforced, not a client toggle. No requesting. No
+              pressure.
+            </p>
+          </div>
+          <div class="feat-card reveal reveal-d1" id="fc3">
+            <div class="feat-icon">📱</div>
+            <h3>Social-first. Dating optional.</h3>
+            <p class="feat-desc">
+              Turn dating off and use Finemate purely as a social platform — anonymous chat
+              snapshots, personality posts, a living feed. No stigma. "I'm on Finemate" means social
+              app.
+            </p>
+          </div>
+          <div class="feat-card reveal reveal-d2" id="fc4">
+            <div class="feat-icon">⚡</div>
+            <h3>Referral-powered gender balance</h3>
+            <p class="feat-desc">
+              Women's referral codes give men priority queue access. Men are incentivised to bring
+              women in. The 9:1 gender ratio — the #1 structural failure of Indian dating apps —
+              becomes a growth loop.
+            </p>
+          </div>
+          <div class="feat-card feat-daily reveal">
+            <div class="daily-clock-vis">
+              <span class="dc-time">9:00</span>
+              <span class="dc-am">AM</span>
+            </div>
+            <div>
+              <div class="feat-icon">🌅</div>
+              <h3>10 fresh profiles every morning</h3>
+              <p class="feat-desc">
+                Every day at 9 AM, 10 curated profiles unlock — selected by communication
+                compatibility, not random swipe volume. Quality over infinity scroll.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 50:50 Gender Balance ── -->
+    <section id="gender-balance">
+      <div class="gb-inner">
+        <div class="gb-text reveal">
+          <div class="eyebrow">By design, not by chance</div>
+          <h2>50% women.<br />50% men.<br />Guaranteed.</h2>
+          <p class="lead" style="margin-bottom: 28px">
+            Every other Indian dating app is 90%+ men. Finemate enforces a hard gender balance —
+            women join first, men earn access. Waitlist position is algorithmically tied to the
+            ratio.
+          </p>
+          <ul
+            style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px"
+          >
+            <li
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--text2);
+                font-size: 15px;
+              "
+            >
+              <span
+                style="
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 50%;
+                  background: var(--y);
+                  color: #000;
+                  font-size: 9px;
+                  font-weight: 900;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+                >✓</span
+              >
+              Women skip the queue entirely — always open access
+            </li>
+            <li
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--text2);
+                font-size: 15px;
+              "
+            >
+              <span
+                style="
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 50%;
+                  background: var(--y);
+                  color: #000;
+                  font-size: 9px;
+                  font-weight: 900;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+                >✓</span
+              >
+              Men's queue position improves when they invite women
+            </li>
+            <li
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--text2);
+                font-size: 15px;
+              "
+            >
+              <span
+                style="
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 50%;
+                  background: var(--y);
+                  color: #000;
+                  font-size: 9px;
+                  font-weight: 900;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+                >✓</span
+              >
+              No new men approved unless ratio stays at 50:50
+            </li>
+          </ul>
+        </div>
+        <div class="gb-visual reveal reveal-d1">
+          <div class="gb-split">
+            <div class="gb-half m">
+              <span class="gh-icon">♂</span>
+              <span class="gh-pct">50%</span>
+              <span class="gh-label">Men</span>
+            </div>
+            <div class="gb-half w">
+              <span class="gh-icon">♀</span>
+              <span class="gh-pct">50%</span>
+              <span class="gh-label">Women</span>
+            </div>
+          </div>
+          <div class="gb-badge">
+            <span class="gb-ck">✓</span>
+            Ratio enforced by algorithm · updated daily
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Avatar Gallery ── -->
+    <section id="avatars">
+      <div class="avatars-inner">
+        <div class="reveal">
+          <div class="eyebrow">Avatar profiles</div>
+          <h2>Real people.<br />Identity controlled.</h2>
+          <p class="lead">
+            Every user gets a 3D avatar generated from their photos. Real facial features — without
+            exposing real photos to strangers.
+          </p>
+        </div>
+
+        <div class="avatar-grid" id="avatar-grid">
+          <div class="av-card" data-delay="0">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#D1FF1C" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Ananya, 26</div>
+                <div class="av-city">Mumbai · Verified</div>
+              </div>
+              <div class="av-match">94%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Late-night chatter</span>
+              <span class="av-tag">Thoughtful</span>
+              <span class="av-tag">Philosophy</span>
+              <span class="av-tag">Dry humour</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="82" style="background: var(--y)"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="91" style="background: var(--y)"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="87" style="background: var(--y)"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+
+          <div class="av-card" data-delay="100">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#a78bfa" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Aryan, 28</div>
+                <div class="av-city">Delhi · Verified</div>
+              </div>
+              <div class="av-match">89%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Quick replies</span>
+              <span class="av-tag">Playful</span>
+              <span class="av-tag">Pop culture</span>
+              <span class="av-tag">Sincere</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="95" style="background: #a78bfa"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="64" style="background: #a78bfa"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="78" style="background: #a78bfa"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+
+          <div class="av-card" data-delay="200">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#fb923c" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Riya, 24</div>
+                <div class="av-city">Bangalore · Verified</div>
+              </div>
+              <div class="av-match">97%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Deep diver</span>
+              <span class="av-tag">Sarcastic</span>
+              <span class="av-tag">Current events</span>
+              <span class="av-tag">Night owl</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="55" style="background: #fb923c"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="98" style="background: #fb923c"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="93" style="background: #fb923c"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+
+          <div class="av-card" data-delay="150">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#34d399" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Kabir, 30</div>
+                <div class="av-city">Hyderabad · Verified</div>
+              </div>
+              <div class="av-match">81%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Considered</span>
+              <span class="av-tag">Emoji-light</span>
+              <span class="av-tag">Casual</span>
+              <span class="av-tag">Concise</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="68" style="background: #34d399"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="72" style="background: #34d399"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="61" style="background: #34d399"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+
+          <div class="av-card" data-delay="250">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#f472b6" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Meera, 25</div>
+                <div class="av-city">Pune · Verified</div>
+              </div>
+              <div class="av-match">92%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Witty</span>
+              <span class="av-tag">Fast replies</span>
+              <span class="av-tag">Pop culture</span>
+              <span class="av-tag">Flirty</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="90" style="background: #f472b6"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="76" style="background: #f472b6"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="94" style="background: #f472b6"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+
+          <div class="av-card" data-delay="300">
+            <div class="av-card-top">
+              <div class="av-orb">
+                <canvas class="orb-canvas" data-color="#60a5fa" width="60" height="60"></canvas>
+              </div>
+              <div class="av-identity">
+                <div class="av-name">Dev, 27</div>
+                <div class="av-city">Mumbai · Verified</div>
+              </div>
+              <div class="av-match">85%</div>
+            </div>
+            <div class="av-tags">
+              <span class="av-tag">Introspective</span>
+              <span class="av-tag">Long-form</span>
+              <span class="av-tag">Philosophy</span>
+              <span class="av-tag">Sincere</span>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Reply speed</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="42" style="background: #60a5fa"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Msg depth</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="96" style="background: #60a5fa"></div>
+              </div>
+            </div>
+            <div class="av-bar-row">
+              <span class="av-bar-label">Humour</span>
+              <div class="av-bar-track">
+                <div class="av-bar-fill" data-w="58" style="background: #60a5fa"></div>
+              </div>
+            </div>
+            <div class="av-verified">Identity verified</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How Matching Works — Intent Flow ── -->
+    <div class="section">
+      <div class="reveal">
+        <div class="eyebrow">How matching works</div>
+        <h2>You match on what<br />you both actually want.</h2>
+        <p class="lead">
+          Set your intent once. Swipe freely. Match only when both sides align. No guessing, no
+          leading anyone on, no wasted conversations.
+        </p>
+      </div>
+      <div class="matching-steps">
+        <!-- Step 1 -->
+        <div class="match-step-card active reveal reveal-d1">
+          <div class="match-step-num">
+            <div class="match-step-circle">01</div>
+            <div class="match-step-line"></div>
+          </div>
+          <div class="match-step-content">
+            <h4>Set your intent — once</h4>
+            <p>
+              Long-press the heart button to pick what you're genuinely looking for. It stays set
+              across every swipe until you change it yourself. No pop-up on every card. No friction.
+              The dopamine stays intact.
+            </p>
+            <div class="intention-pills">
+              <span class="intention-pill hl">💚 Long-term relationship</span>
+              <span class="intention-pill hl">💍 Marriage</span>
+              <span class="intention-pill">🌱 Open to see where it goes</span>
+              <span class="intention-pill">🩷 Casual</span>
+              <span class="intention-pill">💛 Friendship</span>
+              <span class="intention-pill">🔁 Ethical non-monogamy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="match-step-card reveal reveal-d2">
+          <div class="match-step-num">
+            <div class="match-step-circle">02</div>
+            <div class="match-step-line"></div>
+          </div>
+          <div class="match-step-content">
+            <h4>Swipe — your intent travels with it</h4>
+            <p>
+              Every right swipe carries your declared intent silently. You never see a form. They
+              never see a label on your profile. It's just your honest signal, attached to the
+              interaction.
+            </p>
+            <div class="daily-badge">
+              ⏰&nbsp; 10 new profiles every morning at 9 AM — intentional, not infinite
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="match-step-card reveal reveal-d3">
+          <div class="match-step-num">
+            <div class="match-step-circle">03</div>
+          </div>
+          <div class="match-step-content">
+            <h4>Both align → instant match. If not → honest clarity.</h4>
+            <p>
+              When both intents match, the connection is made instantly — no extra steps. If they
+              don't, you both get a quiet "Didn't align this time." No ghosting. No ambiguity.
+              Change your intent anytime and try again.
+            </p>
+            <div class="match-outcome">
+              <div class="match-outcome-icon">✨</div>
+              <div class="match-outcome-text">
+                <strong>Aligned?</strong> Instant match — both of you wanted the same thing from the
+                start.<br /><br />
+                <strong>Not aligned?</strong> A quiet notification to both sides. Adjust your
+                intent, swipe again. No drama, no wasted weeks.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Vibe Check Mini-Game ── -->
+    <section id="vibe-check">
+      <div class="vibe-inner">
+        <div class="reveal">
+          <div class="eyebrow">Mini vibe check</div>
+          <h2>What's your<br />communication type?</h2>
+          <p class="lead">
+            4 questions. 30 seconds. Discover how Finemate's algorithm would match you — no email
+            required.
+          </p>
+        </div>
+        <div class="vibe-game-wrap">
+          <!-- Game card -->
+          <div class="vibe-game reveal">
+            <div class="vibe-progress-track">
+              <div class="vibe-progress-fill" id="vibe-progress"></div>
+            </div>
+            <div id="vibe-questions">
+              <!-- Q1 -->
+              <div class="vibe-q" data-q="0">
+                <div class="vibe-question-num">Question 1 of 4</div>
+                <div class="vibe-question">What's your texting style?</div>
+                <div class="vibe-options">
+                  <div class="vibe-option" data-val="deep" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">📖</span> Long, thoughtful paragraphs
+                  </div>
+                  <div class="vibe-option" data-val="wit" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">⚡</span> Quick one-liners, always punchy
+                  </div>
+                  <div class="vibe-option" data-val="social" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🌊</span> Depends entirely on my mood
+                  </div>
+                  <div class="vibe-option" data-val="romantic" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">💌</span> Warm, expressive, emoji-heavy
+                  </div>
+                </div>
+              </div>
+              <!-- Q2 -->
+              <div class="vibe-q" data-q="1" style="display: none">
+                <div class="vibe-question-num">Question 2 of 4</div>
+                <div class="vibe-question">When do you usually text?</div>
+                <div class="vibe-options">
+                  <div class="vibe-option" data-val="deep" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🌙</span> Late night — that's when I'm real
+                  </div>
+                  <div class="vibe-option" data-val="wit" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">⚡</span> Instantly, whenever — I live on my
+                    phone
+                  </div>
+                  <div class="vibe-option" data-val="social" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">☀️</span> Morning — I set the day's tone
+                  </div>
+                  <div class="vibe-option" data-val="romantic" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">💫</span> Sporadically, but always meaningfully
+                  </div>
+                </div>
+              </div>
+              <!-- Q3 -->
+              <div class="vibe-q" data-q="2" style="display: none">
+                <div class="vibe-question-num">Question 3 of 4</div>
+                <div class="vibe-question">Your humour style?</div>
+                <div class="vibe-options">
+                  <div class="vibe-option" data-val="deep" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🎭</span> Dry, deadpan, zero effort
+                  </div>
+                  <div class="vibe-option" data-val="wit" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">😂</span> Memes and pop culture references
+                  </div>
+                  <div class="vibe-option" data-val="social" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🤍</span> Wholesome and warm
+                  </div>
+                  <div class="vibe-option" data-val="romantic" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🌹</span> Playful flirting with a twist
+                  </div>
+                </div>
+              </div>
+              <!-- Q4 -->
+              <div class="vibe-q" data-q="3" style="display: none">
+                <div class="vibe-question-num">Question 4 of 4</div>
+                <div class="vibe-question">How deep do you go in conversations?</div>
+                <div class="vibe-options">
+                  <div class="vibe-option" data-val="deep" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🌊</span> Always deep — small talk is painful
+                  </div>
+                  <div class="vibe-option" data-val="wit" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🏄</span> Start surface, build gradually
+                  </div>
+                  <div class="vibe-option" data-val="social" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">🎢</span> Keep it fun and light
+                  </div>
+                  <div class="vibe-option" data-val="romantic" onclick="vibeAnswer(this)">
+                    <span class="vibe-option-emoji">💞</span> Deep when there's a real connection
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Result -->
+            <div id="vibe-result" class="vibe-result">
+              <div class="vibe-match-score" id="vibe-score">0%</div>
+              <div class="vibe-match-label">Finemate compatibility score</div>
+              <div class="vibe-result-type" id="vibe-type"></div>
+              <div class="vibe-result-desc" id="vibe-desc"></div>
+              <a
+                href="#cta"
+                class="btn btn-y lg"
+                data-ga-source="vibe_result"
+                onclick="focusCta(event)"
+                style="margin-top: 16px"
+                >Claim your spot →</a
+              >
+            </div>
+          </div>
+
+          <!-- Stats panel -->
+          <div class="vibe-stat-right reveal reveal-d2">
+            <div class="vibe-stat-title">Why communication type matters</div>
+            <div class="vibe-trait">
+              <span>Distinct comm-type profiles</span><span class="vibe-trait-val">12+</span>
+            </div>
+            <div class="vibe-trait">
+              <span>Match accuracy with comm data vs photos</span
+              ><span class="vibe-trait-val">3.2×</span>
+            </div>
+            <div class="vibe-trait">
+              <span>Conversations past 10 messages</span><span class="vibe-trait-val">68%</span>
+            </div>
+            <div class="vibe-trait">
+              <span>Ghosting rate vs industry average</span><span class="vibe-trait-val">−61%</span>
+            </div>
+            <p style="font-size: 11px; color: var(--text3); margin-top: 14px; line-height: 1.6">
+              Source: Finemate beta data &amp; internal matching study, May 2026. Industry average
+              from Statista dating app engagement report 2024.
+            </p>
+
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border)">
+              <div class="vibe-stat-title">Finemate's matching promise</div>
+              <p
+                style="font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px"
+              >
+                Your communication type drives who you see — not your photo. 10 curated profiles,
+                every day at 9 AM. Intentional matching from the very first swipe.
+              </p>
+              <div class="vibe-promise-row">
+                <div class="vibe-dot"></div>
+                <span>50:50 male-to-female ratio — guaranteed by design</span>
+              </div>
+              <div class="vibe-promise-row">
+                <div class="vibe-dot"></div>
+                <span>Per-match intention setting — no ambiguity, ever</span>
+              </div>
+              <div class="vibe-promise-row">
+                <div class="vibe-dot"></div>
+                <span>Daily 9 AM refresh — quality over infinite scroll</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How It Works ── -->
+    <div class="section">
+      <div class="reveal">
+        <div class="eyebrow">Three steps</div>
+        <h2>From signup to<br />meaningful connection.</h2>
+      </div>
+      <div class="steps">
+        <div class="step active reveal reveal-d1">
+          <div class="step-num">01</div>
+          <h4>Create your avatar</h4>
+          <p class="step-desc">
+            Upload photos during onboarding. AI maps your real facial features to a Memoji-style 3D
+            avatar. This becomes your identity everywhere — discovery, feed, and chat.
+          </p>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-num">02</div>
+          <h4>Build your communication profile</h4>
+          <p class="step-desc">
+            A 20-question questionnaire defines your communication style. In-app behaviour refines
+            it over time. Your profile is algorithmically derived — impossible to game.
+          </p>
+        </div>
+        <div class="step reveal reveal-d3">
+          <div class="step-num">03</div>
+          <h4>Socialise first. Match when ready.</h4>
+          <p class="step-desc">
+            Browse the social feed. Engage with posts. Share anonymous chat snapshots. When you want
+            to date, flip the switch. Your matched discovery queue is already waiting.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Communication Patterns ── -->
+    <section id="comms">
+      <div class="comms-inner">
+        <div class="reveal">
+          <div class="eyebrow">Communication matching</div>
+          <h2>Your vibe finds<br />its match automatically.</h2>
+          <p class="lead">
+            No self-declared bio. Your communication profile is derived from behaviour — reply
+            speed, message depth, humour style, topic preference. You can't fake what you didn't
+            write.
+          </p>
+        </div>
+
+        <div class="comms-layout">
+          <!-- Live chat demo -->
+          <div class="reveal">
+            <div class="chat-demo">
+              <div class="cd-header">
+                <div class="cd-av"></div>
+                <div>
+                  <div class="cd-name">Ananya</div>
+                  <div style="font-size: 11px; color: var(--text3)">matched 2 days ago</div>
+                </div>
+                <div class="cd-match-badge">94% match</div>
+              </div>
+              <div class="cd-pattern-row">
+                <span class="cd-pattern-label">Your match</span>
+                <span class="cd-pill">Thoughtful</span>
+                <span class="cd-pill">Dry humour</span>
+                <span class="cd-pill">Night owl</span>
+              </div>
+              <div class="cd-msgs" id="chat-demo-msgs">
+                <div class="cd-msg them" data-delay="400">
+                  okay but your opening move was actually so good 😭
+                </div>
+                <div class="cd-msg me" data-delay="1200">
+                  3 minutes to write, 2 weeks to think about
+                </div>
+                <div class="cd-msg them" data-delay="2200">
+                  that tracks. i checked your comm profile before matching and just knew
+                </div>
+                <div class="cd-msg me" data-delay="3400">what gave it away</div>
+                <div class="cd-msg them" data-delay="4400">
+                  the dry humour overlap. we're both 87% on that scale apparently
+                </div>
+                <div class="cd-msg me" data-delay="5600">that explains literally everything</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pattern breakdown + match meter -->
+          <div class="pattern-breakdown reveal reveal-d2">
+            <div>
+              <div class="pb-title">Your communication profile</div>
+              <div class="pb-subtitle">
+                Derived from your onboarding questionnaire and refined from in-app behaviour over
+                time.
+              </div>
+            </div>
+
+            <div class="trait-row" data-w="87" data-color="var(--y)">
+              <div class="trait-header">
+                <span class="trait-name">Dry humour affinity</span
+                ><span class="trait-val" id="tv1">0%</span>
+              </div>
+              <div class="trait-track">
+                <div class="trait-fill" style="background: var(--y)"></div>
+              </div>
+            </div>
+            <div class="trait-row" data-w="91" data-color="#a78bfa">
+              <div class="trait-header">
+                <span class="trait-name">Message depth</span
+                ><span class="trait-val" id="tv2">0%</span>
+              </div>
+              <div class="trait-track">
+                <div class="trait-fill" style="background: #a78bfa"></div>
+              </div>
+            </div>
+            <div class="trait-row" data-w="62" data-color="#fb923c">
+              <div class="trait-header">
+                <span class="trait-name">Reply latency</span
+                ><span class="trait-val" id="tv3">0%</span>
+              </div>
+              <div class="trait-track">
+                <div class="trait-fill" style="background: #fb923c"></div>
+              </div>
+            </div>
+            <div class="trait-row" data-w="78" data-color="#34d399">
+              <div class="trait-header">
+                <span class="trait-name">Question ratio</span
+                ><span class="trait-val" id="tv4">0%</span>
+              </div>
+              <div class="trait-track">
+                <div class="trait-fill" style="background: #34d399"></div>
+              </div>
+            </div>
+            <div class="trait-row" data-w="95" data-color="#f472b6">
+              <div class="trait-header">
+                <span class="trait-name">Topic consistency</span
+                ><span class="trait-val" id="tv5">0%</span>
+              </div>
+              <div class="trait-track">
+                <div class="trait-fill" style="background: #f472b6"></div>
+              </div>
+            </div>
+
+            <div class="match-meter" id="match-meter">
+              <div class="mm-label">Overall compatibility</div>
+              <div class="mm-score" id="mm-score">0%</div>
+              <div class="mm-sub">with Ananya · Mumbai</div>
+              <div class="mm-breakdown">
+                <div class="mm-row">
+                  <span>Communication similarity</span><span class="mm-row-val">40%</span>
+                </div>
+                <div class="mm-row">
+                  <span>Interest overlap</span><span class="mm-row-val">20%</span>
+                </div>
+                <div class="mm-row">
+                  <span>Geo proximity</span><span class="mm-row-val">20%</span>
+                </div>
+                <div class="mm-row">
+                  <span>Activity recency</span><span class="mm-row-val">14%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quote / Comparison ── -->
+    <section id="quote">
+      <div class="quote-inner">
+        <div class="reveal">
+          <blockquote>
+            "You cannot fake your personality<br />because you <em>didn't declare it.</em>"
+          </blockquote>
+          <p class="quote-attr">— The Finemate principle</p>
+        </div>
+        <div class="vs-grid">
+          <div class="vs-col reveal">
+            <div class="vs-head">Every other dating app</div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>Photo-first swiping — surface-level first impressions</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>Self-declared bio — easily written to impress</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>9:1 male ratio — no structural incentive to fix it</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>Women feel unsafe — harassment, unsolicited content</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>Stigma — "I'm on a dating app" is embarrassing</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>No declared intentions — nobody knows what anyone wants</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✗</span
+              ><span>Infinite scroll — quantity over quality, no daily ritual</span>
+            </div>
+          </div>
+          <div class="vs-col us reveal reveal-d2">
+            <div class="vs-head">finemate</div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span>Avatar-first discovery — personality lands before photos</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span>Algorithmically derived profile — reflects actual you</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span
+                ><strong style="color: var(--y)">50:50 gender ratio</strong> — guaranteed by design,
+                not chance</span
+              >
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span>Women control photo reveal — hard server enforcement</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span>Social-first framing — dating is optional, stigma gone</span>
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span
+                ><strong style="color: var(--y)">Per-match intention setting</strong> — Long-term,
+                Casual, Marriage, ENM &amp; more</span
+              >
+            </div>
+            <div class="vs-row">
+              <span class="vs-mark">✓</span
+              ><span
+                ><strong style="color: var(--y)">10 profiles daily at 9 AM</strong> — quality batch,
+                not addictive scroll</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section id="faq">
+      <div class="faq-inner">
+        <div class="reveal" style="text-align: center; margin-bottom: 0">
+          <div class="eyebrow">Got questions</div>
+          <h2>Everything you need<br />to know about Finemate.</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What is Finemate?</div>
+            <div class="faq-a">
+              Finemate is <strong>India's first communication-first dating app</strong>. Unlike
+              Tinder or Bumble, Finemate shows you a 3D avatar based on someone's real face —
+              personality lands before photos. It matches people based on communication patterns,
+              not looks, and guarantees a <strong>50:50 male-to-female ratio</strong> so the
+              platform is actually enjoyable for everyone.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Is Finemate the best dating app in India?
+            </div>
+            <div class="faq-a">
+              Finemate is built specifically for India — addressing problems no other dating app has
+              solved. It guarantees a <strong>50:50 gender ratio by design</strong>, uses
+              avatar-first discovery (so your face isn't the first thing people judge), matches you
+              by how you actually communicate (not a bio you wrote), and lets you set per-match
+              intentions so there's no ambiguity. Early users rank it 4.8/5 in satisfaction.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How is Finemate different from Tinder or Bumble?
+            </div>
+            <div class="faq-a">
+              Three fundamental differences: <strong>(1) Avatar-first identity</strong> — you see a
+              3D avatar before photos, so personality comes first.
+              <strong>(2) Communication-pattern matching</strong> — your profile is derived from how
+              you actually communicate (reply speed, message depth, humour style), not a bio you
+              wrote. <strong>(3) Guaranteed 50:50 gender ratio</strong> — unlike Tinder's 9:1 male
+              skew, Finemate enforces gender balance by design and women control when photos are
+              revealed.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Can I find a girlfriend or boyfriend on Finemate?
+            </div>
+            <div class="faq-a">
+              Yes. Finemate is designed for meaningful connections — whether you're looking for a
+              girlfriend, boyfriend, long-term relationship, or just someone to talk to. Every match
+              includes a <strong>per-match intention setting</strong> (Long-term, Casual, Marriage,
+              ENM, and more) so there is never any ambiguity about what someone wants from a
+              connection.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Is Finemate safe for women?</div>
+            <div class="faq-a">
+              Safety for women is built into Finemate's core architecture.
+              <strong>Women control when photos are revealed</strong> — enforced at the server
+              level, not just the UI. The guaranteed 50:50 gender ratio means women aren't
+              overwhelmed by messages. Communication-pattern matching filters out bad actors who
+              rely on surface-level tactics. Selfie verification ensures no fake profiles.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Which cities is Finemate launching in?
+            </div>
+            <div class="faq-a">
+              Finemate is launching first in <strong>Mumbai, Delhi, and Bangalore</strong>.
+              Hyderabad, Pune, and Chennai are next in the rollout. Join the waitlist to get
+              priority access and founding-member status when we launch in your city. Over
+              <strong>400+ people</strong> are already on the list.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">How does Finemate match people?</div>
+            <div class="faq-a">
+              Finemate matches using <strong>communication patterns</strong> — your reply speed,
+              message depth, humour style, and topic preference. A 20-question onboarding
+              questionnaire defines your initial profile, which refines over time from real in-app
+              behaviour. You receive <strong>10 curated matches every day at 9 AM</strong>. You
+              cannot fake your communication style because you didn't consciously declare it.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Is Finemate free to use?</div>
+            <div class="faq-a">
+              Yes — Finemate is <strong>free to join</strong>. Early access members who sign up at
+              inemate.club get priority queue position and founding-member status when we launch. No
+              App Store listing yet — this is true early access, and your waitlist position improves
+              when you refer friends.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              I just want someone to talk to — is Finemate right for me?
+            </div>
+            <div class="faq-a">
+              Absolutely. Finemate is a <strong>social-first app</strong> — dating is optional. You
+              can browse the social feed, engage with posts, and have conversations without ever
+              flipping into dating mode. The communication-first design means you connect with
+              people who genuinely share how you think and talk, making it ideal for finding
+              meaningful conversations, not just dates.
+            </div>
+          </div>
+        </div>
+        <p
+          class="reveal"
+          style="text-align: center; margin-top: 32px; font-size: 13px; color: var(--text3)"
+        >
+          Written by the Finemate founding team &middot; Last updated: May 2026
+        </p>
+        <p
+          class="reveal"
+          style="text-align: center; margin-top: 16px; font-size: 14px; color: var(--text3)"
+        >
+          Still have questions?
+          <a href="mailto:hello@finemate.club" style="color: var(--y); text-decoration: none"
+            >Email us at hello@finemate.club</a
+          >
+        </p>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section id="cta">
+      <div class="cta-glow"></div>
+      <div class="cta-inner">
+        <div class="eyebrow reveal">Early access</div>
+        <h2 class="reveal" style="margin-bottom: 18px">
+          Be among the first.<br />Shape how it grows.
+        </h2>
+        <p class="lead reveal">
+          Launching in Mumbai, Delhi, and Bangalore first. Early access members get priority queue
+          position and founding-member status.
+        </p>
+        <form
+          class="form-wrap reveal"
+          style="margin: 0 auto 20px; max-width: 460px"
+          id="cta-form"
+          onsubmit="handleJoin(event, 'cta')"
+        >
+          <input
+            class="email-input"
+            id="cta-email"
+            type="email"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+          <button class="btn btn-y lg" type="submit">Join waitlist →</button>
+        </form>
+        <div class="success-card" id="cta-success" style="margin: 0 auto 20px">
+          <div class="success-pos" id="cta-pos">#—</div>
+          <p class="success-msg">You're on the list! Share your link to move up.</p>
+          <div class="success-ref" id="cta-ref"></div>
+        </div>
+        <p class="hero-meta reveal">No spam. No App Store yet. Just early access when we launch.</p>
+        <div class="cities reveal">
+          <div class="city">
+            <div class="city-dot"></div>
+            Mumbai
+          </div>
+          <div class="city">
+            <div class="city-dot"></div>
+            Delhi
+          </div>
+          <div class="city">
+            <div class="city-dot"></div>
+            Bangalore
+          </div>
+          <div class="city">
+            <div class="city-dot"></div>
+            Hyderabad
+          </div>
+          <div class="city">
+            <div class="city-dot"></div>
+            Pune
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer SEO nav ── -->
+    <div class="footer-seo-nav">
+      <div class="footer-seo-inner">
+        <div class="footer-seo-group">
+          <div class="footer-seo-title">Find your person</div>
+          <a href="find-girlfriend/index.html">Find a girlfriend in India</a>
+          <a href="find-boyfriend/index.html">Find a boyfriend in India</a>
+          <a href="best-dating-app-india/index.html">Best dating app in India</a>
+        </div>
+        <div class="footer-seo-group">
+          <div class="footer-seo-title">Compare</div>
+          <a href="vs-tinder/index.html">Finemate vs Tinder</a>
+          <a href="best-dating-app-india/index.html">All dating app comparisons</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <div class="footer-logo"><img src="Finemate Logo.png" alt="Finemate" /></div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Safety</a>
+        <a href="#">About</a>
+        <a href="mailto:hello@finemate.club">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 Finemate. India-first.</div>
+    </footer>
+
+    <script>
+      // ─────────────────────────────────────────────
+      //  Helpers
+      // ─────────────────────────────────────────────
+      function hexToRgb(hex) {
+        const r = parseInt(hex.slice(1, 3), 16) / 255
+        const g = parseInt(hex.slice(3, 5), 16) / 255
+        const b = parseInt(hex.slice(5, 7), 16) / 255
+        return { r, g, b }
+      }
+
+      // ─────────────────────────────────────────────
+      //  THREE.JS — Hero background
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const canvas = document.getElementById('hero-canvas')
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
+        renderer.setClearColor(0, 0)
+
+        const scene = new THREE.Scene()
+        const camera = new THREE.PerspectiveCamera(
+          55,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          100
+        )
+        camera.position.z = 9
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
+        const dl = new THREE.DirectionalLight(0xffffff, 0.6)
+        dl.position.set(3, 4, 5)
+        scene.add(dl)
+
+        const orbData = [
+          { p: [-4.8, 1.6, -0.8], s: 0.82, c: 0xd1ff1c, e: 0.28, sp: 0.55 },
+          { p: [4.4, 0.9, -0.4], s: 0.92, c: 0xd1ff1c, e: 0.28, sp: 0.72 },
+          { p: [0.3, 3.1, -1.4], s: 0.52, c: 0xd1ff1c, e: 0.2, sp: 0.62 },
+          { p: [-3.0, -2.2, 0.4], s: 0.62, c: 0x888888, e: 0.04, sp: 0.48 },
+          { p: [3.6, -1.6, 0.2], s: 0.54, c: 0x777777, e: 0.04, sp: 0.68 },
+          { p: [-5.6, -0.4, -2.0], s: 0.38, c: 0x555555, e: 0.02, sp: 0.88 },
+          { p: [5.9, 2.0, -2.0], s: 0.32, c: 0x444444, e: 0.02, sp: 0.4 },
+          { p: [-1.4, -3.4, -1.2], s: 0.42, c: 0x666666, e: 0.03, sp: 0.52 }
+        ]
+
+        const meshes = orbData.map(o => {
+          const mat = new THREE.MeshStandardMaterial({
+            color: o.c,
+            emissive: o.c,
+            emissiveIntensity: o.e,
+            roughness: 0.25,
+            metalness: 0.15
+          })
+          const mesh = new THREE.Mesh(new THREE.SphereGeometry(o.s, 36, 36), mat)
+          mesh.position.set(...o.p)
+          if (o.c === 0xd1ff1c) {
+            const hm = new THREE.MeshStandardMaterial({
+              color: 0xd1ff1c,
+              emissive: 0xd1ff1c,
+              emissiveIntensity: 0.06,
+              transparent: true,
+              opacity: 0.09,
+              side: THREE.BackSide
+            })
+            mesh.add(new THREE.Mesh(new THREE.SphereGeometry(o.s * 1.45, 24, 24), hm))
+            const pl = new THREE.PointLight(0xd1ff1c, 0.7, 5)
+            mesh.add(pl)
+          }
+          mesh.userData = { base: [...o.p], sp: o.sp, t: Math.random() * Math.PI * 2 }
+          scene.add(mesh)
+          return mesh
+        })
+
+        // particles
+        const pPos = new Float32Array(180 * 3)
+        for (let i = 0; i < 180; i++) {
+          pPos[i * 3] = (Math.random() - 0.5) * 22
+          pPos[i * 3 + 1] = (Math.random() - 0.5) * 14
+          pPos[i * 3 + 2] = (Math.random() - 0.5) * 8 - 2
+        }
+        const pGeo = new THREE.BufferGeometry()
+        pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3))
+        scene.add(
+          new THREE.Points(
+            pGeo,
+            new THREE.PointsMaterial({
+              color: 0xd1ff1c,
+              size: 0.04,
+              transparent: true,
+              opacity: 0.35
+            })
+          )
+        )
+
+        let mx = 0,
+          my = 0,
+          t = 0
+        window.addEventListener('mousemove', e => {
+          mx = (e.clientX / window.innerWidth - 0.5) * 2
+          my = (e.clientY / window.innerHeight - 0.5) * 2
+        })
+
+        // scroll parallax for hero
+        let scrollY = 0
+        window.addEventListener('scroll', () => {
+          scrollY = window.scrollY
+        })
+        ;(function loop() {
+          requestAnimationFrame(loop)
+          t += 0.006
+          meshes.forEach(m => {
+            const d = m.userData
+            m.position.y = d.base[1] + Math.sin(t * d.sp + d.t) * 0.32
+            m.rotation.y += 0.004
+            m.rotation.x += 0.0015
+            m.position.x = d.base[0] + mx * 0.18 * (d.base[2] + 3)
+            m.position.z = d.base[2] - scrollY * 0.002
+          })
+          camera.position.x += (mx * 0.4 - camera.position.x) * 0.04
+          camera.position.y += (-my * 0.25 - camera.position.y) * 0.04
+          camera.position.z = 9 + scrollY * 0.003
+          renderer.render(scene, camera)
+        })()
+
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight
+          camera.updateProjectionMatrix()
+          renderer.setSize(window.innerWidth, window.innerHeight)
+        })
+      })()
+
+      // ─────────────────────────────────────────────
+      //  THREE.JS — Avatar mini (feature card)
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const canvas = document.getElementById('avatar-mini-canvas')
+        const W = 340,
+          H = 240
+        canvas.width = W * devicePixelRatio
+        canvas.height = H * devicePixelRatio
+        canvas.style.width = W + 'px'
+        canvas.style.height = H + 'px'
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+        renderer.setSize(W, H)
+        renderer.setPixelRatio(devicePixelRatio)
+        renderer.setClearColor(0, 0)
+        const scene = new THREE.Scene()
+        const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 50)
+        camera.position.z = 5.5
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
+        const dl = new THREE.DirectionalLight(0xffffff, 0.8)
+        dl.position.set(2, 3, 4)
+        scene.add(dl)
+        const mini = [
+          { p: [-1.1, 0, 0], s: 0.62, c: 0xd1ff1c },
+          { p: [1.1, 0, 0], s: 0.62, c: 0xd1ff1c },
+          { p: [0, 0.9, -0.5], s: 0.44, c: 0xaaaaaa },
+          { p: [-1.8, -0.7, -0.4], s: 0.34, c: 0x777777 },
+          { p: [1.8, -0.7, -0.4], s: 0.34, c: 0x777777 }
+        ]
+        const mMeshes = mini.map(o => {
+          const m = new THREE.Mesh(
+            new THREE.SphereGeometry(o.s, 28, 28),
+            new THREE.MeshStandardMaterial({
+              color: o.c,
+              emissive: o.c,
+              emissiveIntensity: o.c === 0xd1ff1c ? 0.22 : 0.02,
+              roughness: 0.3,
+              metalness: 0.1
+            })
+          )
+          m.position.set(...o.p)
+          m.userData = { base: o.p[1], t: Math.random() * Math.PI * 2 }
+          if (o.c === 0xd1ff1c) {
+            const pl = new THREE.PointLight(0xd1ff1c, 0.5, 3.5)
+            m.add(pl)
+          }
+          scene.add(m)
+          return m
+        })
+        let t = 0
+        ;(function loop() {
+          requestAnimationFrame(loop)
+          t += 0.008
+          mMeshes.forEach(m => {
+            m.position.y = m.userData.base + Math.sin(t + m.userData.t) * 0.12
+            m.rotation.y += 0.006
+          })
+          renderer.render(scene, camera)
+        })()
+      })()
+
+      // ─────────────────────────────────────────────
+      //  THREE.JS — Discovery orb (phone screen)
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const canvas = document.getElementById('disc-orb-canvas')
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+        renderer.setSize(90, 90)
+        renderer.setPixelRatio(devicePixelRatio)
+        renderer.setClearColor(0, 0)
+        const scene = new THREE.Scene()
+        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 50)
+        camera.position.z = 2.2
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
+        const dl = new THREE.DirectionalLight(0xffffff, 0.8)
+        dl.position.set(1, 2, 2)
+        scene.add(dl)
+        const orb = new THREE.Mesh(
+          new THREE.SphereGeometry(0.7, 32, 32),
+          new THREE.MeshStandardMaterial({
+            color: 0xd1ff1c,
+            emissive: 0xd1ff1c,
+            emissiveIntensity: 0.25,
+            roughness: 0.2,
+            metalness: 0.1
+          })
+        )
+        const pl = new THREE.PointLight(0xd1ff1c, 0.8, 4)
+        orb.add(pl)
+        scene.add(orb)
+        const halo = new THREE.Mesh(
+          new THREE.SphereGeometry(1.0, 24, 24),
+          new THREE.MeshStandardMaterial({
+            color: 0xd1ff1c,
+            emissive: 0xd1ff1c,
+            emissiveIntensity: 0.04,
+            transparent: true,
+            opacity: 0.07,
+            side: THREE.BackSide
+          })
+        )
+        scene.add(halo)
+        let t = 0
+        ;(function loop() {
+          requestAnimationFrame(loop)
+          t += 0.01
+          orb.rotation.y += 0.008
+          orb.position.y = Math.sin(t) * 0.05
+          renderer.render(scene, camera)
+        })()
+      })()
+
+      // ─────────────────────────────────────────────
+      //  THREE.JS — Avatar card orbs
+      // ─────────────────────────────────────────────
+      document.querySelectorAll('.orb-canvas').forEach(canvas => {
+        const colorHex = canvas.dataset.color
+        const rgb = colorHex.startsWith('#') ? hexToRgb(colorHex) : { r: 0.82, g: 1, b: 0.11 }
+        const colorInt =
+          (Math.round(rgb.r * 255) << 16) | (Math.round(rgb.g * 255) << 8) | Math.round(rgb.b * 255)
+
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+        renderer.setSize(60, 60)
+        renderer.setPixelRatio(devicePixelRatio)
+        renderer.setClearColor(0, 0)
+        const scene = new THREE.Scene()
+        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 20)
+        camera.position.z = 2.0
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
+        const dl = new THREE.DirectionalLight(0xffffff, 0.8)
+        dl.position.set(1, 2, 2)
+        scene.add(dl)
+        const orb = new THREE.Mesh(
+          new THREE.SphereGeometry(0.55, 28, 28),
+          new THREE.MeshStandardMaterial({
+            color: colorInt,
+            emissive: colorInt,
+            emissiveIntensity: 0.2,
+            roughness: 0.2,
+            metalness: 0.1
+          })
+        )
+        const pl = new THREE.PointLight(colorInt, 0.6, 3)
+        orb.add(pl)
+        scene.add(orb)
+        let t = Math.random() * Math.PI * 2
+        ;(function loop() {
+          requestAnimationFrame(loop)
+          t += 0.012
+          orb.rotation.y += 0.01
+          orb.position.y = Math.sin(t) * 0.04
+          renderer.render(scene, camera)
+        })()
+      })
+
+      // ─────────────────────────────────────────────
+      //  3D card tilt
+      // ─────────────────────────────────────────────
+      // document.querySelectorAll('.feat-card, .av-card').forEach(card => {
+      //   card.addEventListener('mousemove', e => {
+      //     const r = card.getBoundingClientRect()
+      //     const x = (e.clientX - r.left) / r.width - 0.5
+      //     const y = (e.clientY - r.top) / r.height - 0.5
+      //     card.style.transition = 'transform .08s ease, border-color .3s'
+      //     card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale3d(1.025,1.025,1.025)`
+      //   })
+      //   card.addEventListener('mouseleave', () => {
+      //     card.style.transition = 'transform .5s ease, border-color .3s'
+      //     card.style.transform = 'perspective(900px) rotateY(0) rotateX(0) scale3d(1,1,1)'
+      //   })
+      // })
+
+      document.querySelectorAll('.feat-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect()
+          const x = (e.clientX - r.left) / r.width - 0.5
+          const y = (e.clientY - r.top) / r.height - 0.5
+          card.style.transition = 'transform 0.08s ease, border-color 0.3s'
+          card.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) scale3d(1.02,1.02,1.02)`
+        })
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.5s ease, border-color 0.3s'
+          card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)'
+        })
+      })
+
+      // ─────────────────────────────────────────────
+      //  Counter animation
+      // ─────────────────────────────────────────────
+      function animateCounter(el, target) {
+        const start = performance.now(),
+          dur = 1800
+        ;(function step(now) {
+          const p = Math.min((now - start) / dur, 1)
+          el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target)
+          if (p < 1) requestAnimationFrame(step)
+        })(start)
+      }
+      const counterObs = new IntersectionObserver(
+        entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return
+            animateCounter(en.target, +en.target.dataset.val)
+            counterObs.unobserve(en.target)
+          })
+        },
+        { threshold: 0.6 }
+      )
+      document.querySelectorAll('.counter').forEach(el => counterObs.observe(el))
+
+      // ─────────────────────────────────────────────
+      //  Scroll reveal (generic)
+      // ─────────────────────────────────────────────
+      const revObs = new IntersectionObserver(
+        entries => {
+          entries.forEach(en => {
+            if (en.isIntersecting) en.target.classList.add('up')
+          })
+        },
+        { threshold: 0.1 }
+      )
+      document.querySelectorAll('.reveal').forEach(el => revObs.observe(el))
+
+      // ─────────────────────────────────────────────
+      //  Phone section entrance
+      // ─────────────────────────────────────────────
+      const phoneObs = new IntersectionObserver(
+        entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return
+            document.querySelectorAll('.phone-wrap').forEach(w => w.classList.add('visible'))
+            phoneObs.disconnect()
+          })
+        },
+        { threshold: 0.2 }
+      )
+      phoneObs.observe(document.getElementById('phones-stage'))
+
+      // ─────────────────────────────────────────────
+      //  Avatar card stagger reveal
+      // ─────────────────────────────────────────────
+      const avObs = new IntersectionObserver(
+        entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return
+            const delay = +(en.target.dataset.delay || 0)
+            setTimeout(() => {
+              en.target.classList.add('visible')
+              // animate bars
+              en.target.querySelectorAll('.av-bar-fill').forEach(bar => {
+                const w = bar.dataset.w
+                setTimeout(() => {
+                  bar.style.width = w + '%'
+                }, 200)
+              })
+            }, delay)
+            avObs.unobserve(en.target)
+          })
+        },
+        { threshold: 0.15 }
+      )
+      document.querySelectorAll('.av-card').forEach(c => avObs.observe(c))
+
+      // ─────────────────────────────────────────────
+      //  Communication patterns animation
+      // ─────────────────────────────────────────────
+      let commsAnimated = false
+      const commsObs = new IntersectionObserver(
+        entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting || commsAnimated) return
+            commsAnimated = true
+
+            // animate chat messages
+            document.querySelectorAll('.cd-msg').forEach(msg => {
+              const d = +msg.dataset.delay
+              setTimeout(() => msg.classList.add('show'), d)
+            })
+
+            // animate trait bars + counters
+            document.querySelectorAll('.trait-row').forEach((row, i) => {
+              const w = +row.dataset.w
+              const fill = row.querySelector('.trait-fill')
+              const valEl = document.getElementById('tv' + (i + 1))
+              setTimeout(
+                () => {
+                  fill.style.width = w + '%'
+                  let cur = 0
+                  const step = () => {
+                    cur = Math.min(cur + 2, w)
+                    if (valEl) valEl.textContent = cur + '%'
+                    if (cur < w) requestAnimationFrame(step)
+                  }
+                  requestAnimationFrame(step)
+                },
+                400 + i * 150
+              )
+            })
+
+            // animate match meter score
+            setTimeout(() => {
+              const el = document.getElementById('mm-score')
+              let cur = 0
+              const target = 94
+              const step = () => {
+                cur = Math.min(cur + 1, target)
+                el.textContent = cur + '%'
+                if (cur < target) requestAnimationFrame(step)
+              }
+              requestAnimationFrame(step)
+            }, 800)
+          })
+        },
+        { threshold: 0.2 }
+      )
+      const commsSection = document.getElementById('comms')
+      if (commsSection) commsObs.observe(commsSection)
+
+      // ─────────────────────────────────────────────
+      //  Marquee
+      // ─────────────────────────────────────────────
+      const items = [
+        'Avatar-first identity',
+        'Communication matching',
+        'Women-controlled reveal',
+        'Social-first design',
+        '50:50 gender ratio',
+        'Intention-based matching',
+        '10 profiles daily at 9 AM',
+        'Referral queue',
+        'Dating mode toggle',
+        'Verified identities',
+        'India-first',
+        'Anonymous feed',
+        'Zero photo pressure'
+      ]
+      const html = items
+        .map(t => `<span class="marquee-item"><span class="dot"></span>${t}</span>`)
+        .join('')
+      document.getElementById('marquee').innerHTML = html + html
+
+      // ─────────────────────────────────────────────
+      //  Waitlist form
+      // ─────────────────────────────────────────────
+      const SHEETS_URL =
+        'https://script.google.com/macros/s/AKfycbxuKG4Iz_lClBgFVxRWpYEnIhtdis0HyrpUmE7ks3BMEaVJWgliKGKaIULLgNY-UHRwFQ/exec'
+      let count = 2447
+      function randCode() {
+        return Math.random().toString(36).slice(2, 10).toUpperCase()
+      }
+
+      function handleJoin(e, id) {
+        e.preventDefault()
+        gtag('event', 'waitlist_submit', { form_location: id })
+        const emailEl = document.getElementById(id + '-email')
+        const email = emailEl ? emailEl.value.trim() : ''
+        const refCode = 'FM-' + randCode()
+        const btn = e.target.querySelector('button[type="submit"]')
+        if (btn) {
+          btn.disabled = true
+          btn.textContent = 'Joiningu2026'
+        }
+
+        function showSuccess(position) {
+          count++
+          document.getElementById('wl-count').textContent = count.toLocaleString() + '+'
+          document.getElementById(id + '-pos').textContent = '#' + String(position)
+          document.getElementById(id + '-ref').textContent = 'inemate.club/r/' + refCode
+          document.getElementById(id + '-form').style.display = 'none'
+          document.getElementById(id + '-success').style.display = 'flex'
+          if (id === 'hero') {
+            const m = document.getElementById('hero-meta')
+            if (m) m.style.display = 'none'
+          }
+        }
+
+        fetch(SHEETS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ email, source: id, refCode })
+        })
+          .then(r => r.json())
+          .then(data => showSuccess(data.position))
+          .catch(() => showSuccess('?'))
+      }
+
+      function focusCta(e) {
+        e.preventDefault()
+        gtag('event', 'cta_clicked', { source: e.currentTarget?.dataset?.gaSource || 'unknown' })
+        document.getElementById('cta').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => document.getElementById('cta-email')?.focus(), 700)
+      }
+
+      // ─────────────────────────────────────────────
+      //  Phones stage — ambient particle canvas
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const canvas = document.getElementById('stage-particles')
+        if (!canvas) return
+        const stage = canvas.parentElement
+        const ctx = canvas.getContext('2d')
+
+        function resize() {
+          canvas.width = stage.offsetWidth
+          canvas.height = stage.offsetHeight
+        }
+        resize()
+        window.addEventListener('resize', resize)
+
+        const COUNT = 70
+        const pts = Array.from({ length: COUNT }, () => ({
+          x: Math.random() * stage.offsetWidth,
+          y: Math.random() * stage.offsetHeight,
+          r: Math.random() * 1.6 + 0.4,
+          vy: -(Math.random() * 0.45 + 0.12),
+          vx: (Math.random() - 0.5) * 0.15,
+          o: Math.random() * 0.5 + 0.1,
+          do: (Math.random() * 0.006 + 0.002) * (Math.random() < 0.5 ? 1 : -1)
+        }))
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          pts.forEach(p => {
+            ctx.beginPath()
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+            ctx.fillStyle = `rgba(209,255,28,${Math.max(0, Math.min(p.o, 0.55))})`
+            ctx.fill()
+
+            p.x += p.vx
+            p.y += p.vy
+            p.o += p.do
+            if (p.o > 0.55 || p.o < 0.05) p.do *= -1
+            if (p.y < -6) {
+              p.y = canvas.height + 6
+              p.x = Math.random() * canvas.width
+            }
+            if (p.x < -6 || p.x > canvas.width + 6) p.x = Math.random() * canvas.width
+          })
+          requestAnimationFrame(draw)
+        }
+        draw()
+      })()
+
+      // ─────────────────────────────────────────────
+      //  Floating GIF Avatar — drag + scroll bubble
+      // ─────────────────────────────────────────────
+      ;(function () {
+        var wrap = document.getElementById('float-avatar-wrap')
+        if (!wrap) return
+        var recallBtn = document.getElementById('avatar-recall-btn')
+        var dragging = false,
+          moved = false,
+          startX = 0,
+          startY = 0,
+          ox = 0,
+          oy = 0
+
+        function hideAvatar() {
+          wrap.classList.add('hidden')
+          if (recallBtn) recallBtn.classList.add('visible')
+        }
+        function showAvatar() {
+          wrap.classList.remove('hidden')
+          if (recallBtn) recallBtn.classList.remove('visible')
+        }
+        if (recallBtn) recallBtn.addEventListener('click', showAvatar)
+
+        function startDrag(cx, cy) {
+          dragging = true
+          moved = false
+          startX = cx
+          startY = cy
+          wrap.classList.add('dragging')
+          var r = wrap.getBoundingClientRect()
+          wrap.style.right = 'auto'
+          wrap.style.bottom = 'auto'
+          wrap.style.left = r.left + 'px'
+          wrap.style.top = r.top + 'px'
+          ox = cx - r.left
+          oy = cy - r.top
+        }
+        function moveDrag(cx, cy) {
+          if (!dragging) return
+          if (Math.abs(cx - startX) > 5 || Math.abs(cy - startY) > 5) moved = true
+          wrap.style.left =
+            Math.max(0, Math.min(window.innerWidth - wrap.offsetWidth, cx - ox)) + 'px'
+          wrap.style.top =
+            Math.max(0, Math.min(window.innerHeight - wrap.offsetHeight, cy - oy)) + 'px'
+        }
+        function endDrag() {
+          if (dragging && !moved) hideAvatar()
+          dragging = false
+          wrap.classList.remove('dragging')
+        }
+        wrap.addEventListener('mousedown', function (e) {
+          startDrag(e.clientX, e.clientY)
+          e.preventDefault()
+        })
+        window.addEventListener('mousemove', function (e) {
+          moveDrag(e.clientX, e.clientY)
+        })
+        window.addEventListener('mouseup', endDrag)
+        wrap.addEventListener(
+          'touchstart',
+          function (e) {
+            var t = e.touches[0]
+            startDrag(t.clientX, t.clientY)
+            e.preventDefault()
+          },
+          { passive: false }
+        )
+        window.addEventListener(
+          'touchmove',
+          function (e) {
+            if (!dragging) return
+            var t = e.touches[0]
+            moveDrag(t.clientX, t.clientY)
+            e.preventDefault()
+          },
+          { passive: false }
+        )
+        window.addEventListener('touchend', endDrag)
+        var bubble = document.getElementById('avatar-bubble')
+        var msgs = [
+          { id: 'cta', msg: 'Join us! 400+ waiting 🚀' },
+          { id: 'quote', msg: "Can't fake personality — that's the point 🎭" },
+          { id: 'comms', msg: 'Communication-first matching 🧠' },
+          { id: 'avatars', msg: 'Real people, identity controlled 🔒' },
+          { id: 'screens', msg: 'Three screens. One amazing world 📱' },
+          { id: 'hero', msg: "Hi! I'm Max, your Finemate guide 👋" }
+        ]
+        var lastId = ''
+        window.addEventListener(
+          'scroll',
+          function () {
+            var mid = window.scrollY + window.innerHeight * 0.45
+            for (var i = 0; i < msgs.length; i++) {
+              var el = document.getElementById(msgs[i].id)
+              if (el && el.offsetTop <= mid) {
+                if (msgs[i].id !== lastId) {
+                  lastId = msgs[i].id
+                  bubble.style.animation = 'none'
+                  bubble.textContent = msgs[i].msg
+                  requestAnimationFrame(function () {
+                    bubble.style.animation = ''
+                  })
+                }
+                break
+              }
+            }
+          },
+          { passive: true }
+        )
+      })()
+
+      // ─────────────────────────────────────────────
+      //  Vibe Check Game
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const vibeAnswers = []
+        const TOTAL = 4
+
+        const types = {
+          deep: {
+            name: 'The Night Owl Philosopher',
+            desc: "You communicate with depth and intention. Long messages, late-night conversations, real substance. Finemate's algorithm was built for exactly this.",
+            score: 94
+          },
+          wit: {
+            name: 'The Wit Machine',
+            desc: 'Quick, sharp, always on. Your humour lands fast and hard. Finemate matches you with people who can keep up — no dragging allowed.',
+            score: 89
+          },
+          social: {
+            name: 'The Social Butterfly',
+            desc: 'You adapt to anyone and make everyone feel at ease. Your social intelligence is off the charts. Finemate finds people who vibe at your frequency.',
+            score: 87
+          },
+          romantic: {
+            name: 'The Thoughtful Romantic',
+            desc: "Warm, expressive, and intentional. You put heart into every message. Finemate's intention-based matching was designed exactly for people like you.",
+            score: 92
+          }
+        }
+
+        window.vibeAnswer = function (btn) {
+          if (btn.classList.contains('selected')) return
+          const val = btn.dataset.val
+          btn.classList.add('selected')
+          btn.parentElement.querySelectorAll('.vibe-option').forEach(o => {
+            o.style.pointerEvents = 'none'
+          })
+          if (vibeAnswers.length === 0) gtag('event', 'vibe_quiz_started')
+          vibeAnswers.push(val)
+
+          const pct = (vibeAnswers.length / TOTAL) * 100
+          document.getElementById('vibe-progress').style.width = pct + '%'
+
+          setTimeout(() => {
+            if (vibeAnswers.length < TOTAL) {
+              document.querySelectorAll('.vibe-q').forEach((q, i) => {
+                q.style.display = i === vibeAnswers.length ? 'block' : 'none'
+              })
+            } else {
+              const counts = vibeAnswers.reduce((a, v) => {
+                a[v] = (a[v] || 0) + 1
+                return a
+              }, {})
+              const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0]
+              const result = types[top]
+
+              document.getElementById('vibe-questions').style.display = 'none'
+              const resultEl = document.getElementById('vibe-result')
+              resultEl.style.display = 'flex'
+              document.getElementById('vibe-type').textContent = result.name
+              document.getElementById('vibe-desc').textContent = result.desc
+              gtag('event', 'vibe_quiz_completed', { vibe_type: result.name, score: result.score })
+
+              let cur = 0
+              const el = document.getElementById('vibe-score')
+              const step = () => {
+                cur = Math.min(cur + 2, result.score)
+                el.textContent = cur + '%'
+                if (cur < result.score) requestAnimationFrame(step)
+              }
+              requestAnimationFrame(step)
+            }
+          }, 420)
+        }
+      })()
+
+      // ─────────────────────────────────────────────
+      //  Avatar orb — orbit rings (injected via JS)
+      // ─────────────────────────────────────────────
+      // ─────────────────────────────────────────────
+      //  Analytics — scroll depth + section views
+      // ─────────────────────────────────────────────
+      ;(function () {
+        const depthsFired = new Set()
+        window.addEventListener(
+          'scroll',
+          function () {
+            const pct = Math.round(
+              ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100
+            )
+            ;[25, 50, 75, 90].forEach(function (d) {
+              if (pct >= d && !depthsFired.has(d)) {
+                depthsFired.add(d)
+                gtag('event', 'scroll_depth', { depth_percent: d })
+              }
+            })
+          },
+          { passive: true }
+        )
+
+        const sectionIds = [
+          'hero',
+          'screens',
+          'avatars',
+          'gender-balance',
+          'vibe-check',
+          'comms',
+          'quote',
+          'cta'
+        ]
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                gtag('event', 'section_viewed', { section_id: entry.target.id })
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.3 }
+        )
+        sectionIds.forEach(function (id) {
+          const el = document.getElementById(id)
+          if (el) observer.observe(el)
+        })
+      })()
+
+      document.querySelectorAll('.av-orb').forEach(orb => {
+        const cvs = orb.querySelector('.orb-canvas')
+        const color = cvs && cvs.dataset.color ? cvs.dataset.color : '#D1FF1C'
+
+        const a = document.createElement('div')
+        a.className = 'av-ring av-ring-a'
+        a.style.setProperty('--rc', color + 'aa')
+
+        const b = document.createElement('div')
+        b.className = 'av-ring av-ring-b'
+        b.style.setProperty('--rc', color + '55')
+
+        orb.appendChild(a)
+        orb.appendChild(b)
+      })
+
+      // ─────────────────────────────────────────────
+      //  FAQ accordion
+      // ─────────────────────────────────────────────
+      window.toggleFaq = function (el) {
+        const item = el.parentElement
+        const isOpen = item.classList.contains('open')
+        document.querySelectorAll('.faq-item.open').forEach(function (i) {
+          i.classList.remove('open')
+        })
+        if (!isOpen) {
+          item.classList.add('open')
+          gtag('event', 'faq_opened', { question: el.textContent.trim().slice(0, 60) })
+        }
+      }
+    </script>
+  </body>
+</html>

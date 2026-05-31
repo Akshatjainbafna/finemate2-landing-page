@@ -1,0 +1,1834 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finemate — Inside the Algorithm</title>
+    <meta
+      name="description"
+      content="See how Finemate's communication pattern engine works. 17 signals, one perfect match."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/finemate-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Three.js core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Post-processing (bloom) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <style>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --lime: #d1ff1c;
+        --dark: #0a0b08;
+        --darker: #060706;
+        --card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+        --font: 'Inter', sans-serif;
+        --display: 'Space Grotesk', sans-serif;
+      }
+      html {
+        overflow-x: hidden;
+      }
+      body {
+        background: var(--dark);
+        color: #fff;
+        font-family: var(--font);
+        overflow-x: hidden;
+      }
+      ::selection {
+        background: var(--lime);
+        color: #000;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--lime);
+        border-radius: 3px;
+      }
+
+      /* ── Fixed 3D Canvas ── */
+      #c {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: block;
+      }
+
+      /* ── Nav ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        background: linear-gradient(to bottom, rgba(10, 11, 8, 0.9) 0%, transparent 100%);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo img {
+        height: 36px;
+        width: auto;
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.45);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: #fff;
+      }
+      .nav-cta {
+        background: var(--lime);
+        color: #000;
+        border-radius: 100px;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          transform 0.15s,
+          box-shadow 0.2s;
+        box-shadow: 0 0 24px rgba(209, 255, 28, 0.25);
+      }
+      .nav-cta:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 40px rgba(209, 255, 28, 0.45);
+      }
+
+      /* ── Chapter progress dots ── */
+      #chapters {
+        position: fixed;
+        right: 32px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 200;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .ch-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .ch-dot.active {
+        background: var(--lime);
+        border-color: var(--lime);
+        box-shadow: 0 0 8px var(--lime);
+        transform: scale(1.4);
+      }
+      .ch-label {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--lime);
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .ch-dot:hover .ch-label {
+        opacity: 1;
+      }
+
+      /* ── Scroll container (on top of canvas) ── */
+      #scroll-wrap {
+        position: relative;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      /* ── Generic section ── */
+      .scene {
+        position: relative;
+        min-height: 100vh;
+      }
+      .scene-tall {
+        min-height: 250vh;
+      }
+      .scene-mid {
+        min-height: 180vh;
+      }
+      .sticky-box {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        pointer-events: all;
+      }
+      .text-panel {
+        padding: 0 48px;
+        max-width: 520px;
+      }
+      .text-panel.center {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 24px;
+      }
+      .text-panel.right {
+        margin-left: auto;
+      }
+
+      /* ── Typography ── */
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(209, 255, 28, 0.12);
+        border: 1px solid rgba(209, 255, 28, 0.25);
+        color: var(--lime);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-radius: 100px;
+        padding: 6px 14px;
+        margin-bottom: 24px;
+      }
+      .chip-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--lime);
+        animation: blink 2s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      h1.scene-h {
+        font-family: var(--display);
+        font-size: clamp(44px, 6vw, 80px);
+        font-weight: 700;
+        line-height: 1.06;
+        letter-spacing: -1.5px;
+        color: #fff;
+      }
+      h2.scene-h {
+        font-family: var(--display);
+        font-size: clamp(36px, 4.5vw, 62px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        color: #fff;
+      }
+      .lime {
+        color: var(--lime);
+      }
+      .scene-sub {
+        font-size: 17px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+        margin-top: 16px;
+        max-width: 440px;
+      }
+
+      /* ── Scroll hint ── */
+      .scroll-hint {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 48px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+      .scroll-hint::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        animation: scroll-line 2s ease-in-out infinite;
+      }
+      @keyframes scroll-line {
+        0%,
+        100% {
+          opacity: 0.15;
+          transform: scaleY(0.5);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scaleY(1);
+        }
+      }
+
+      /* ── Metric pills (Engine section) ── */
+      .metric-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 28px;
+        max-width: 480px;
+      }
+      .metric-pill {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.35);
+        transition: all 0.4s;
+        white-space: nowrap;
+      }
+      .metric-pill.lit {
+        background: rgba(209, 255, 28, 0.1);
+        border-color: rgba(209, 255, 28, 0.3);
+        color: var(--lime);
+      }
+
+      /* ── Match score display ── */
+      #match-display {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .match-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .match-bar-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        width: 120px;
+        font-weight: 500;
+      }
+      .match-bar-track {
+        flex: 1;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .match-bar-fill {
+        height: 100%;
+        background: var(--lime);
+        border-radius: 4px;
+        width: 0%;
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #match-pct {
+        font-family: var(--display);
+        font-size: 72px;
+        font-weight: 700;
+        color: var(--lime);
+        line-height: 1;
+        margin-top: 24px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #match-pct.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #match-pct span {
+        font-size: 32px;
+        opacity: 0.5;
+      }
+
+      /* ── Feed card overlays ── */
+      #feed-cards-html {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 300px;
+        opacity: 0;
+        transition: opacity 0.6s;
+      }
+      #feed-cards-html.show {
+        opacity: 1;
+      }
+      .feed-card-html {
+        background: rgba(20, 21, 16, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 16px;
+        cursor: default;
+        transition:
+          transform 0.3s,
+          border-color 0.3s;
+      }
+      .feed-card-html:hover {
+        transform: translateX(-4px);
+        border-color: rgba(209, 255, 28, 0.2);
+      }
+      .fch-tag {
+        font-size: 10px;
+        font-weight: 700;
+        color: rgba(209, 255, 28, 0.6);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .fch-text {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.6;
+      }
+      .fch-footer {
+        display: flex;
+        gap: 14px;
+        margin-top: 10px;
+      }
+      .fch-stat {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .fch-stat.active {
+        color: var(--lime);
+      }
+
+      /* ── Pricing overlay ── */
+      #pricing-html {
+        display: flex;
+        gap: 16px;
+        margin-top: 48px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .plan-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 28px 22px;
+        width: 200px;
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          background 0.3s;
+        cursor: default;
+        pointer-events: all;
+      }
+      .plan-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(209, 255, 28, 0.2);
+      }
+      .plan-card.featured {
+        background: var(--lime);
+        border-color: var(--lime);
+      }
+      .plan-card.featured * {
+        color: #000 !important;
+      }
+      .plan-name {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+      .plan-price {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+      }
+      .plan-period {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.35);
+        margin-bottom: 16px;
+      }
+      .plan-feat {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.8;
+      }
+      .plan-cta {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        transition: all 0.2s;
+        pointer-events: all;
+      }
+      .plan-card.featured .plan-cta {
+        background: #000;
+        border-color: #000;
+        color: var(--lime);
+      }
+      .plan-cta:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .plan-card.featured .plan-cta:hover {
+        background: #111;
+      }
+
+      /* ── CTA section ── */
+      #cta-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        padding: 48px 24px;
+        position: relative;
+        z-index: 10;
+        pointer-events: all;
+      }
+      .cta-logo {
+        width: 100px;
+        height: 100px;
+        background: #0d0e0a;
+        border-radius: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        margin-bottom: 36px;
+        padding: 12px;
+        box-shadow:
+          0 0 60px rgba(209, 255, 28, 0.2),
+          0 0 0 1px rgba(209, 255, 28, 0.15);
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .cta-logo img {
+        width: 100%;
+        height: auto;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 16px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-lime {
+        background: var(--lime);
+        color: #000;
+        border: none;
+        border-radius: 100px;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.2s;
+        box-shadow: 0 0 40px rgba(209, 255, 28, 0.3);
+      }
+      .btn-lime:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 60px rgba(209, 255, 28, 0.5);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 100px;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.2s;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ── Loading screen ── */
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: var(--dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        transition: opacity 0.8s;
+      }
+      #loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .loader-logo img {
+        height: 48px;
+      }
+      .loader-bar-track {
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .loader-bar-fill {
+        height: 100%;
+        background: var(--lime);
+        border-radius: 2px;
+        width: 0%;
+        transition: width 0.3s;
+      }
+      .loader-pct {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px 20px;
+        }
+        .text-panel {
+          padding: 0 24px;
+        }
+        #chapters {
+          display: none;
+        }
+        h1.scene-h {
+          font-size: clamp(36px, 8vw, 52px);
+        }
+        h2.scene-h {
+          font-size: clamp(28px, 7vw, 44px);
+        }
+        #pricing-html {
+          flex-direction: column;
+          align-items: center;
+        }
+        .plan-card {
+          width: 100%;
+          max-width: 300px;
+        }
+        #feed-cards-html {
+          position: static;
+          transform: none;
+          margin-top: 32px;
+        }
+        .sticky-box.has-feed {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+          padding-top: 120px;
+          overflow-y: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Loading screen ── -->
+    <div id="loader">
+      <div class="loader-logo"><img src="./assets/finemate-logo.svg" alt="Finemate" /></div>
+      <div class="loader-bar-track"><div class="loader-bar-fill" id="lbar"></div></div>
+      <div class="loader-pct" id="lpct">0%</div>
+    </div>
+
+    <!-- ── Canvas ── -->
+    <canvas id="c"></canvas>
+
+    <!-- ── Nav ── -->
+    <nav>
+      <a class="nav-logo" href="./index.html">
+        <img src="./assets/finemate-logo.svg" alt="Finemate" />
+      </a>
+      <a class="nav-back" href="./index.html">← Back to home</a>
+      <a class="nav-cta" href="#download">Download</a>
+    </nav>
+
+    <!-- ── Chapter dots ── -->
+    <div id="chapters">
+      <div class="ch-dot active" data-section="0" title="Intro">
+        <span class="ch-label">Intro</span>
+      </div>
+      <div class="ch-dot" data-section="1" title="Engine"><span class="ch-label">Engine</span></div>
+      <div class="ch-dot" data-section="2" title="DNA"><span class="ch-label">DNA</span></div>
+      <div class="ch-dot" data-section="3" title="Match"><span class="ch-label">Match</span></div>
+      <div class="ch-dot" data-section="4" title="Feed"><span class="ch-label">Feed</span></div>
+      <div class="ch-dot" data-section="5" title="Plans"><span class="ch-label">Plans</span></div>
+    </div>
+
+    <!-- ── Scroll container ── -->
+    <div id="scroll-wrap">
+      <!-- ─ S0: HERO ─ -->
+      <section class="scene" id="s0">
+        <div class="sticky-box">
+          <div class="text-panel">
+            <div class="chip"><span class="chip-dot"></span>Algorithm</div>
+            <h1 class="scene-h">See inside<br /><span class="lime">the match.</span></h1>
+            <p class="scene-sub">
+              17 signals. One personality fingerprint.<br />You can't fake how you communicate.
+            </p>
+            <div class="scroll-hint">scroll to explore</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ S1: COMMUNICATION ENGINE ─ -->
+      <section class="scene scene-tall" id="s1">
+        <div class="sticky-box">
+          <div class="text-panel">
+            <div class="chip"><span class="chip-dot"></span>Communication Engine</div>
+            <h2 class="scene-h">17 signals that<br /><span class="lime">define you.</span></h2>
+            <p class="scene-sub">
+              Every message teaches the algorithm something new about who you really are.
+            </p>
+            <div class="metric-grid" id="metric-grid">
+              <div class="metric-pill" data-idx="0">Message Length</div>
+              <div class="metric-pill" data-idx="1">Emoji Frequency</div>
+              <div class="metric-pill" data-idx="2">Question Rate</div>
+              <div class="metric-pill" data-idx="3">Reply Speed</div>
+              <div class="metric-pill" data-idx="4">Flirt Ratio</div>
+              <div class="metric-pill" data-idx="5">Humor Score</div>
+              <div class="metric-pill" data-idx="6">Conversation Depth</div>
+              <div class="metric-pill" data-idx="7">Active Hours</div>
+              <div class="metric-pill" data-idx="8">Topic Clusters</div>
+              <div class="metric-pill" data-idx="9">Retention Length</div>
+              <div class="metric-pill" data-idx="10">Sentiment Range</div>
+              <div class="metric-pill" data-idx="11">Opening Style</div>
+              <div class="metric-pill" data-idx="12">Ghosting Risk</div>
+              <div class="metric-pill" data-idx="13">Night Activity</div>
+              <div class="metric-pill" data-idx="14">Response Depth</div>
+              <div class="metric-pill" data-idx="15">Curiosity Index</div>
+              <div class="metric-pill" data-idx="16">Voice Preference</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ S2: DNA / FINGERPRINT ─ -->
+      <section class="scene scene-mid" id="s2">
+        <div class="sticky-box">
+          <div class="text-panel">
+            <div class="chip"><span class="chip-dot"></span>Personality Fingerprint</div>
+            <h2 class="scene-h">Your patterns.<br /><span class="lime">Uniquely yours.</span></h2>
+            <p class="scene-sub">
+              We weave your signals into a communication DNA — a fingerprint no one else can fake.
+            </p>
+            <div
+              style="
+                margin-top: 32px;
+                padding: 20px;
+                background: rgba(209, 255, 28, 0.05);
+                border: 1px solid rgba(209, 255, 28, 0.15);
+                border-radius: 16px;
+                max-width: 380px;
+              "
+            >
+              <div
+                style="
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: rgba(209, 255, 28, 0.6);
+                  letter-spacing: 1px;
+                  text-transform: uppercase;
+                  margin-bottom: 12px;
+                "
+              >
+                Your AI-Generated Bio
+              </div>
+              <div
+                style="font-size: 14px; color: rgba(255, 255, 255, 0.55); line-height: 1.7"
+                id="bio-text"
+              >
+                "Deep thinker. Dry humor. Asks more than tells. Night-active. Rare ghoster. 94th
+                percentile for curiosity."
+              </div>
+              <div style="margin-top: 12px; font-size: 11px; color: rgba(255, 255, 255, 0.2)">
+                Generated from 2,847 messages · Cannot be edited
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ S3: THE MATCH ─ -->
+      <section class="scene scene-mid" id="s3">
+        <div class="sticky-box">
+          <div class="text-panel">
+            <div class="chip"><span class="chip-dot"></span>Matching Engine</div>
+            <h2 class="scene-h">Two patterns.<br /><span class="lime">One match.</span></h2>
+            <p class="scene-sub">
+              We score compatibility across all 17 signals — weighted by what actually predicts
+              lasting connection.
+            </p>
+            <div id="match-display">
+              <div class="match-bar-row">
+                <div class="match-bar-label">Communication</div>
+                <div class="match-bar-track"><div class="match-bar-fill" data-val="88"></div></div>
+              </div>
+              <div class="match-bar-row">
+                <div class="match-bar-label">Interest Overlap</div>
+                <div class="match-bar-track"><div class="match-bar-fill" data-val="76"></div></div>
+              </div>
+              <div class="match-bar-row">
+                <div class="match-bar-label">Humor Alignment</div>
+                <div class="match-bar-track"><div class="match-bar-fill" data-val="94"></div></div>
+              </div>
+              <div class="match-bar-row">
+                <div class="match-bar-label">Reply Rhythm</div>
+                <div class="match-bar-track"><div class="match-bar-fill" data-val="91"></div></div>
+              </div>
+            </div>
+            <div id="match-pct">92<span>%</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ S4: ANONYMOUS FEED ─ -->
+      <section class="scene scene-mid" id="s4">
+        <div class="sticky-box has-feed" style="justify-content: space-between; padding: 0 48px">
+          <div class="text-panel" style="padding: 0; flex-shrink: 0">
+            <div class="chip"><span class="chip-dot"></span>Anonymous Feed</div>
+            <h2 class="scene-h">Your chats<br /><span class="lime">inspire the world.</span></h2>
+            <p class="scene-sub">
+              Share anonymous snippets. The community votes. Names auto-redacted by AI before
+              anything goes live.
+            </p>
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 24px;
+                background: rgba(209, 255, 28, 0.08);
+                border: 1px solid rgba(209, 255, 28, 0.15);
+                border-radius: 100px;
+                padding: 8px 16px;
+              "
+            >
+              <span style="font-size: 18px">🔒</span>
+              <span style="font-size: 12px; font-weight: 600; color: var(--lime)"
+                >LLM-powered identity redaction</span
+              >
+            </div>
+          </div>
+          <div id="feed-cards-html">
+            <div class="feed-card-html">
+              <div class="fch-tag">💬 Chat Snapshot</div>
+              <div class="fch-text">
+                "[🙈] sent 47 messages debating if Die Hard is a Christmas movie. Still going at
+                3am."
+              </div>
+              <div class="fch-footer">
+                <div class="fch-stat active">❤️ 1.2K</div>
+                <div class="fch-stat">💬 89</div>
+              </div>
+            </div>
+            <div class="feed-card-html">
+              <div class="fch-tag">✨ Pickup Line</div>
+              <div class="fch-text">
+                "Are you a question mark? Because you make me want to keep going 🤔"
+              </div>
+              <div class="fch-footer">
+                <div class="fch-stat active">❤️ 3.4K</div>
+                <div class="fch-stat">💬 245</div>
+              </div>
+            </div>
+            <div class="feed-card-html">
+              <div class="fch-tag">🎉 Match Story</div>
+              <div class="fch-text">
+                "We both ask questions constantly — matched on Finemate, met for coffee, still
+                talking 6 months later."
+              </div>
+              <div class="fch-footer">
+                <div class="fch-stat active">❤️ 891</div>
+                <div class="fch-stat">💬 34</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ S5: PLANS ─ -->
+      <section class="scene scene-mid" id="s5">
+        <div class="sticky-box">
+          <div class="text-panel center">
+            <div class="chip"><span class="chip-dot"></span>Plans</div>
+            <h2 class="scene-h">Match deeper.<br /><span class="lime">Go Premium.</span></h2>
+            <div id="pricing-html">
+              <div class="plan-card">
+                <div class="plan-name">Base</div>
+                <div class="plan-price">₹0</div>
+                <div class="plan-period">forever free</div>
+                <div class="plan-feat">
+                  5 questions lifetime<br />5 compliments<br />Blurred photos<br />Feed access
+                </div>
+                <a href="#download" class="plan-cta">Start free</a>
+              </div>
+              <div class="plan-card">
+                <div class="plan-name">Boost</div>
+                <div class="plan-price">₹299</div>
+                <div class="plan-period">per month</div>
+                <div class="plan-feat">
+                  5 questions weekly<br />Full profile visible<br />Photos unlocked<br />Priority
+                  queue
+                </div>
+                <a href="#download" class="plan-cta">Get Boost</a>
+              </div>
+              <div class="plan-card featured">
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    opacity: 0.5;
+                    margin-bottom: 4px;
+                  "
+                >
+                  Most popular
+                </div>
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">₹599</div>
+                <div class="plan-period">per month</div>
+                <div class="plan-feat">
+                  5 questions weekly<br />Full visibility<br />Read receipts<br />Boost in discovery
+                </div>
+                <a href="#download" class="plan-cta">Go Premium</a>
+              </div>
+              <div class="plan-card">
+                <div class="plan-name">Premium+</div>
+                <div class="plan-price">₹999</div>
+                <div class="plan-period">per month</div>
+                <div class="plan-feat">
+                  Unlimited questions<br />Unlimited compliments<br />Premium+ only pool<br />Verified
+                  badge
+                </div>
+                <a href="#download" class="plan-cta">Go Elite</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- end scroll-wrap -->
+
+    <!-- ─ CTA ─ -->
+    <section id="cta-section" id="download">
+      <div class="cta-logo"><img src="./assets/finemate-logo.svg" alt="" /></div>
+      <div class="chip"><span class="chip-dot"></span>Download now</div>
+      <h2 class="scene-h" style="font-size: clamp(36px, 5vw, 64px)">
+        Ready to meet someone<br /><span class="lime">who actually gets you?</span>
+      </h2>
+      <p class="scene-sub" style="max-width: 500px; margin-inline: auto; text-align: center">
+        Your personality is already your best opening line.
+      </p>
+      <div class="cta-actions">
+        <a href="#" class="btn-lime">🍎 Download for iOS</a>
+        <a href="#" class="btn-ghost">▶ Get on Android</a>
+      </div>
+    </section>
+
+    <script>
+      /* ══════════════════════════════════════════════════════════════════
+   FINEMATE — 3D EXPERIENCE ENGINE
+   Three.js r128 + GSAP ScrollTrigger + UnrealBloom
+══════════════════════════════════════════════════════════════════ */
+
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
+      // ── Fake loader ──────────────────────────────────────────────────
+      const lbar = document.getElementById('lbar')
+      const lpct = document.getElementById('lpct')
+      const loader = document.getElementById('loader')
+      let loadPct = 0
+      const loadInt = setInterval(() => {
+        loadPct = Math.min(100, loadPct + Math.random() * 18)
+        lbar.style.width = loadPct + '%'
+        lpct.textContent = Math.floor(loadPct) + '%'
+        if (loadPct >= 100) {
+          clearInterval(loadInt)
+          setTimeout(() => loader.classList.add('hidden'), 400)
+        }
+      }, 120)
+
+      // ── Renderer ─────────────────────────────────────────────────────
+      const canvas = document.getElementById('c')
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false })
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
+      renderer.setSize(innerWidth, innerHeight)
+      renderer.toneMapping = THREE.ACESFilmicToneMapping
+      renderer.toneMappingExposure = 1.1
+
+      const scene = new THREE.Scene()
+      scene.background = new THREE.Color(0x0a0b08)
+
+      const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 300)
+      camera.position.set(0, 0, 22)
+
+      // ── Bloom post-processing ─────────────────────────────────────────
+      let composer
+      try {
+        composer = new THREE.EffectComposer(renderer)
+        composer.addPass(new THREE.RenderPass(scene, camera))
+        const bloom = new THREE.UnrealBloomPass(
+          new THREE.Vector2(innerWidth, innerHeight),
+          1.4, // strength
+          0.5, // radius
+          0.05 // threshold (low = everything blooms a little)
+        )
+        composer.addPass(bloom)
+      } catch (e) {
+        composer = { render: () => renderer.render(scene, camera) }
+      }
+
+      // ── Colors ───────────────────────────────────────────────────────
+      const LIME = 0xd1ff1c
+      const WHITE = 0xffffff
+
+      // ── Mouse parallax ───────────────────────────────────────────────
+      let mx = 0,
+        my = 0
+      window.addEventListener('mousemove', e => {
+        mx = (e.clientX / innerWidth - 0.5) * 2
+        my = (e.clientY / innerHeight - 0.5) * 2
+      })
+
+      // ═══════════════════════════════════════════════════════════════
+      // S0  HERO — Particle brain sphere (10 000 pts)
+      // ═══════════════════════════════════════════════════════════════
+      const HERO_COUNT = 10000
+      const hPositions = new Float32Array(HERO_COUNT * 3)
+      const hOriginals = new Float32Array(HERO_COUNT * 3)
+      for (let i = 0; i < HERO_COUNT; i++) {
+        const theta = Math.random() * Math.PI * 2
+        const phi = Math.acos(2 * Math.random() - 1)
+        const r = 7 + (Math.random() - 0.5) * 2.5
+        const x = r * Math.sin(phi) * Math.cos(theta)
+        const y = r * Math.sin(phi) * Math.sin(theta)
+        const z = r * Math.cos(phi)
+        hPositions[i * 3] = x
+        hPositions[i * 3 + 1] = y
+        hPositions[i * 3 + 2] = z
+        hOriginals[i * 3] = x
+        hOriginals[i * 3 + 1] = y
+        hOriginals[i * 3 + 2] = z
+      }
+      // Connection lines between nearby particles
+      const lineVerts = []
+      for (let i = 0; i < 500; i++) {
+        for (let j = i + 1; j < 500; j++) {
+          const dx = hOriginals[i * 3] - hOriginals[j * 3]
+          const dy = hOriginals[i * 3 + 1] - hOriginals[j * 3 + 1]
+          const dz = hOriginals[i * 3 + 2] - hOriginals[j * 3 + 2]
+          if (dx * dx + dy * dy + dz * dz < 6) {
+            lineVerts.push(hOriginals[i * 3], hOriginals[i * 3 + 1], hOriginals[i * 3 + 2])
+            lineVerts.push(hOriginals[j * 3], hOriginals[j * 3 + 1], hOriginals[j * 3 + 2])
+          }
+        }
+      }
+      const lGeo = new THREE.BufferGeometry()
+      lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(lineVerts), 3))
+      const lMat = new THREE.LineBasicMaterial({
+        color: LIME,
+        transparent: true,
+        opacity: 0.05,
+        blending: THREE.AdditiveBlending
+      })
+      const heroLines = new THREE.LineSegments(lGeo, lMat)
+      scene.add(heroLines)
+
+      const hGeo = new THREE.BufferGeometry()
+      hGeo.setAttribute('position', new THREE.BufferAttribute(hPositions, 3))
+      const hMat = new THREE.PointsMaterial({
+        size: 0.045,
+        color: LIME,
+        transparent: true,
+        opacity: 0.75,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      })
+      const heroParticles = new THREE.Points(hGeo, hMat)
+      scene.add(heroParticles)
+
+      // ═══════════════════════════════════════════════════════════════
+      // S1  ENGINE — 3D Metric bars (17 bars, 3D chart)
+      // ═══════════════════════════════════════════════════════════════
+      const VALS = [
+        0.84, 0.45, 0.72, 0.91, 0.38, 0.88, 0.79, 0.62, 0.75, 0.68, 0.55, 0.82, 0.15, 0.7, 0.77,
+        0.93, 0.47
+      ]
+      const engineGroup = new THREE.Group()
+      const barMeshes = []
+
+      VALS.forEach((v, i) => {
+        const col = i % 9,
+          row = Math.floor(i / 9)
+        // Bar body
+        const geo = new THREE.BoxGeometry(0.55, 0.01, 0.55)
+        const mat = new THREE.MeshBasicMaterial({
+          color: LIME,
+          transparent: true,
+          opacity: 0,
+          blending: THREE.AdditiveBlending
+        })
+        const bar = new THREE.Mesh(geo, mat)
+        bar.position.set((col - 4) * 1.1, 0, (row - 0.5) * 1.8)
+        bar.userData.targetH = v * 5
+        bar.userData.origY = 0
+
+        // Glowing top cap
+        const capGeo = new THREE.BoxGeometry(0.58, 0.08, 0.58)
+        const capMat = new THREE.MeshBasicMaterial({
+          color: LIME,
+          transparent: true,
+          opacity: 0,
+          blending: THREE.AdditiveBlending
+        })
+        const cap = new THREE.Mesh(capGeo, capMat)
+        bar.userData.cap = cap
+        bar.add(cap)
+
+        barMeshes.push(bar)
+        engineGroup.add(bar)
+      })
+      engineGroup.visible = false
+      engineGroup.position.set(0, 0, 0)
+      scene.add(engineGroup)
+
+      // ═══════════════════════════════════════════════════════════════
+      // S2  DNA — Double helix (communication fingerprint)
+      // ═══════════════════════════════════════════════════════════════
+      const dnaGroup = new THREE.Group()
+
+      function buildHelix(offset, colorA, colorB) {
+        const g = new THREE.Group()
+        const STEPS = 40
+        const nodes = []
+        for (let i = 0; i < STEPS; i++) {
+          const t = i / (STEPS - 1)
+          const angle = t * Math.PI * 4 + offset
+          const x = Math.cos(angle) * 2.5
+          const y = (t - 0.5) * 12
+          const z = Math.sin(angle) * 2.5
+          // Node sphere
+          const sGeo = new THREE.SphereGeometry(0.12, 8, 8)
+          const sMat = new THREE.MeshBasicMaterial({
+            color: i % 3 === 0 ? colorA : colorB,
+            blending: THREE.AdditiveBlending
+          })
+          const s = new THREE.Mesh(sGeo, sMat)
+          s.position.set(x, y, z)
+          g.add(s)
+          nodes.push(new THREE.Vector3(x, y, z))
+        }
+        // Spine curve
+        const curve = new THREE.CatmullRomCurve3(nodes)
+        const pts = curve.getPoints(200)
+        const spineGeo = new THREE.BufferGeometry().setFromPoints(pts)
+        const spineMat = new THREE.LineBasicMaterial({
+          color: colorA,
+          transparent: true,
+          opacity: 0.4
+        })
+        g.add(new THREE.Line(spineGeo, spineMat))
+        return g
+      }
+
+      const helix1 = buildHelix(0, LIME, 0x88cc00)
+      const helix2 = buildHelix(Math.PI, 0x99dd22, LIME)
+      dnaGroup.add(helix1, helix2)
+
+      // Rungs connecting the two helices
+      for (let i = 0; i < 20; i++) {
+        const t = i / 19
+        const a = t * Math.PI * 4
+        const y = (t - 0.5) * 12
+        const pts = [
+          new THREE.Vector3(Math.cos(a) * 2.5, y, Math.sin(a) * 2.5),
+          new THREE.Vector3(Math.cos(a + Math.PI) * 2.5, y, Math.sin(a + Math.PI) * 2.5)
+        ]
+        const geo = new THREE.BufferGeometry().setFromPoints(pts)
+        const mat = new THREE.LineBasicMaterial({ color: LIME, transparent: true, opacity: 0.15 })
+        dnaGroup.add(new THREE.Line(geo, mat))
+      }
+
+      dnaGroup.position.set(5, 0, 0)
+      dnaGroup.visible = false
+      scene.add(dnaGroup)
+
+      // ═══════════════════════════════════════════════════════════════
+      // S3  MATCH — Two glowing icosahedra + orbit rings
+      // ═══════════════════════════════════════════════════════════════
+      const matchGroup = new THREE.Group()
+
+      function buildMatchSphere(xPos, rot) {
+        const g = new THREE.Group()
+
+        // Core wireframe
+        const wGeo = new THREE.IcosahedronGeometry(1.8, 3)
+        const wMat = new THREE.MeshBasicMaterial({
+          color: LIME,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.18
+        })
+        const core = new THREE.Mesh(wGeo, wMat)
+        g.add(core)
+
+        // Solid inner glow
+        const iGeo = new THREE.SphereGeometry(1.4, 16, 16)
+        const iMat = new THREE.MeshBasicMaterial({ color: LIME, transparent: true, opacity: 0.04 })
+        g.add(new THREE.Mesh(iGeo, iMat))
+
+        // Orbit rings (3 at different angles)
+        ;[0, Math.PI / 3, (Math.PI * 2) / 3].forEach((rz, ri) => {
+          const rGeo = new THREE.TorusGeometry(2.6, 0.018, 6, 80)
+          const rMat = new THREE.MeshBasicMaterial({
+            color: LIME,
+            transparent: true,
+            opacity: 0.35 - ri * 0.05
+          })
+          const ring = new THREE.Mesh(rGeo, rMat)
+          ring.rotation.set(Math.PI / 4 + ri * 0.5, 0, rz)
+          g.add(ring)
+        })
+
+        // Particle halo
+        const hCount = 400
+        const hPos = new Float32Array(hCount * 3)
+        for (let i = 0; i < hCount; i++) {
+          const theta = Math.random() * Math.PI * 2
+          const phi = Math.acos(2 * Math.random() - 1)
+          const r = 1.8 + Math.random() * 1.2
+          hPos[i * 3] = r * Math.sin(phi) * Math.cos(theta)
+          hPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
+          hPos[i * 3 + 2] = r * Math.cos(phi)
+        }
+        const hGeo = new THREE.BufferGeometry()
+        hGeo.setAttribute('position', new THREE.BufferAttribute(hPos, 3))
+        const hMat = new THREE.PointsMaterial({
+          color: LIME,
+          size: 0.038,
+          transparent: true,
+          opacity: 0.55,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false
+        })
+        g.add(new THREE.Points(hGeo, hMat))
+
+        g.position.x = xPos
+        g.userData.rotDir = rot
+        return g
+      }
+
+      const mSphere1 = buildMatchSphere(-9, 1)
+      const mSphere2 = buildMatchSphere(9, -1)
+      matchGroup.add(mSphere1, mSphere2)
+
+      // Connection beam (invisible at start, shown when matched)
+      const beamGeo = new THREE.CylinderGeometry(0.04, 0.04, 1, 8)
+      const beamMat = new THREE.MeshBasicMaterial({
+        color: LIME,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending
+      })
+      const beam = new THREE.Mesh(beamGeo, beamMat)
+      beam.rotation.z = Math.PI / 2
+      matchGroup.add(beam)
+
+      // Merge burst particles
+      const burstCount = 300
+      const burstPos = new Float32Array(burstCount * 3)
+      const burstVel = []
+      for (let i = 0; i < burstCount; i++) {
+        burstPos[i * 3] = 0
+        burstPos[i * 3 + 1] = 0
+        burstPos[i * 3 + 2] = 0
+        burstVel.push(
+          new THREE.Vector3(
+            (Math.random() - 0.5) * 0.2,
+            (Math.random() - 0.5) * 0.2,
+            (Math.random() - 0.5) * 0.2
+          )
+        )
+      }
+      const burstGeo = new THREE.BufferGeometry()
+      burstGeo.setAttribute('position', new THREE.BufferAttribute(burstPos, 3))
+      const burstMat = new THREE.PointsMaterial({
+        color: LIME,
+        size: 0.07,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      })
+      const burst = new THREE.Points(burstGeo, burstMat)
+      matchGroup.add(burst)
+
+      matchGroup.visible = false
+      scene.add(matchGroup)
+
+      // ═══════════════════════════════════════════════════════════════
+      // S4  FEED — Floating 3D cards
+      // ═══════════════════════════════════════════════════════════════
+      const feedGroup = new THREE.Group()
+      const feedCards3d = []
+
+      for (let i = 0; i < 12; i++) {
+        const geo = new THREE.PlaneGeometry(3.2, 1.9, 1, 1)
+        const mat = new THREE.MeshBasicMaterial({
+          color: i % 3 === 0 ? 0x1a1c14 : 0x13150f,
+          transparent: true,
+          opacity: 0,
+          side: THREE.DoubleSide
+        })
+        const card = new THREE.Mesh(geo, mat)
+
+        const side = i % 2 === 0 ? 1 : -1
+        const depth = -i * 0.8
+        card.position.set(side * (2 + Math.random() * 3), (Math.random() - 0.5) * 6, depth)
+        card.rotation.set(
+          (Math.random() - 0.5) * 0.15,
+          side * (0.1 + Math.random() * 0.25),
+          (Math.random() - 0.5) * 0.12
+        )
+
+        // Glowing border
+        const edges = new THREE.EdgesGeometry(geo)
+        const eMat = new THREE.LineBasicMaterial({ color: LIME, transparent: true, opacity: 0 })
+        const border = new THREE.LineSegments(edges, eMat)
+        card.add(border)
+        card.userData.border = border
+        card.userData.floatPhase = Math.random() * Math.PI * 2
+        card.userData.floatY = card.position.y
+
+        feedCards3d.push(card)
+        feedGroup.add(card)
+      }
+      feedGroup.visible = false
+      scene.add(feedGroup)
+
+      // ═══════════════════════════════════════════════════════════════
+      // S5  PRICING — Floating 3D tier boxes
+      // ═══════════════════════════════════════════════════════════════
+      const pricingGroup = new THREE.Group()
+      const pBoxes = []
+      const planColors3d = [0x1a1c14, 0x1a1c14, LIME, 0x1a1c14]
+      const planSizes = [
+        [2.2, 4, 0.25],
+        [2.2, 4.2, 0.25],
+        [2.5, 4.8, 0.3],
+        [2.2, 4, 0.25]
+      ]
+
+      planSizes.forEach(([w, h, d], i) => {
+        const geo = new THREE.BoxGeometry(w, h, d)
+        const mat = new THREE.MeshBasicMaterial({
+          color: planColors3d[i],
+          transparent: true,
+          opacity: 0
+        })
+        const box = new THREE.Mesh(geo, mat)
+
+        const edges = new THREE.EdgesGeometry(geo)
+        const eMat = new THREE.LineBasicMaterial({ color: LIME, transparent: true, opacity: 0 })
+        const border = new THREE.LineSegments(edges, eMat)
+        box.add(border)
+        box.userData.border = border
+        box.userData.isFeatured = i === 2
+
+        box.position.set((i - 1.5) * 3.6, i === 2 ? 0.4 : 0, 0)
+        pBoxes.push(box)
+        pricingGroup.add(box)
+      })
+      pricingGroup.visible = false
+      scene.add(pricingGroup)
+
+      // ═══════════════════════════════════════════════════════════════
+      // ANIMATION LOOP
+      // ═══════════════════════════════════════════════════════════════
+      const clock = new THREE.Clock()
+      const lookAt = new THREE.Vector3()
+      let camTarget = { x: 0, y: 0, z: 22 }
+      let currentSection = 0
+      let matchMerged = false
+      let burstTime = -1
+
+      function animate() {
+        requestAnimationFrame(animate)
+        const t = clock.getElapsedTime()
+
+        // Camera mouse parallax (gentle)
+        camera.position.x += (mx * 0.8 - camera.position.x) * 0.04
+        camera.position.y += (-my * 0.4 - camera.position.y) * 0.04
+        camera.lookAt(lookAt)
+
+        // ── S0: Hero particles ──
+        heroParticles.rotation.y = t * 0.04
+        heroParticles.rotation.x = Math.sin(t * 0.025) * 0.06
+        heroLines.rotation.y = heroParticles.rotation.y
+        heroLines.rotation.x = heroParticles.rotation.x
+
+        // ── S1: Bar idle pulse ──
+        if (engineGroup.visible) {
+          barMeshes.forEach((b, i) => {
+            if (b.material.opacity > 0.1) {
+              b.material.opacity = 0.7 + Math.sin(t * 1.5 + i * 0.4) * 0.15
+              const cap = b.userData.cap
+              if (cap) cap.material.opacity = b.material.opacity + 0.15
+            }
+          })
+        }
+
+        // ── S2: DNA rotation ──
+        if (dnaGroup.visible) {
+          dnaGroup.rotation.y = t * 0.18
+        }
+
+        // ── S3: Match spheres ──
+        if (matchGroup.visible) {
+          mSphere1.rotation.y = t * 0.35
+          mSphere2.rotation.y = -t * 0.3
+          mSphere1.children[0].rotation.x = t * 0.2
+          mSphere2.children[0].rotation.x = -t * 0.25
+
+          // Rings orbit
+          mSphere1.children.forEach((c, ci) => {
+            if (ci >= 2 && ci <= 4) c.rotation.y = t * (0.4 + ci * 0.15)
+          })
+          mSphere2.children.forEach((c, ci) => {
+            if (ci >= 2 && ci <= 4) c.rotation.y = -t * (0.4 + ci * 0.15)
+          })
+
+          // Burst particles after merge
+          if (burstTime > 0) {
+            const bt = t - burstTime
+            const pos = burst.geometry.attributes.position.array
+            for (let i = 0; i < burstCount; i++) {
+              pos[i * 3] = burstVel[i].x * bt * 8
+              pos[i * 3 + 1] = burstVel[i].y * bt * 8
+              pos[i * 3 + 2] = burstVel[i].z * bt * 8
+            }
+            burst.geometry.attributes.position.needsUpdate = true
+            burst.material.opacity = Math.max(0, 0.8 - bt * 0.4)
+          }
+        }
+
+        // ── S4: Feed cards gentle float ──
+        if (feedGroup.visible) {
+          feedCards3d.forEach(card => {
+            card.position.y =
+              card.userData.floatY + Math.sin(t * 0.6 + card.userData.floatPhase) * 0.12
+          })
+        }
+
+        // ── S5: Pricing boxes gentle float ──
+        if (pricingGroup.visible) {
+          pBoxes.forEach((box, i) => {
+            const base = box.userData.isFeatured ? 0.4 : 0
+            box.position.y = base + Math.sin(t * 0.5 + i * 1.2) * 0.08
+            box.rotation.y = Math.sin(t * 0.3 + i) * 0.04
+          })
+        }
+
+        composer.render()
+      }
+      animate()
+
+      // ═══════════════════════════════════════════════════════════════
+      // SCROLL TRIGGERS
+      // ═══════════════════════════════════════════════════════════════
+      const sections = ['s0', 's1', 's2', 's3', 's4', 's5']
+      const dots = document.querySelectorAll('.ch-dot')
+      const pills = document.querySelectorAll('.metric-pill')
+
+      function setChapter(i) {
+        dots.forEach((d, di) => d.classList.toggle('active', di === i))
+        currentSection = i
+      }
+
+      function fadeGroup(group, show) {
+        group.visible = true
+        group.traverse(obj => {
+          if (obj.material) {
+            gsap.to(obj.material, {
+              opacity: show ? obj.userData.targetOp || 0.7 : 0,
+              duration: 0.6
+            })
+          }
+        })
+        if (!show) setTimeout(() => (group.visible = false), 700)
+      }
+
+      // ── Camera state machine ──
+      const camStates = [
+        { x: 0, y: 0, z: 22, lx: 0, ly: 0, lz: 0 }, // hero
+        { x: -4, y: 1, z: 16, lx: 0, ly: 0, lz: 0 }, // engine
+        { x: 3, y: 0, z: 14, lx: 4, ly: 0, lz: 0 }, // dna
+        { x: 0, y: 0, z: 18, lx: 0, ly: 0, lz: 0 }, // match
+        { x: -3, y: 0, z: 14, lx: 0, ly: 0, lz: 0 }, // feed
+        { x: 0, y: 0, z: 22, lx: 0, ly: 0, lz: 0 } // pricing
+      ]
+
+      function goTo(state) {
+        gsap.to(camera.position, { ...state, duration: 1.6, ease: 'power3.inOut' })
+        gsap.to(lookAt, {
+          x: state.lx,
+          y: state.ly,
+          z: state.lz,
+          duration: 1.6,
+          ease: 'power3.inOut'
+        })
+      }
+
+      // ── S0: Hero enter ──
+      ScrollTrigger.create({
+        trigger: '#s0',
+        start: 'top top',
+        end: 'bottom top',
+        onEnterBack: () => {
+          setChapter(0)
+          goTo(camStates[0])
+          heroParticles.visible = true
+          heroLines.visible = true
+          gsap.to(heroParticles.material, { opacity: 0.75, duration: 0.8 })
+          gsap.to(heroLines.material, { opacity: 0.05, duration: 0.8 })
+          engineGroup.visible = false
+        }
+      })
+
+      // ── S1: Engine ──
+      let engineBuilt = false
+      ScrollTrigger.create({
+        trigger: '#s1',
+        start: 'top 60%',
+        end: 'bottom bottom',
+        scrub: 1,
+        onEnter: () => {
+          setChapter(1)
+          goTo(camStates[1])
+          engineGroup.visible = true
+          gsap.to(heroParticles.material, { opacity: 0, duration: 0.7 })
+          gsap.to(heroLines.material, { opacity: 0, duration: 0.7 })
+        },
+        onEnterBack: () => {
+          setChapter(1)
+          goTo(camStates[1])
+          engineGroup.visible = true
+          dnaGroup.visible = false
+        },
+        onUpdate: self => {
+          const p = self.progress
+          barMeshes.forEach((bar, i) => {
+            const delay = (i / barMeshes.length) * 0.5
+            const lp = Math.max(0, Math.min(1, (p - delay) / 0.6))
+            const h = Math.max(0.01, lp * bar.userData.targetH)
+            bar.scale.y = h
+            bar.position.y = -2.5 + h / 2
+            bar.material.opacity = lp * 0.75
+            if (bar.userData.cap) {
+              bar.userData.cap.position.y = h / 2
+              bar.userData.cap.material.opacity = lp
+            }
+            // Light up pill
+            const pill = document.querySelector(`.metric-pill[data-idx="${i}"]`)
+            if (pill) pill.classList.toggle('lit', lp > 0.3)
+          })
+        },
+        onLeave: () => {
+          dnaGroup.visible = true
+        }
+      })
+
+      // ── S2: DNA fingerprint ──
+      ScrollTrigger.create({
+        trigger: '#s2',
+        start: 'top 60%',
+        onEnter: () => {
+          setChapter(2)
+          goTo(camStates[2])
+          dnaGroup.visible = true
+          engineGroup.visible = false
+          gsap.to(
+            {},
+            {
+              duration: 0.01,
+              onComplete: () => {
+                dnaGroup.traverse(obj => {
+                  if (obj.material) {
+                    const o = obj.material.opacity
+                    obj.material.opacity = 0
+                    gsap.to(obj.material, { opacity: o, duration: 0.8 })
+                  }
+                })
+              }
+            }
+          )
+        },
+        onEnterBack: () => {
+          setChapter(2)
+          goTo(camStates[2])
+          dnaGroup.visible = true
+          matchGroup.visible = false
+        },
+        onLeave: () => {
+          matchGroup.visible = true
+        }
+      })
+
+      // ── S3: Match ──
+      let matchProgress = 0
+      ScrollTrigger.create({
+        trigger: '#s3',
+        start: 'top 60%',
+        end: 'bottom bottom',
+        scrub: 2,
+        onEnter: () => {
+          setChapter(3)
+          goTo(camStates[3])
+          matchGroup.visible = true
+          dnaGroup.visible = false
+          // Reset spheres
+          mSphere1.position.x = -9
+          mSphere2.position.x = 9
+          beamMat.opacity = 0
+          burstMat.opacity = 0
+          matchMerged = false
+        },
+        onEnterBack: () => {
+          setChapter(3)
+          goTo(camStates[3])
+          matchGroup.visible = true
+          feedGroup.visible = false
+          mSphere1.position.x = -9
+          mSphere2.position.x = 9
+          beamMat.opacity = 0
+          matchMerged = false
+          document.getElementById('match-pct').classList.remove('show')
+          document.querySelectorAll('.match-bar-fill').forEach(f => (f.style.width = '0%'))
+        },
+        onUpdate: self => {
+          const p = self.progress
+          mSphere1.position.x = -9 + p * 7.5
+          mSphere2.position.x = 9 - p * 7.5
+          // Opacity
+          matchGroup.traverse(obj => {
+            if (obj.material && obj !== burst && obj !== beam) {
+              if (!obj.userData.baseOp) obj.userData.baseOp = obj.material.opacity || 0.3
+            }
+          })
+
+          if (p > 0.7 && !matchMerged) {
+            matchMerged = true
+            // Beam
+            gsap.to(beamMat, { opacity: 0.7, duration: 0.4 })
+            // Burst
+            burstTime = clock.getElapsedTime()
+            gsap.to(burstMat, { opacity: 0.9, duration: 0.2 })
+            // Match bars fill
+            document.querySelectorAll('.match-bar-fill').forEach(f => {
+              f.style.width = f.dataset.val + '%'
+            })
+            document.getElementById('match-pct').classList.add('show')
+          }
+          if (p < 0.6 && matchMerged) {
+            matchMerged = false
+            beamMat.opacity = 0
+            burstMat.opacity = 0
+            document.getElementById('match-pct').classList.remove('show')
+            document.querySelectorAll('.match-bar-fill').forEach(f => (f.style.width = '0%'))
+          }
+          // Beam scale
+          const dist = mSphere2.position.x - mSphere1.position.x
+          beam.scale.x = Math.max(0.1, dist - 3.2)
+        },
+        onLeave: () => {
+          feedGroup.visible = true
+        }
+      })
+
+      // ── S4: Feed ──
+      ScrollTrigger.create({
+        trigger: '#s4',
+        start: 'top 60%',
+        end: 'bottom bottom',
+        scrub: 1.5,
+        onEnter: () => {
+          setChapter(4)
+          goTo(camStates[4])
+          feedGroup.visible = true
+          matchGroup.visible = false
+          document.getElementById('feed-cards-html').classList.add('show')
+        },
+        onEnterBack: () => {
+          setChapter(4)
+          goTo(camStates[4])
+          feedGroup.visible = true
+          pricingGroup.visible = false
+          document.getElementById('feed-cards-html').classList.add('show')
+        },
+        onUpdate: self => {
+          const p = self.progress
+          feedCards3d.forEach((card, i) => {
+            const lp = Math.max(0, Math.min(1, p - i * 0.04))
+            card.material.opacity = lp * 0.7
+            card.userData.border.material.opacity = lp * 0.4
+          })
+        },
+        onLeave: () => {
+          pricingGroup.visible = true
+          document.getElementById('feed-cards-html').classList.remove('show')
+        }
+      })
+
+      // ── S5: Pricing ──
+      ScrollTrigger.create({
+        trigger: '#s5',
+        start: 'top 60%',
+        end: 'bottom bottom',
+        scrub: 1,
+        onEnter: () => {
+          setChapter(5)
+          goTo(camStates[5])
+          pricingGroup.visible = true
+          feedGroup.visible = false
+        },
+        onEnterBack: () => {
+          setChapter(5)
+          goTo(camStates[5])
+          pricingGroup.visible = true
+        },
+        onUpdate: self => {
+          const p = self.progress
+          pBoxes.forEach((box, i) => {
+            const lp = Math.max(0, Math.min(1, (p - i * 0.06) / 0.5))
+            box.material.opacity = lp * (box.userData.isFeatured ? 0.7 : 0.12)
+            box.userData.border.material.opacity = lp * (box.userData.isFeatured ? 0.9 : 0.3)
+          })
+        }
+      })
+
+      // ── Chapter dot clicks ──
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const el = document.getElementById(sections[i])
+          if (el) gsap.to(window, { duration: 1.2, scrollTo: el, ease: 'power3.inOut' })
+        })
+      })
+
+      // ── Mouse hover on pricing boxes (3D) ──
+      const raycaster = new THREE.Raycaster()
+      const pointer = new THREE.Vector2()
+      window.addEventListener('mousemove', e => {
+        pointer.x = (e.clientX / innerWidth) * 2 - 1
+        pointer.y = -(e.clientY / innerHeight) * 2 + 1
+        raycaster.setFromCamera(pointer, camera)
+        const hits = raycaster.intersectObjects(pBoxes)
+        pBoxes.forEach(b => {
+          const hit = hits.find(h => h.object === b)
+          gsap.to(b.position, {
+            y: hit ? (b.userData.isFeatured ? 0.8 : 0.3) : b.userData.isFeatured ? 0.4 : 0,
+            duration: 0.4
+          })
+          gsap.to(b.userData.border.material, {
+            opacity: hit ? 0.9 : b.userData.isFeatured ? 0.9 : 0.3,
+            duration: 0.3
+          })
+        })
+      })
+
+      // ── Resize ──────────────────────────────────────────────────────
+      window.addEventListener('resize', () => {
+        camera.aspect = innerWidth / innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(innerWidth, innerHeight)
+        if (composer.setSize) composer.setSize(innerWidth, innerHeight)
+      })
+
+      // ── Smooth scroll for CTA links ──────────────────────────────────
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href')
+          if (id === '#') return
+          e.preventDefault()
+          gsap.to(window, { duration: 1.2, scrollTo: id, ease: 'power3.inOut' })
+        })
+      })
+    </script>
+  </body>
+</html>
