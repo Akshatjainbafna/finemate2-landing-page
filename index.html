@@ -2584,6 +2584,232 @@
       .faq-a strong {
         color: var(--text);
       }
+
+      /* ── Additional 960px fixes ── */
+      @media (max-width: 960px) {
+        /* Gender balance — critical missing rule */
+        #gender-balance {
+          padding: 80px 20px;
+        }
+        .gb-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .gb-visual {
+          order: -1;
+        }
+        .gb-split {
+          max-width: 100%;
+        }
+
+        /* Footer horizontal padding */
+        footer {
+          padding: 28px 20px;
+        }
+
+        /* Hide floating notification chips (overflow on stacked phone layout) */
+        .phone-notif {
+          display: none;
+        }
+
+        /* Daily feature card — collapse span and stack vertically */
+        .feat-daily {
+          grid-column: span 1;
+          flex-direction: column !important;
+          gap: 24px;
+        }
+
+        /* Reduce oversized stat/problem numbers */
+        .stat-num {
+          font-size: 48px;
+          letter-spacing: -2px;
+        }
+        .prob-big {
+          font-size: 52px;
+          letter-spacing: -2px;
+        }
+
+        /* Fix avatar canvas overflow in span2 feature card */
+        .avatar-visual {
+          width: 100%;
+          overflow: hidden;
+          height: 200px;
+        }
+        #avatar-mini-canvas {
+          width: 100% !important;
+          height: 200px !important;
+        }
+
+        /* FAQ question font on narrow screens */
+        .faq-q {
+          font-size: 15px;
+          padding: 20px 0;
+        }
+
+        /* Shrink floating avatar on mobile */
+        #float-avatar-img {
+          width: 110px;
+          height: 110px;
+        }
+        .avatar-speech-bubble {
+          max-width: 170px;
+          font-size: 11px;
+        }
+
+        /* Vibe stat right side padding */
+        .vibe-stat-right {
+          padding: 24px;
+        }
+        .vibe-game {
+          padding: 24px;
+        }
+      }
+
+      /* ── 480px — Small phones ── */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 40px;
+          letter-spacing: -1.5px;
+        }
+        h2 {
+          font-size: 32px;
+          letter-spacing: -1.5px;
+        }
+        h3 {
+          font-size: 19px;
+        }
+        h4 {
+          font-size: 16px;
+        }
+        blockquote {
+          font-size: 26px;
+          letter-spacing: -1px;
+        }
+        .lead {
+          font-size: 16px;
+        }
+        .hero-sub {
+          font-size: 15px;
+          margin-bottom: 32px;
+        }
+        #hero {
+          padding: 100px 20px 60px;
+        }
+        .badge {
+          font-size: 10px;
+          padding: 5px 12px;
+          margin-bottom: 24px;
+        }
+        .stat-num {
+          font-size: 40px;
+          letter-spacing: -1.5px;
+        }
+        .prob-big {
+          font-size: 44px;
+          letter-spacing: -1.5px;
+        }
+        .problem-card {
+          padding: 28px 24px;
+        }
+        .feat-card {
+          padding: 28px 24px;
+        }
+        .av-card {
+          padding: 20px;
+        }
+        .vs-col {
+          padding: 24px 20px;
+        }
+        .mm-score {
+          font-size: 52px;
+          letter-spacing: -2px;
+        }
+        .vibe-match-score {
+          font-size: 60px;
+          letter-spacing: -3px;
+        }
+        .success-pos {
+          font-size: 44px;
+        }
+        .success-card {
+          padding: 20px 24px;
+        }
+        .match-step-content h4 {
+          font-size: 17px;
+        }
+        .match-step-content p {
+          font-size: 14px;
+        }
+        .vibe-question {
+          font-size: 17px;
+        }
+        .vibe-option {
+          padding: 11px 14px;
+          font-size: 13px;
+        }
+        .vibe-game-wrap {
+          gap: 20px;
+        }
+        .gb-split {
+          height: 120px;
+        }
+        .gh-pct {
+          font-size: 28px;
+          letter-spacing: -1.5px;
+        }
+        .gh-icon {
+          font-size: 20px;
+        }
+        #float-avatar-img {
+          width: 90px;
+          height: 90px;
+        }
+        .avatar-speech-bubble {
+          font-size: 10px;
+          padding: 7px 10px;
+          max-width: 150px;
+        }
+        .anim-btn {
+          width: 26px;
+          height: 26px;
+          font-size: 12px;
+        }
+        footer {
+          padding: 24px 16px;
+          gap: 16px;
+        }
+        .footer-links {
+          gap: 18px;
+        }
+        .section {
+          padding: 64px 20px;
+        }
+        #avatars,
+        #comms,
+        #quote,
+        #gender-balance {
+          padding: 64px 20px;
+        }
+        #vibe-check {
+          padding: 64px 20px;
+        }
+        #cta {
+          padding: 80px 20px;
+        }
+        #faq {
+          padding: 72px 20px;
+        }
+        .stat-cell {
+          padding: 28px 20px;
+        }
+        .disc-filter {
+          font-size: 9px;
+        }
+        .phone-frame {
+          width: 200px;
+          height: 410px;
+        }
+      }
     </style>
 
     <script type="application/ld+json">
