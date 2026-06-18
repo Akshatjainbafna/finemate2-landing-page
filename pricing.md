@@ -32,7 +32,7 @@ Finemate is in pre-launch early access. The app is not yet live in the App Store
 - Finemate is free to join and free to use at the core level
 - No paywall for matching or messaging
 - Revenue model is freemium — premium features will be optional
-- No subscription required to find a girlfriend, boyfriend, or new connections
+- No subscription required to find a partner or new connections
 
 ## Contact
 
