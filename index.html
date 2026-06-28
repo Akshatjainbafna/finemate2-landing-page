@@ -954,9 +954,12 @@
       flex-shrink: 0;
     }
 
-    .disc-avatar-3d canvas {
-      display: block;
+    .disc-avatar-3d .disc-av-img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
 
     .disc-name {
@@ -964,15 +967,6 @@
       font-weight: 800;
       color: var(--text);
       letter-spacing: -0.5px;
-    }
-
-    .disc-match {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--y);
-      background: var(--y-dim);
-      padding: 3px 10px;
-      border-radius: 100px;
     }
 
     .disc-tags {
@@ -1042,8 +1036,8 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: var(--y);
       flex-shrink: 0;
+      object-fit: cover;
     }
 
     .chat-info {
@@ -1291,7 +1285,11 @@
       overflow: hidden;
     }
 
-    .av-orb canvas {
+    .av-orb .av-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
       display: block;
     }
 
@@ -1310,18 +1308,6 @@
       margin-top: 2px;
     }
 
-    .av-match {
-      margin-left: auto;
-      flex-shrink: 0;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--y);
-      background: var(--y-dim);
-      border: 1px solid var(--y-border);
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-
     .av-tags {
       display: flex;
       flex-wrap: wrap;
@@ -1336,36 +1322,6 @@
       padding: 4px 10px;
       border-radius: 8px;
       font-weight: 500;
-    }
-
-    .av-bar-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .av-bar-label {
-      font-size: 11px;
-      color: var(--text3);
-      width: 80px;
-      flex-shrink: 0;
-    }
-
-    .av-bar-track {
-      flex: 1;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .av-bar-fill {
-      height: 100%;
-      background: var(--y);
-      border-radius: 4px;
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .av-verified {
@@ -1438,16 +1394,6 @@
       font-size: 14px;
       font-weight: 800;
       color: var(--text);
-    }
-
-    .cd-match-badge {
-      margin-left: auto;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--y);
-      background: var(--y-dim);
-      padding: 4px 12px;
-      border-radius: 100px;
     }
 
     .cd-pattern-row {
@@ -1538,96 +1484,6 @@
       color: var(--text2);
       line-height: 1.6;
       margin-bottom: 28px;
-    }
-
-    .trait-row {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .trait-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .trait-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .trait-val {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--y);
-    }
-
-    .trait-track {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .trait-fill {
-      height: 100%;
-      border-radius: 6px;
-      width: 0;
-      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* match meter */
-    .match-meter {
-      background: var(--bg2);
-      border: 1px solid var(--y-border);
-      border-radius: 16px;
-      padding: 24px;
-      background: linear-gradient(135deg, rgba(209, 255, 28, 0.05), var(--bg2));
-    }
-
-    .mm-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--y);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .mm-score {
-      font-size: 72px;
-      font-weight: 900;
-      letter-spacing: -4px;
-      color: var(--y);
-      line-height: 1;
-    }
-
-    .mm-sub {
-      font-size: 13px;
-      color: var(--text2);
-      margin-top: 6px;
-    }
-
-    .mm-breakdown {
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .mm-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--text2);
-    }
-
-    .mm-row-val {
-      color: var(--y);
-      font-weight: 700;
     }
 
     /* ── How it works ── */
@@ -2577,20 +2433,6 @@
       gap: 6px;
     }
 
-    .vibe-match-score {
-      font-size: 80px;
-      font-weight: 900;
-      letter-spacing: -4px;
-      color: var(--y);
-      line-height: 1;
-    }
-
-    .vibe-match-label {
-      font-size: 13px;
-      color: var(--text2);
-      margin-bottom: 6px;
-    }
-
     .vibe-result-type {
       font-size: 26px;
       font-weight: 900;
@@ -3187,16 +3029,6 @@
         padding: 24px 20px;
       }
 
-      .mm-score {
-        font-size: 52px;
-        letter-spacing: -2px;
-      }
-
-      .vibe-match-score {
-        font-size: 60px;
-        letter-spacing: -3px;
-      }
-
       .success-pos {
         font-size: 44px;
       }
@@ -3351,7 +3183,7 @@
               "Guaranteed 50:50 gender ratio",
               "10 curated matches daily at 9 AM",
               "Per-match intention setting (Long-term, Casual, Marriage)",
-              "Women control photo reveal"
+              "Profile revealed after matching"
             ],
             "screenshot": "https://finemate.club/Finemate icon.png",
             "softwareVersion": "1.0",
@@ -3383,7 +3215,7 @@
                 "name": "How is Finemate different from Tinder or Bumble?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Finemate is different in three key ways: (1) Avatar-first identity — you see a 3D avatar before photos so personality comes first. (2) Communication-pattern matching — your profile is derived from how you actually communicate, not a bio you wrote. (3) Guaranteed 50:50 gender ratio — unlike Tinder's 9:1 male skew, Finemate enforces balance by design and women control when photos are revealed."
+                  "text": "Finemate is different in three key ways: (1) Avatar-first identity — you see a 3D avatar before photos so personality comes first. (2) Communication-pattern matching — your profile is derived from how you actually communicate, not a bio you wrote. (3) Guaranteed 50:50 gender ratio — unlike Tinder's 9:1 male skew, Finemate enforces balance by design and photos are revealed to both parties only after matching."
                 }
               },
               {
@@ -3407,7 +3239,7 @@
                 "name": "Is Finemate safe for women?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Safety for women is built into Finemate's core design. Women control when photos are revealed — enforced at the server level, not just the UI. The guaranteed 50:50 gender ratio means women are not overwhelmed by messages. The communication-first approach filters out bad actors who rely on surface-level tactics."
+                  "text": "Safety for women is built into Finemate's core design. Photos are revealed to both parties only after matching — enforced at the server level, not just the UI. The guaranteed 50:50 gender ratio means women are not overwhelmed by messages. The communication-first approach filters out bad actors who rely on surface-level tactics."
                 }
               },
               {
@@ -3561,10 +3393,10 @@
   <section id="screens">
     <div class="section-header reveal">
       <div class="eyebrow">The product</div>
-      <h2>Three screens.<br />One cohesive world.</h2>
+      <h2>Three screens.<br />One social world.</h2>
       <p class="lead">
-        Social feed, avatar discovery, and communication-matched chat — all in one app where
-        dating is always optional.
+        A social feed to share, discovery that matches your vibe, and chat that connects you —
+        whether for dating or friendship.
       </p>
     </div>
 
@@ -3578,7 +3410,7 @@
       <!-- Floating notification chips -->
       <div class="phone-notif pn-tl">
         <span class="notif-live"></span>
-        New match · 94% compatible
+        New match · Dry Wit · Night owl · Warm
       </div>
       <div class="phone-notif pn-tr">
         <span class="notif-em">💚</span>
@@ -3669,13 +3501,25 @@
               </div>
               <div class="disc-card">
                 <div class="disc-avatar-3d">
-                  <canvas id="disc-orb-canvas" width="90" height="90"></canvas>
+                  <img src="avatars/D.png" alt="Ananya" class="disc-av-img" />
                 </div>
                 <div class="disc-name">Ananya, 26</div>
                 <div style="font-size: 10px; color: var(--text3); margin-top: -4px">
                   Mumbai · 3 km away
                 </div>
-                <div class="disc-match">94% communication match</div>
+                <div class="disc-patterns"
+                  style="display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin: 6px 0 8px">
+                  <span
+                    style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(209,255,28,0.1); color: var(--y)">Warm</span>
+                  <span
+                    style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(209,255,28,0.1); color: var(--y)">Deep
+                    Diver</span>
+                  <span
+                    style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(209,255,28,0.1); color: var(--y)">Initiator</span>
+                  <span
+                    style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(209,255,28,0.1); color: var(--y)">Good
+                    Listener</span>
+                </div>
                 <div class="disc-tags">
                   <div class="disc-tag">Thoughtful</div>
                   <div class="disc-tag">Late-night chatter</div>
@@ -3707,7 +3551,7 @@
             </div>
           </div>
         </div>
-        <div class="phone-label">Avatar Discovery</div>
+        <div class="phone-label">Discover by Vibe</div>
       </div>
 
       <!-- Phone 3: Chat -->
@@ -3716,10 +3560,10 @@
           <div class="phone-screen">
             <div class="chat-screen">
               <div class="chat-header">
-                <div class="chat-av" style="background: linear-gradient(135deg, #d1ff1c, #a8cc00)"></div>
+                <img class="chat-av" src="avatars/D.png" alt="Ananya" />
                 <div class="chat-info">
                   <div class="chat-info-name">Ananya</div>
-                  <div class="chat-info-sub">matched 2 days ago · 94% match</div>
+                  <div class="chat-info-sub">matched 2 days ago · Dry Wit · Deep Diver</div>
                 </div>
               </div>
               <div class="chat-pattern-bar">
@@ -3742,7 +3586,7 @@
                 </div>
                 <div class="msg me">what gave it away?</div>
                 <div class="msg them">
-                  the dry humour overlap. we're both 87% on that scale apparently
+                  the dry humour overlap. same wavelength apparently
                 </div>
               </div>
               <div class="chat-input">
@@ -3752,7 +3596,7 @@
             </div>
           </div>
         </div>
-        <div class="phone-label">Communication Chat</div>
+        <div class="phone-label">Chat — Date or Friend</div>
       </div>
     </div>
   </section>
@@ -3770,9 +3614,8 @@
             <div class="feat-icon">🎭</div>
             <h3>Avatar-first identity</h3>
             <p class="feat-desc">
-              Your Memoji-style 3D avatar is generated from your photos — real facial features,
-              algorithmically mapped. People experience your personality before making visual
-              judgements. Photos unlock progressively, on your terms.
+              Build an avatar so people meet how you communicate — while a soft blueprint still
+              hints at how you actually look. Personality lands before the photo does.
             </p>
           </div>
           <div class="avatar-visual">
@@ -3783,35 +3626,35 @@
           <div class="feat-icon">🧠</div>
           <h3>Communication-pattern matching</h3>
           <p class="feat-desc">
-            Compatibility is derived from how you actually communicate — message length, humor
-            style, reply cadence, topic affinity. You can't game a profile you didn't write.
+            You connect only when your communication styles line up — humor, depth, energy, pace,
+            even your mutual hates. Same vibe as you, without you having to say a word.
           </p>
         </div>
         <div class="feat-card reveal reveal-d2" id="fc2">
           <div class="feat-icon">🔒</div>
-          <h3>Women control the reveal</h3>
+          <h3>Profile revealed after matching</h3>
           <p class="feat-desc">
-            Women decide when their photos become visible to a match — after N messages, after
-            mutual interest, or manually. Server-enforced, not a client toggle. No requesting. No
-            pressure.
+            Photos unlock only after you match — both people see each other's photos simultaneously.
+            Your avatar and communication profile lead the connection. Server-enforced, mutual
+            reveal.
           </p>
         </div>
         <div class="feat-card reveal reveal-d1" id="fc3">
           <div class="feat-icon">📱</div>
           <h3>Social-first. Dating optional.</h3>
           <p class="feat-desc">
-            Turn dating off and use Finemate purely as a social platform — anonymous chat
-            snapshots, personality posts, a living feed. No stigma. "I'm on Finemate" means social
-            app.
+            Ditch the dating. Finemate is a social feed — memes, gossip, anonymous chat snaps,
+            pickup lines, deep thoughts, rants, plans, random questions. No profiles, no pressure.
+            Just what's real.
           </p>
         </div>
         <div class="feat-card reveal reveal-d2" id="fc4">
           <div class="feat-icon">⚡</div>
           <h3>Referral-powered gender balance</h3>
           <p class="feat-desc">
-            Women's referral codes give men priority queue access. Men are incentivised to bring
-            women in. The 9:1 gender ratio — the #1 structural failure of Indian dating apps —
-            becomes a growth loop.
+            The ratio stays 50:50 by design. Whichever gender is underrepresented gets priority
+            access. The other side queues — referring the opposite gender moves them up. The 9:1
+            problem becomes a growth loop.
           </p>
         </div>
         <div class="feat-card feat-daily reveal">
@@ -3839,9 +3682,9 @@
         <div class="eyebrow">By design, not by chance</div>
         <h2>50% women.<br />50% men.<br />Guaranteed.</h2>
         <p class="lead" style="margin-bottom: 28px">
-          Every other Indian dating app is 90%+ men. Finemate enforces a hard gender balance —
-          women join first, men earn access. Waitlist position is algorithmically tied to the
-          ratio.
+          Every other Indian dating app is 90%+ men. Finemate guarantees 50:50 — access is
+          dynamically balanced. Whichever gender is underrepresented gets priority entry; the
+          overrepresented side earns their spot by bringing balance.
         </p>
         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px">
           <li style="
@@ -3864,7 +3707,7 @@
                   justify-content: center;
                   flex-shrink: 0;
                 ">✓</span>
-            Women skip the queue entirely — always open access
+            The underrepresented gender skips the queue — instant access
           </li>
           <li style="
                 display: flex;
@@ -3886,7 +3729,7 @@
                   justify-content: center;
                   flex-shrink: 0;
                 ">✓</span>
-            Men's queue position improves when they invite women
+            Your queue position improves when you refer the opposite gender
           </li>
           <li style="
                 display: flex;
@@ -3940,236 +3783,181 @@
         <div class="eyebrow">Avatar profiles</div>
         <h2>Real people.<br />Identity controlled.</h2>
         <p class="lead">
-          Every user gets a 3D avatar generated from their photos. Real facial features — without
-          exposing real photos to strangers.
+          Every user gets a 3D avatar built from their photos — a soft blueprint of how they
+          look. Real facial features, without exposing real photos to strangers.
         </p>
       </div>
 
       <div class="avatar-grid" id="avatar-grid">
         <div class="av-card" data-delay="0">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#D1FF1C" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#D1FF1C">
+              <img class="av-img" src="avatars/D.png" alt="Ananya" />
             </div>
             <div class="av-identity">
               <div class="av-name">Ananya, 26</div>
               <div class="av-city">Mumbai · Verified</div>
             </div>
-            <div class="av-match">94%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Late-night chatter</span>
+            <span class="av-tag">Night owl</span>
+            <span class="av-tag">Deep Diver</span>
+            <span class="av-tag">Dry Wit</span>
             <span class="av-tag">Thoughtful</span>
-            <span class="av-tag">Philosophy</span>
-            <span class="av-tag">Dry humour</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="82" style="background: var(--y)"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="91" style="background: var(--y)"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="87" style="background: var(--y)"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag" style="background: rgba(209,255,28,0.08); color: var(--y); font-size: 10px">Warm</span>
+            <span class="av-tag"
+              style="background: rgba(209,255,28,0.08); color: var(--y); font-size: 10px">Storyteller</span>
+            <span class="av-tag"
+              style="background: rgba(209,255,28,0.08); color: var(--y); font-size: 10px">Curious</span>
+            <span class="av-tag" style="background: rgba(209,255,28,0.08); color: var(--y); font-size: 10px">Good
+              Listener</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
 
         <div class="av-card" data-delay="100">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#a78bfa" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#a78bfa">
+              <img class="av-img" src="avatars/B.png" alt="Aryan" />
             </div>
             <div class="av-identity">
               <div class="av-name">Aryan, 28</div>
               <div class="av-city">Delhi · Verified</div>
             </div>
-            <div class="av-match">89%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Quick replies</span>
+            <span class="av-tag">Fast Responder</span>
             <span class="av-tag">Playful</span>
-            <span class="av-tag">Pop culture</span>
-            <span class="av-tag">Sincere</span>
+            <span class="av-tag">Funny</span>
+            <span class="av-tag">Conversation Keeper</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="95" style="background: #a78bfa"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="64" style="background: #a78bfa"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="78" style="background: #a78bfa"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag"
+              style="background: rgba(167,139,250,0.08); color: #a78bfa; font-size: 10px">Initiator</span>
+            <span class="av-tag"
+              style="background: rgba(167,139,250,0.08); color: #a78bfa; font-size: 10px">Flirty</span>
+            <span class="av-tag"
+              style="background: rgba(167,139,250,0.08); color: #a78bfa; font-size: 10px">Optimist</span>
+            <span class="av-tag" style="background: rgba(167,139,250,0.08); color: #a78bfa; font-size: 10px">High
+              Energy</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
 
         <div class="av-card" data-delay="200">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#fb923c" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#fb923c">
+              <img class="av-img" src="avatars/C.png" alt="Riya" />
             </div>
             <div class="av-identity">
-              <div class="av-name">Riya, 24</div>
+              <div class="av-name">Riyan, 24</div>
               <div class="av-city">Bangalore · Verified</div>
             </div>
-            <div class="av-match">97%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Deep diver</span>
+            <span class="av-tag">Deep Diver</span>
             <span class="av-tag">Sarcastic</span>
-            <span class="av-tag">Current events</span>
             <span class="av-tag">Night owl</span>
+            <span class="av-tag">Open Book</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="55" style="background: #fb923c"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="98" style="background: #fb923c"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="93" style="background: #fb923c"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag"
+              style="background: rgba(251,146,60,0.08); color: #fb923c; font-size: 10px">Responder</span>
+            <span class="av-tag"
+              style="background: rgba(251,146,60,0.08); color: #fb923c; font-size: 10px">Romantic</span>
+            <span class="av-tag" style="background: rgba(251,146,60,0.08); color: #fb923c; font-size: 10px">Mood
+              Texter</span>
+            <span class="av-tag" style="background: rgba(251,146,60,0.08); color: #fb923c; font-size: 10px">Emotionally
+              Open</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
 
         <div class="av-card" data-delay="150">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#34d399" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#34d399">
+              <img class="av-img" src="avatars/A.png" alt="Kabir" />
             </div>
             <div class="av-identity">
               <div class="av-name">Kabir, 30</div>
               <div class="av-city">Hyderabad · Verified</div>
             </div>
-            <div class="av-match">81%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Considered</span>
-            <span class="av-tag">Emoji-light</span>
-            <span class="av-tag">Casual</span>
-            <span class="av-tag">Concise</span>
+            <span class="av-tag">Casual Texter</span>
+            <span class="av-tag">Selective Sharer</span>
+            <span class="av-tag">Plays it cool</span>
+            <span class="av-tag">Summarizer</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="68" style="background: #34d399"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="72" style="background: #34d399"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="61" style="background: #34d399"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag"
+              style="background: rgba(52,211,153,0.08); color: #34d399; font-size: 10px">Detached</span>
+            <span class="av-tag"
+              style="background: rgba(52,211,153,0.08); color: #34d399; font-size: 10px">Literal</span>
+            <span class="av-tag" style="background: rgba(52,211,153,0.08); color: #34d399; font-size: 10px">Steady
+              Texter</span>
+            <span class="av-tag" style="background: rgba(52,211,153,0.08); color: #34d399; font-size: 10px">Low
+              Energy</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
 
         <div class="av-card" data-delay="250">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#f472b6" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#f472b6">
+              <img class="av-img" src="avatars/E.png" alt="Meera" />
             </div>
             <div class="av-identity">
               <div class="av-name">Meera, 25</div>
               <div class="av-city">Pune · Verified</div>
             </div>
-            <div class="av-match">92%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Witty</span>
-            <span class="av-tag">Fast replies</span>
-            <span class="av-tag">Pop culture</span>
-            <span class="av-tag">Flirty</span>
+            <span class="av-tag">Funny</span>
+            <span class="av-tag">Fast Responder</span>
+            <span class="av-tag">Emoji Lover</span>
+            <span class="av-tag">Wordplay Wizard</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="90" style="background: #f472b6"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="76" style="background: #f472b6"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="94" style="background: #f472b6"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag"
+              style="background: rgba(244,114,182,0.08); color: #f472b6; font-size: 10px">Flirty</span>
+            <span class="av-tag"
+              style="background: rgba(244,114,182,0.08); color: #f472b6; font-size: 10px">Initiator</span>
+            <span class="av-tag" style="background: rgba(244,114,182,0.08); color: #f472b6; font-size: 10px">Burst
+              Texter</span>
+            <span class="av-tag" style="background: rgba(244,114,182,0.08); color: #f472b6; font-size: 10px">Good
+              Yapper</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
 
         <div class="av-card" data-delay="300">
           <div class="av-card-top">
-            <div class="av-orb">
-              <canvas class="orb-canvas" data-color="#60a5fa" width="60" height="60"></canvas>
+            <div class="av-orb" data-color="#60a5fa">
+              <img class="av-img" src="avatars/F.png" alt="Dev" />
             </div>
             <div class="av-identity">
               <div class="av-name">Dev, 27</div>
               <div class="av-city">Mumbai · Verified</div>
             </div>
-            <div class="av-match">85%</div>
           </div>
           <div class="av-tags">
-            <span class="av-tag">Introspective</span>
-            <span class="av-tag">Long-form</span>
-            <span class="av-tag">Philosophy</span>
-            <span class="av-tag">Sincere</span>
+            <span class="av-tag">The Novelist</span>
+            <span class="av-tag">Mindful Texter</span>
+            <span class="av-tag">Absurdist Vibes</span>
+            <span class="av-tag">Warms Up</span>
           </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Reply speed</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="42" style="background: #60a5fa"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Msg depth</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="96" style="background: #60a5fa"></div>
-            </div>
-          </div>
-          <div class="av-bar-row">
-            <span class="av-bar-label">Humour</span>
-            <div class="av-bar-track">
-              <div class="av-bar-fill" data-w="58" style="background: #60a5fa"></div>
-            </div>
+          <div class="av-tags" style="margin-top: 6px">
+            <span class="av-tag"
+              style="background: rgba(96,165,250,0.08); color: #60a5fa; font-size: 10px">Serious</span>
+            <span class="av-tag"
+              style="background: rgba(96,165,250,0.08); color: #60a5fa; font-size: 10px">Pessimist</span>
+            <span class="av-tag"
+              style="background: rgba(96,165,250,0.08); color: #60a5fa; font-size: 10px">Practical</span>
+            <span class="av-tag" style="background: rgba(96,165,250,0.08); color: #60a5fa; font-size: 10px">Caveman
+              Texter</span>
           </div>
           <div class="av-verified">Identity verified</div>
         </div>
@@ -4181,10 +3969,11 @@
   <div class="section">
     <div class="reveal">
       <div class="eyebrow">How matching works</div>
-      <h2>You match on what<br />you both actually want.</h2>
+      <h2>You match when your<br />intentions and styles align.</h2>
       <p class="lead">
-        Set your intent once. Swipe freely. Match only when both sides align. No guessing, no
-        leading anyone on, no wasted conversations.
+        Set your intent once. Swipe freely. Match only when your intentions line up and your
+        communication styles do too — humor, depth, energy, pace. No guessing, no leading
+        anyone on.
       </p>
     </div>
     <div class="matching-steps">
@@ -4198,8 +3987,7 @@
           <h4>Set your intent — once</h4>
           <p>
             Long-press the heart button to pick what you're genuinely looking for. It stays set
-            across every swipe until you change it yourself. No pop-up on every card. No friction.
-            The dopamine stays intact.
+            across every swipe until you change it yourself. No pop-up on every card. No friction
           </p>
           <div class="intention-pills">
             <span class="intention-pill hl">💚 Long-term relationship</span>
@@ -4355,8 +4143,6 @@
           </div>
           <!-- Result -->
           <div id="vibe-result" class="vibe-result">
-            <div class="vibe-match-score" id="vibe-score">0%</div>
-            <div class="vibe-match-label">Finemate compatibility score</div>
             <div class="vibe-result-type" id="vibe-type"></div>
             <div class="vibe-result-desc" id="vibe-desc"></div>
             <a href="#cta" class="btn btn-y lg" data-ga-source="vibe_result" onclick="focusCta(event)"
@@ -4419,8 +4205,9 @@
         <div class="step-num">01</div>
         <h4>Create your avatar</h4>
         <p class="step-desc">
-          Upload photos during onboarding. AI maps your real facial features to a Memoji-style 3D
-          avatar. This becomes your identity everywhere — discovery, feed, and chat.
+          Upload photos during onboarding. AI maps your real facial features to a 3D avatar — a
+          soft blueprint of how you look. This becomes your identity everywhere — discovery, feed,
+          and chat.
         </p>
       </div>
       <div class="step reveal reveal-d2">
@@ -4449,9 +4236,8 @@
         <div class="eyebrow">Communication matching</div>
         <h2>Your vibe finds<br />its match automatically.</h2>
         <p class="lead">
-          No self-declared bio. Your communication profile is derived from behaviour — reply
-          speed, message depth, humour style, topic preference. You can't fake what you didn't
-          write.
+          Same pace, same humor, same 2 AM chaos. Finemate maps how you actually communicate and
+          finds who fits — before you even say hi. You can't fake what you didn't write.
         </p>
       </div>
 
@@ -4465,13 +4251,19 @@
                 <div class="cd-name">Ananya</div>
                 <div style="font-size: 11px; color: var(--text3)">matched 2 days ago</div>
               </div>
-              <div class="cd-match-badge">94% match</div>
             </div>
             <div class="cd-pattern-row">
               <span class="cd-pattern-label">Your match</span>
               <span class="cd-pill">Thoughtful</span>
               <span class="cd-pill">Dry humour</span>
               <span class="cd-pill">Night owl</span>
+            </div>
+            <div class="cd-pattern-row" style="margin-top: 4px">
+              <span class="cd-pattern-label">Patterns</span>
+              <span class="cd-pill" style="background: rgba(209,255,28,0.1); color: var(--y)">Warm</span>
+              <span class="cd-pill" style="background: rgba(209,255,28,0.1); color: var(--y)">Deep Diver</span>
+              <span class="cd-pill" style="background: rgba(209,255,28,0.1); color: var(--y)">Initiator</span>
+              <span class="cd-pill" style="background: rgba(209,255,28,0.1); color: var(--y)">Curious</span>
             </div>
             <div class="cd-msgs" id="chat-demo-msgs">
               <div class="cd-msg them" data-delay="400">
@@ -4502,64 +4294,45 @@
             </div>
           </div>
 
-          <div class="trait-row" data-w="87" data-color="var(--y)">
-            <div class="trait-header">
-              <span class="trait-name">Dry humour affinity</span><span class="trait-val" id="tv1">0%</span>
-            </div>
-            <div class="trait-track">
-              <div class="trait-fill" style="background: var(--y)"></div>
-            </div>
-          </div>
-          <div class="trait-row" data-w="91" data-color="#a78bfa">
-            <div class="trait-header">
-              <span class="trait-name">Message depth</span><span class="trait-val" id="tv2">0%</span>
-            </div>
-            <div class="trait-track">
-              <div class="trait-fill" style="background: #a78bfa"></div>
-            </div>
-          </div>
-          <div class="trait-row" data-w="62" data-color="#fb923c">
-            <div class="trait-header">
-              <span class="trait-name">Reply latency</span><span class="trait-val" id="tv3">0%</span>
-            </div>
-            <div class="trait-track">
-              <div class="trait-fill" style="background: #fb923c"></div>
+          <div style="margin-top: 16px">
+            <div style="font-size: 11px; color: var(--text2); margin-bottom: 8px; font-weight: 600">Communication
+              patterns</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px">
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(209,255,28,0.1); color: var(--y)">Warm</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(167,139,250,0.1); color: #a78bfa">Initiator</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(251,146,60,0.1); color: #fb923c">Storyteller</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(52,211,153,0.1); color: #34d399">Optimist</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(244,114,182,0.1); color: #f472b6">Playful</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(96,165,250,0.1); color: #60a5fa">Curious</span>
             </div>
           </div>
-          <div class="trait-row" data-w="78" data-color="#34d399">
-            <div class="trait-header">
-              <span class="trait-name">Question ratio</span><span class="trait-val" id="tv4">0%</span>
-            </div>
-            <div class="trait-track">
-              <div class="trait-fill" style="background: #34d399"></div>
-            </div>
-          </div>
-          <div class="trait-row" data-w="95" data-color="#f472b6">
-            <div class="trait-header">
-              <span class="trait-name">Topic consistency</span><span class="trait-val" id="tv5">0%</span>
-            </div>
-            <div class="trait-track">
-              <div class="trait-fill" style="background: #f472b6"></div>
-            </div>
-          </div>
-
-          <div class="match-meter" id="match-meter">
-            <div class="mm-label">Overall compatibility</div>
-            <div class="mm-score" id="mm-score">0%</div>
-            <div class="mm-sub">with Ananya · Mumbai</div>
-            <div class="mm-breakdown">
-              <div class="mm-row">
-                <span>Communication similarity</span><span class="mm-row-val">40%</span>
-              </div>
-              <div class="mm-row">
-                <span>Interest overlap</span><span class="mm-row-val">20%</span>
-              </div>
-              <div class="mm-row">
-                <span>Geo proximity</span><span class="mm-row-val">20%</span>
-              </div>
-              <div class="mm-row">
-                <span>Activity recency</span><span class="mm-row-val">14%</span>
-              </div>
+          <div style="margin-top: 14px">
+            <div style="font-size: 11px; color: var(--text2); margin-bottom: 8px; font-weight: 600">Style tags</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 5px">
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">Night
+                Owl</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">Dry
+                Wit</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">The
+                Novelist</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">Good
+                Listener</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">Conversation
+                Keeper</span>
+              <span
+                style="font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--text1)">Emotionally
+                Open</span>
             </div>
           </div>
         </div>
@@ -4615,7 +4388,7 @@
               not chance</span>
           </div>
           <div class="vs-row">
-            <span class="vs-mark">✓</span><span>Women control photo reveal — hard server enforcement</span>
+            <span class="vs-mark">✓</span><span>Profile revealed after matching — mutual, server-enforced</span>
           </div>
           <div class="vs-row">
             <span class="vs-mark">✓</span><span>Social-first framing — dating is optional, stigma gone</span>
@@ -4677,8 +4450,8 @@
             <strong>(2) Communication-pattern matching</strong> — your profile is derived from how
             you actually communicate (reply speed, message depth, humour style), not a bio you
             wrote. <strong>(3) Guaranteed 50:50 gender ratio</strong> — unlike Tinder's 9:1 male
-            skew, Finemate enforces gender balance by design and women control when photos are
-            revealed.
+            skew, Finemate enforces gender balance by design and photos are revealed to both parties
+            only after matching.
           </div>
         </div>
 
@@ -4699,8 +4472,8 @@
           <div class="faq-q" onclick="toggleFaq(this)">Is Finemate safe for women?</div>
           <div class="faq-a">
             Safety for women is built into Finemate's core architecture.
-            <strong>Women control when photos are revealed</strong> — enforced at the server
-            level, not just the UI. The guaranteed 50:50 gender ratio means women aren't
+            <strong>Photos are revealed to both parties only after matching</strong> — enforced
+            at the server level, not just the UI. The guaranteed 50:50 gender ratio means women aren't
             overwhelmed by messages. Communication-pattern matching filters out bad actors who
             rely on surface-level tactics. Selfie verification ensures no fake profiles.
           </div>
@@ -4733,7 +4506,7 @@
           <div class="faq-q" onclick="toggleFaq(this)">Is Finemate free to use?</div>
           <div class="faq-a">
             Yes — Finemate is <strong>free to join</strong>. Early access members who sign up at
-            inemate.club get priority queue position and founding-member status when we launch. No
+            Finemate.club get priority queue position and founding-member status when we launch. No
             App Store listing yet — this is true early access, and your waitlist position improves
             when you refer friends.
           </div>
@@ -5056,56 +4829,7 @@
           })()
       })()
 
-      // ─────────────────────────────────────────────
-      //  THREE.JS — Discovery orb (phone screen)
-      // ─────────────────────────────────────────────
-      ; (function () {
-        const canvas = document.getElementById('disc-orb-canvas')
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-        renderer.setSize(90, 90)
-        renderer.setPixelRatio(devicePixelRatio)
-        renderer.setClearColor(0, 0)
-        const scene = new THREE.Scene()
-        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 50)
-        camera.position.z = 2.2
-        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
-        const dl = new THREE.DirectionalLight(0xffffff, 0.8)
-        dl.position.set(1, 2, 2)
-        scene.add(dl)
-        const orb = new THREE.Mesh(
-          new THREE.SphereGeometry(0.7, 32, 32),
-          new THREE.MeshStandardMaterial({
-            color: 0xd1ff1c,
-            emissive: 0xd1ff1c,
-            emissiveIntensity: 0.25,
-            roughness: 0.2,
-            metalness: 0.1
-          })
-        )
-        const pl = new THREE.PointLight(0xd1ff1c, 0.8, 4)
-        orb.add(pl)
-        scene.add(orb)
-        const halo = new THREE.Mesh(
-          new THREE.SphereGeometry(1.0, 24, 24),
-          new THREE.MeshStandardMaterial({
-            color: 0xd1ff1c,
-            emissive: 0xd1ff1c,
-            emissiveIntensity: 0.04,
-            transparent: true,
-            opacity: 0.07,
-            side: THREE.BackSide
-          })
-        )
-        scene.add(halo)
-        let t = 0
-          ; (function loop() {
-            requestAnimationFrame(loop)
-            t += 0.01
-            orb.rotation.y += 0.008
-            orb.position.y = Math.sin(t) * 0.05
-            renderer.render(scene, camera)
-          })()
-      })()
+    // (discovery orb replaced with real avatar image)
 
     // ─────────────────────────────────────────────
     //  THREE.JS — Avatar card orbs
@@ -5243,13 +4967,6 @@
           const delay = +(en.target.dataset.delay || 0)
           setTimeout(() => {
             en.target.classList.add('visible')
-            // animate bars
-            en.target.querySelectorAll('.av-bar-fill').forEach(bar => {
-              const w = bar.dataset.w
-              setTimeout(() => {
-                bar.style.width = w + '%'
-              }, 200)
-            })
           }, delay)
           avObs.unobserve(en.target)
         })
@@ -5274,38 +4991,7 @@
             setTimeout(() => msg.classList.add('show'), d)
           })
 
-          // animate trait bars + counters
-          document.querySelectorAll('.trait-row').forEach((row, i) => {
-            const w = +row.dataset.w
-            const fill = row.querySelector('.trait-fill')
-            const valEl = document.getElementById('tv' + (i + 1))
-            setTimeout(
-              () => {
-                fill.style.width = w + '%'
-                let cur = 0
-                const step = () => {
-                  cur = Math.min(cur + 2, w)
-                  if (valEl) valEl.textContent = cur + '%'
-                  if (cur < w) requestAnimationFrame(step)
-                }
-                requestAnimationFrame(step)
-              },
-              400 + i * 150
-            )
-          })
-
-          // animate match meter score
-          setTimeout(() => {
-            const el = document.getElementById('mm-score')
-            let cur = 0
-            const target = 94
-            const step = () => {
-              cur = Math.min(cur + 1, target)
-              el.textContent = cur + '%'
-              if (cur < target) requestAnimationFrame(step)
-            }
-            requestAnimationFrame(step)
-          }, 800)
+          // (profile data uses tags and patterns, not percentages)
         })
       },
       { threshold: 0.2 }
@@ -5658,15 +5344,6 @@
               document.getElementById('vibe-type').textContent = result.name
               document.getElementById('vibe-desc').textContent = result.desc
               gtag('event', 'vibe_quiz_completed', { vibe_type: result.name, score: result.score })
-
-              let cur = 0
-              const el = document.getElementById('vibe-score')
-              const step = () => {
-                cur = Math.min(cur + 2, result.score)
-                el.textContent = cur + '%'
-                if (cur < result.score) requestAnimationFrame(step)
-              }
-              requestAnimationFrame(step)
             }
           }, 420)
         }
@@ -5724,8 +5401,7 @@
       })()
 
     document.querySelectorAll('.av-orb').forEach(orb => {
-      const cvs = orb.querySelector('.orb-canvas')
-      const color = cvs && cvs.dataset.color ? cvs.dataset.color : '#D1FF1C'
+      const color = orb.dataset.color || '#D1FF1C'
 
       const a = document.createElement('div')
       a.className = 'av-ring av-ring-a'

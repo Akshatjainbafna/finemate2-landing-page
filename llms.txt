@@ -11,7 +11,7 @@ Finemate is a social and dating app designed for India where users are matched b
 - **Avatar-first identity**: 3D avatar is shown before photos — personality first, not face first
 - **Communication-pattern matching**: Algorithmic profile built from reply speed, message depth, humour style, topic preference — not a self-declared bio you wrote to impress
 - **Guaranteed 50:50 gender ratio**: Enforced by queuing male users until balance is maintained — unlike Tinder's ~9:1 male-to-female skew
-- **Women control photo reveal**: Server-enforced, not just UI-restricted — no workarounds
+- **Profile revealed after matching**: Server-enforced mutual reveal — no one sees photos before matching
 - **Per-match intention setting**: Long-term, Casual, Marriage, ENM, Friendship — no ambiguity about what someone wants
 - **Daily 9 AM match refresh**: 10 curated profiles per day — quality over infinite scroll
 - **Social-first design**: Dating is optional — users can socialise on the feed without entering dating mode
