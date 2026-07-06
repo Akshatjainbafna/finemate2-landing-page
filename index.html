@@ -1726,6 +1726,36 @@
       color: var(--text3);
     }
 
+    .footer-social {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text3);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: var(--bg);
+      background: var(--text);
+      border-color: var(--text);
+    }
+
+    .footer-social svg {
+      width: 17px;
+      height: 17px;
+      display: block;
+    }
+
     /* ── Footer SEO nav ── */
     .footer-seo-nav {
       background: var(--bg2);
@@ -4166,7 +4196,7 @@
             <span>Ghosting rate vs industry average</span><span class="vibe-trait-val">−61%</span>
           </div>
           <p style="font-size: 11px; color: var(--text3); margin-top: 14px; line-height: 1.6">
-            Source: Finemate beta data &amp; internal matching study, May 2026. Industry average
+            Source: Finemate beta data &amp; internal matching study, July 2026. Industry average
             from Statista dating app engagement report 2024.
           </p>
 
@@ -4526,7 +4556,7 @@
         </div>
       </div>
       <p class="reveal" style="text-align: center; margin-top: 32px; font-size: 13px; color: var(--text3)">
-        Written by the Finemate founding team &middot; Last updated: May 2026
+        Written by the Finemate founding team &middot; Last updated: July 2026
       </p>
       <p class="reveal" style="text-align: center; margin-top: 16px; font-size: 14px; color: var(--text3)">
         Still have questions?
@@ -4632,6 +4662,22 @@
       <a href="#">Safety</a>
       <a href="#">About</a>
       <a href="mailto:hello@finemate.club">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/finemate.club/" target="_blank" rel="noopener noreferrer"
+        aria-label="Follow Finemate on Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0-2.16C8.74 0 8.33.01 7.05.07c-1.28.06-2.15.26-2.91.56-.79.31-1.46.72-2.13 1.38C1.35 2.65.94 3.32.63 4.11c-.3.76-.5 1.63-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.63.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.63.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.35 1.35 20.68.94 19.89.63c-.76-.3-1.63-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />
+        </svg>
+      </a>
+      <a href="https://x.com/finemate_" target="_blank" rel="noopener noreferrer"
+        aria-label="Follow Finemate on X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z" />
+        </svg>
+      </a>
     </div>
     <div class="footer-copy">© 2026 Finemate. India-first.</div>
   </footer>
