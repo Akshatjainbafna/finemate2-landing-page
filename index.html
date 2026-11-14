@@ -4001,6 +4001,117 @@
       }
     }
 
+    /* ── Product phones: horizontal carousel on mobile/tablet ── */
+    .phones-dots {
+      display: none;
+    }
+
+    @media (max-width: 960px) {
+      .phones-stage {
+        --pw: 240px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 28px calc(50% - var(--pw) / 2) 8px;
+        perspective: none;
+      }
+
+      .phones-stage::-webkit-scrollbar {
+        display: none;
+      }
+
+      .phones-stage #stage-particles,
+      .phones-stage .phone-center-glow {
+        display: none;
+      }
+
+      .phones-stage .phone-wrap,
+      .phones-stage .phone-wrap:nth-child(1),
+      .phones-stage .phone-wrap:nth-child(3) {
+        display: flex;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+
+      .phones-stage .phone-wrap .phone-frame,
+      .phones-stage .phone-wrap:hover .phone-frame {
+        transform: scale(0.92);
+        opacity: 0.55;
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .phones-stage .phone-wrap.is-active .phone-frame {
+        transform: none;
+        opacity: 1;
+      }
+
+      .phones-stage .phone-wrap .phone-label {
+        transition: color 0.3s ease;
+      }
+
+      .phones-stage .phone-wrap.is-active .phone-label {
+        color: var(--text);
+      }
+
+      .phones-dots {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin-top: 18px;
+      }
+
+      .phones-dots button {
+        width: 44px;
+        height: 44px;
+        border: 0;
+        padding: 0;
+        background: none;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        touch-action: manipulation;
+      }
+
+      .phones-dots button::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.22);
+        transition:
+          width 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .phones-dots button[aria-selected='true']::before {
+        width: 26px;
+        background: var(--y);
+      }
+
+      .phones-dots button:focus-visible {
+        outline: 2px solid var(--y);
+        outline-offset: -6px;
+        border-radius: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .phones-stage {
+        --pw: 200px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .sw-card {
         transition: opacity 0.2s ease;
@@ -4482,6 +4593,11 @@
         </div>
         <div class="phone-label">Chat - Date or Friend</div>
       </div>
+    </div>
+    <div class="phones-dots" id="phones-dots" role="tablist" aria-label="App screens">
+      <button type="button" role="tab" aria-label="Social Feed" aria-selected="false"></button>
+      <button type="button" role="tab" aria-label="Discover by Vibe" aria-selected="true"></button>
+      <button type="button" role="tab" aria-label="Chat" aria-selected="false"></button>
     </div>
   </section>
 
@@ -5754,6 +5870,56 @@
       { threshold: 0.2 }
     )
     phoneObs.observe(document.getElementById('phones-stage'))
+
+    // ─────────────────────────────────────────────
+    //  Phone carousel (≤960px): active phone + dots
+    // ─────────────────────────────────────────────
+    ;(function () {
+      const stage = document.getElementById('phones-stage')
+      const dotsWrap = document.getElementById('phones-dots')
+      if (!stage || !dotsWrap) return
+      const wraps = Array.from(stage.querySelectorAll('.phone-wrap'))
+      const dots = Array.from(dotsWrap.querySelectorAll('button'))
+      const mq = window.matchMedia('(max-width: 960px)')
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const leftFor = w => w.offsetLeft - (stage.clientWidth - w.offsetWidth) / 2
+
+      function setActive(i) {
+        wraps.forEach((w, k) => w.classList.toggle('is-active', k === i))
+        dots.forEach((d, k) => d.setAttribute('aria-selected', k === i ? 'true' : 'false'))
+      }
+
+      function nearest() {
+        const mid = stage.scrollLeft + stage.clientWidth / 2
+        let best = 0, bestD = Infinity
+        wraps.forEach((w, k) => {
+          const d = Math.abs(w.offsetLeft + w.offsetWidth / 2 - mid)
+          if (d < bestD) { bestD = d; best = k }
+        })
+        return best
+      }
+
+      let raf = 0
+      stage.addEventListener('scroll', () => {
+        if (!mq.matches) return
+        cancelAnimationFrame(raf)
+        raf = requestAnimationFrame(() => setActive(nearest()))
+      }, { passive: true })
+
+      dots.forEach((d, k) => d.addEventListener('click', () => {
+        stage.scrollTo({ left: leftFor(wraps[k]), behavior: reduce ? 'auto' : 'smooth' })
+      }))
+
+      function init() {
+        if (!mq.matches) { wraps.forEach(w => w.classList.remove('is-active')); return }
+        // start on the middle (Discover) screen so both neighbours peek in
+        stage.scrollLeft = leftFor(wraps[1])
+        setActive(1)
+      }
+      init()
+      mq.addEventListener('change', init)
+      window.addEventListener('load', init, { once: true })
+    })()
 
     // ─────────────────────────────────────────────
     //  Communication patterns animation
