@@ -1520,146 +1520,6 @@
       opacity: 0.12;
     }
 
-    /* ── Floating Avatar ── */
-    #float-avatar-wrap {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      cursor: grab;
-      user-select: none;
-      touch-action: none;
-      transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-    }
-
-    #float-avatar-wrap.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.4);
-    }
-
-    #float-avatar-wrap.dragging {
-      cursor: grabbing;
-    }
-
-    #avatar-recall-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 1000;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 2px solid var(--y);
-      background: rgba(8, 8, 10, 0.85);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
-      padding: 0;
-      overflow: hidden;
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.4);
-      transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-      box-shadow: 0 4px 24px rgba(204, 255, 0, 0.35);
-    }
-
-    #avatar-recall-btn.visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1);
-    }
-
-    #avatar-recall-btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      mix-blend-mode: lighten;
-      display: block;
-    }
-
-    #float-avatar-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      mix-blend-mode: lighten;
-      animation: avatarFloat 3.5s ease-in-out infinite;
-      display: block;
-    }
-
-    @keyframes avatarFloat {
-
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .avatar-speech-bubble {
-      background: rgba(9, 9, 12, 0.94);
-      border: 1px solid var(--y-border);
-      border-radius: 16px 16px 16px 4px;
-      padding: 10px 14px;
-      font-size: 12px;
-      color: var(--text);
-      max-width: 190px;
-      text-align: center;
-      line-height: 1.4;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      position: relative;
-      animation: bubbleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @keyframes bubbleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.85) translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    .avatar-anim-btns {
-      display: flex;
-      gap: 6px;
-    }
-
-    .anim-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border);
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition:
-        background 0.2s,
-        border-color 0.2s;
-    }
-
-    .anim-btn:hover {
-      background: var(--y-dim);
-      border-color: var(--y-border);
-    }
-
     /* ── Gender Balance Pill ── */
     .gender-balance-pill {
       display: inline-flex;
@@ -2426,11 +2286,6 @@
         padding: 100px 20px;
       }
 
-      #float-avatar-wrap {
-        bottom: 14px;
-        right: 14px;
-      }
-
       .vibe-game-wrap {
         grid-template-columns: 1fr;
       }
@@ -2569,29 +2424,13 @@
       .avatar-visual {
         width: 100%;
         overflow: hidden;
-        height: 200px;
-      }
-
-      #avatar-mini-canvas {
-        width: 100% !important;
-        height: 200px !important;
+        height: 260px;
       }
 
       /* FAQ question font on narrow screens */
       .faq-q {
         font-size: 15px;
         padding: 20px 0;
-      }
-
-      /* Shrink floating avatar on mobile */
-      #float-avatar-img {
-        width: 110px;
-        height: 110px;
-      }
-
-      .avatar-speech-bubble {
-        max-width: 170px;
-        font-size: 11px;
       }
 
       /* Vibe stat right side padding */
@@ -2710,23 +2549,6 @@
 
       .gh-icon {
         font-size: 20px;
-      }
-
-      #float-avatar-img {
-        width: 90px;
-        height: 90px;
-      }
-
-      .avatar-speech-bubble {
-        font-size: 10px;
-        padding: 7px 10px;
-        max-width: 150px;
-      }
-
-      .anim-btn {
-        width: 26px;
-        height: 26px;
-        font-size: 12px;
       }
 
       footer {
@@ -4001,6 +3823,175 @@
       }
     }
 
+    /* ── Avatar-first identity: memoji mosaic ── */
+    .avatar-visual.mz {
+      height: 300px;
+      display: block;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(209, 255, 28, 0.08), transparent 60%),
+        var(--bg3);
+    }
+
+    .mz-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      --g: 12px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--g);
+      padding: 0 14px;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+    }
+
+    .mz-col {
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .mz-col:nth-child(even) {
+      padding-top: 40px;
+    }
+
+    .mz-track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--g);
+      animation: mzUp 26s linear infinite;
+      will-change: transform;
+    }
+
+    .mz-col:nth-child(2) .mz-track { animation-name: mzDown; animation-duration: 30s; }
+    .mz-col:nth-child(3) .mz-track { animation-duration: 22s; }
+    .mz-col:nth-child(4) .mz-track { animation-name: mzDown; animation-duration: 28s; }
+    .mz-col:nth-child(5) .mz-track { animation-duration: 34s; }
+
+    @keyframes mzUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(calc(-50% - var(--g) / 2)); }
+    }
+
+    @keyframes mzDown {
+      from { transform: translateY(calc(-50% - var(--g) / 2)); }
+      to { transform: translateY(0); }
+    }
+
+    .mz-tile {
+      display: block;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(var(--t), 0.28), rgba(var(--t), 0.06) 70%);
+      border: 1px solid rgba(var(--t), 0.18);
+      transition: transform 0.3s ease;
+    }
+
+    .mz-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.35);
+      display: block;
+    }
+
+    .mz-spot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .mz-spot::before {
+      content: '';
+      position: absolute;
+      inset: -46px -70px;
+      background: radial-gradient(closest-side, rgba(10, 10, 12, 0.92), rgba(10, 10, 12, 0.6) 60%, transparent);
+      z-index: -1;
+    }
+
+    .mz-spot-ring {
+      width: 112px;
+      height: 112px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 40%, #f4ffd0, #d1ff1c 75%);
+      box-shadow:
+        0 0 0 3px #0f0f12,
+        0 0 0 5px var(--y),
+        0 0 40px 6px rgba(209, 255, 28, 0.35);
+      animation: mzPulse 3.2s ease-in-out infinite;
+    }
+
+    .mz-spot-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.35);
+    }
+
+    @keyframes mzPulse {
+      50% {
+        box-shadow:
+          0 0 0 3px #0f0f12,
+          0 0 0 5px var(--y),
+          0 0 56px 12px rgba(209, 255, 28, 0.5);
+      }
+    }
+
+    .mz-spot-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 15, 18, 0.9);
+      border: 1px solid var(--y-border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      backdrop-filter: blur(6px);
+    }
+
+    .mz-spot-chip i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--y);
+      box-shadow: 0 0 8px var(--y);
+    }
+
+    @media (max-width: 960px) {
+      .avatar-visual.mz {
+        height: 260px;
+      }
+
+      .mz-grid {
+        --g: 10px;
+        padding: 0 10px;
+      }
+
+      .mz-spot-ring {
+        width: 96px;
+        height: 96px;
+        border-radius: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mz-track,
+      .mz-spot-ring {
+        animation: none;
+      }
+    }
+
     /* ── Product phones: horizontal carousel on mobile/tablet ── */
     .phones-dots {
       display: none;
@@ -4285,17 +4276,6 @@
       <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01M2 8.82a15 15 0 0 1 20 0M5 12.86a10 10 0 0 1 14 0M8.5 16.43a5 5 0 0 1 7 0" /></symbol>
     </defs>
   </svg>
-  <!-- ── Floating 3D Avatar Guide ── -->
-  <div id="float-avatar-wrap">
-    <div class="avatar-speech-bubble" id="avatar-bubble">
-      Hi! I'm Max, your Finemate guide! 👋
-    </div>
-    <img id="float-avatar-img" src="IMG_1300.gif" alt="Finemate guide" />
-  </div>
-  <button id="avatar-recall-btn" aria-label="Bring Max back">
-    <img src="IMG_1300.gif" alt="Max" />
-  </button>
-
   <!-- ── Nav ── -->
   <nav>
     <a class="logo" href="#"><img src="Finemate Logo.png" alt="Finemate" /></a>
@@ -4618,8 +4598,18 @@
               hints at how you actually look. Personality lands before the photo does.
             </p>
           </div>
-          <div class="avatar-visual">
-            <canvas id="avatar-mini-canvas" width="340" height="240"></canvas>
+          <div class="avatar-visual mz" role="img" aria-label="A mosaic of Finemate memoji avatars">
+            <div class="mz-grid" aria-hidden="true">
+              <div class="mz-col"><div class="mz-track"><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span></div></div>
+              <div class="mz-col"><div class="mz-track"><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/C.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/E.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/G.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/I.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/K.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/A.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/C.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/E.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/G.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/I.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/K.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/A.png" alt="" loading="lazy" decoding="async" /></span></div></div>
+              <div class="mz-col"><div class="mz-track"><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span></div></div>
+              <div class="mz-col"><div class="mz-track"><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/G.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/I.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/K.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/A.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/C.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/E.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/G.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/I.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/K.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/A.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/C.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/E.png" alt="" loading="lazy" decoding="async" /></span></div></div>
+              <div class="mz-col"><div class="mz-track"><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 244,114,182"><img src="avatars/J.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 96,165,250"><img src="avatars/L.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 209,255,28"><img src="avatars/B.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 167,139,250"><img src="avatars/D.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 251,146,60"><img src="avatars/F.png" alt="" loading="lazy" decoding="async" /></span><span class="mz-tile" style="--t: 52,211,153"><img src="avatars/H.png" alt="" loading="lazy" decoding="async" /></span></div></div>
+            </div>
+            <div class="mz-spot" aria-hidden="true">
+              <span class="mz-spot-ring"><img src="avatars/D.png" alt="" /></span>
+              <span class="mz-spot-chip"><i></i>Built from your photos</span>
+            </div>
           </div>
         </div>
         <div class="feat-card reveal reveal-d1" id="fc1">
@@ -5682,67 +5672,6 @@
       })
     })()
 
-      // ─────────────────────────────────────────────
-      //  THREE.JS - Avatar mini (feature card)
-      // ─────────────────────────────────────────────
-      ; (function () {
-        const canvas = document.getElementById('avatar-mini-canvas')
-        const W = 340,
-          H = 240
-        canvas.width = W * devicePixelRatio
-        canvas.height = H * devicePixelRatio
-        canvas.style.width = W + 'px'
-        canvas.style.height = H + 'px'
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-        renderer.setSize(W, H)
-        renderer.setPixelRatio(devicePixelRatio)
-        renderer.setClearColor(0, 0)
-        const scene = new THREE.Scene()
-        const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 50)
-        camera.position.z = 5.5
-        scene.add(new THREE.AmbientLight(0xffffff, 0.5))
-        const dl = new THREE.DirectionalLight(0xffffff, 0.8)
-        dl.position.set(2, 3, 4)
-        scene.add(dl)
-        const mini = [
-          { p: [-1.1, 0, 0], s: 0.62, c: 0xd1ff1c },
-          { p: [1.1, 0, 0], s: 0.62, c: 0xd1ff1c },
-          { p: [0, 0.9, -0.5], s: 0.44, c: 0xaaaaaa },
-          { p: [-1.8, -0.7, -0.4], s: 0.34, c: 0x777777 },
-          { p: [1.8, -0.7, -0.4], s: 0.34, c: 0x777777 }
-        ]
-        const mMeshes = mini.map(o => {
-          const m = new THREE.Mesh(
-            new THREE.SphereGeometry(o.s, 28, 28),
-            new THREE.MeshStandardMaterial({
-              color: o.c,
-              emissive: o.c,
-              emissiveIntensity: o.c === 0xd1ff1c ? 0.22 : 0.02,
-              roughness: 0.3,
-              metalness: 0.1
-            })
-          )
-          m.position.set(...o.p)
-          m.userData = { base: o.p[1], t: Math.random() * Math.PI * 2 }
-          if (o.c === 0xd1ff1c) {
-            const pl = new THREE.PointLight(0xd1ff1c, 0.5, 3.5)
-            m.add(pl)
-          }
-          scene.add(m)
-          return m
-        })
-        let t = 0
-          ; (function loop() {
-            requestAnimationFrame(loop)
-            t += 0.008
-            mMeshes.forEach(m => {
-              m.position.y = m.userData.base + Math.sin(t + m.userData.t) * 0.12
-              m.rotation.y += 0.006
-            })
-            renderer.render(scene, camera)
-          })()
-      })()
-
     // (discovery orb replaced with real avatar image)
 
     // ─────────────────────────────────────────────
@@ -6115,118 +6044,6 @@
       }
       draw()
     })()
-
-      // ─────────────────────────────────────────────
-      //  Floating GIF Avatar - drag + scroll bubble
-      // ─────────────────────────────────────────────
-      ; (function () {
-        var wrap = document.getElementById('float-avatar-wrap')
-        if (!wrap) return
-        var recallBtn = document.getElementById('avatar-recall-btn')
-        var dragging = false,
-          moved = false,
-          startX = 0,
-          startY = 0,
-          ox = 0,
-          oy = 0
-
-        function hideAvatar() {
-          wrap.classList.add('hidden')
-          if (recallBtn) recallBtn.classList.add('visible')
-        }
-        function showAvatar() {
-          wrap.classList.remove('hidden')
-          if (recallBtn) recallBtn.classList.remove('visible')
-        }
-        if (recallBtn) recallBtn.addEventListener('click', showAvatar)
-
-        function startDrag(cx, cy) {
-          dragging = true
-          moved = false
-          startX = cx
-          startY = cy
-          wrap.classList.add('dragging')
-          var r = wrap.getBoundingClientRect()
-          wrap.style.right = 'auto'
-          wrap.style.bottom = 'auto'
-          wrap.style.left = r.left + 'px'
-          wrap.style.top = r.top + 'px'
-          ox = cx - r.left
-          oy = cy - r.top
-        }
-        function moveDrag(cx, cy) {
-          if (!dragging) return
-          if (Math.abs(cx - startX) > 5 || Math.abs(cy - startY) > 5) moved = true
-          wrap.style.left =
-            Math.max(0, Math.min(window.innerWidth - wrap.offsetWidth, cx - ox)) + 'px'
-          wrap.style.top =
-            Math.max(0, Math.min(window.innerHeight - wrap.offsetHeight, cy - oy)) + 'px'
-        }
-        function endDrag() {
-          if (dragging && !moved) hideAvatar()
-          dragging = false
-          wrap.classList.remove('dragging')
-        }
-        wrap.addEventListener('mousedown', function (e) {
-          startDrag(e.clientX, e.clientY)
-          e.preventDefault()
-        })
-        window.addEventListener('mousemove', function (e) {
-          moveDrag(e.clientX, e.clientY)
-        })
-        window.addEventListener('mouseup', endDrag)
-        wrap.addEventListener(
-          'touchstart',
-          function (e) {
-            var t = e.touches[0]
-            startDrag(t.clientX, t.clientY)
-            e.preventDefault()
-          },
-          { passive: false }
-        )
-        window.addEventListener(
-          'touchmove',
-          function (e) {
-            if (!dragging) return
-            var t = e.touches[0]
-            moveDrag(t.clientX, t.clientY)
-            e.preventDefault()
-          },
-          { passive: false }
-        )
-        window.addEventListener('touchend', endDrag)
-        var bubble = document.getElementById('avatar-bubble')
-        var msgs = [
-          { id: 'cta', msg: 'Join us! 400+ waiting 🚀' },
-          { id: 'quote', msg: "Can't fake personality - that's the point 🎭" },
-          { id: 'comms', msg: 'Communication-first matching 🧠' },
-          { id: 'avatars', msg: 'Real people, identity controlled 🔒' },
-          { id: 'screens', msg: 'Three screens. One amazing world 📱' },
-          { id: 'hero', msg: "Hi! I'm Max, your Finemate guide 👋" }
-        ]
-        var lastId = ''
-        window.addEventListener(
-          'scroll',
-          function () {
-            var mid = window.scrollY + window.innerHeight * 0.45
-            for (var i = 0; i < msgs.length; i++) {
-              var el = document.getElementById(msgs[i].id)
-              if (el && el.offsetTop <= mid) {
-                if (msgs[i].id !== lastId) {
-                  lastId = msgs[i].id
-                  bubble.style.animation = 'none'
-                  bubble.textContent = msgs[i].msg
-                  requestAnimationFrame(function () {
-                    bubble.style.animation = ''
-                  })
-                }
-                break
-              }
-            }
-          },
-          { passive: true }
-        )
-      })()
 
       // ─────────────────────────────────────────────
       //  Vibe Check Game
