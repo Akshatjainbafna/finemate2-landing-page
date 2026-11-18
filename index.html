@@ -4305,12 +4305,13 @@
         photograph. Your vibe, algorithmically matched.
       </p>
       <form class="form-wrap" id="hero-form" onsubmit="handleJoin(event, 'hero')">
-        <input class="email-input" id="hero-email" type="email" placeholder="your@email.com" required
-          autocomplete="email" />
+        <input class="email-input" id="hero-email" type="text" placeholder="Email or phone number" required
+          autocomplete="email tel" autocapitalize="off" spellcheck="false" aria-label="Email or phone number"
+          oninput="this.setCustomValidity('')" />
         <button class="btn btn-y lg" type="submit">Get early access →</button>
       </form>
       <p class="form-prompt">
-        Enter your email and we'll save your early-member spot.
+        Enter your email or phone number and we'll save your early-member spot.
       </p>
       <div class="os-pick" id="hero-os" hidden>
         <span class="os-pick-label">Which phone do you use?</span>
@@ -5439,12 +5440,13 @@
       </p>
       <form class="form-wrap reveal" style="margin: 0 auto 14px; max-width: 460px" id="cta-form"
         onsubmit="handleJoin(event, 'cta')">
-        <input class="email-input" id="cta-email" type="email" placeholder="your@email.com" required
-          autocomplete="email" />
+        <input class="email-input" id="cta-email" type="text" placeholder="Email or phone number" required
+          autocomplete="email tel" autocapitalize="off" spellcheck="false" aria-label="Email or phone number"
+          oninput="this.setCustomValidity('')" />
         <button class="btn btn-y lg" type="submit">Join waitlist →</button>
       </form>
       <p class="form-prompt reveal" style="margin: 0 auto 20px; justify-content: center; text-align: center">
-        Enter your email and we'll save your early-member spot.
+        Enter your email or phone number and we'll save your early-member spot.
       </p>
       <div class="os-pick" id="cta-os" hidden style="justify-content: center">
         <span class="os-pick-label">Which phone do you use?</span>
@@ -5941,6 +5943,26 @@
         })
       })()
 
+    // Accept an email OR a phone number. Phones are normalised to +<country><digits>;
+    // a bare 10-digit number starting 6-9 (or with 0/91 prefix) is treated as Indian.
+    function parseContact(raw) {
+      const v = (raw || '').trim()
+      if (!v) return null
+      if (v.includes('@')) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? { type: 'email', value: v.toLowerCase() } : null
+      }
+      if (!/^[+\d\s().-]+$/.test(v)) return null
+      const plus = v.startsWith('+')
+      let d = v.replace(/\D/g, '')
+      if (!plus) {
+        if (d.length === 11 && d[0] === '0') d = d.slice(1)
+        if (d.length === 12 && d.startsWith('91')) d = d.slice(2)
+        if (/^[6-9]\d{9}$/.test(d)) return { type: 'phone', value: '+91' + d }
+        return null
+      }
+      return d.length >= 8 && d.length <= 15 ? { type: 'phone', value: '+' + d } : null
+    }
+
     function handleJoin(e, id) {
       e.preventDefault()
       // If we couldn't detect the OS, the chooser is visible - require a pick so we never lose the platform.
@@ -5951,9 +5973,16 @@
         osPick.scrollIntoView({ behavior: 'smooth', block: 'center' })
         return
       }
-      gtag('event', 'waitlist_submit', { form_location: id })
       const emailEl = document.getElementById(id + '-email')
-      const email = emailEl ? emailEl.value.trim() : ''
+      const contact = parseContact(emailEl ? emailEl.value : '')
+      if (!contact) {
+        emailEl.setCustomValidity('Enter a valid email or phone number')
+        emailEl.reportValidity()
+        return
+      }
+      gtag('event', 'waitlist_submit', { form_location: id, contact_type: contact.type })
+      const email = contact.value // legacy sheet script only stores `email`, so phones go there too until it adds a phone column
+      const phone = contact.type === 'phone' ? contact.value : ''
       const refCode = 'FM-' + randCode()
       const btn = e.target.querySelector('button[type="submit"]')
       if (btn) {
@@ -5981,7 +6010,7 @@
       fetch(SHEETS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ email, source: id, refCode, platform: platform || 'unknown' })
+        body: JSON.stringify({ email, phone, contact: contact.value, contactType: contact.type, source: id, refCode, platform: platform || 'unknown' })
       })
         .then(r => r.json())
         .then(data => showSuccess(data.position))
